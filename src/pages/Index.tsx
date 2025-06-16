@@ -3,20 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-// Country codes for phone numbers
-const countryCodes = [
-  { code: '+1', country: 'US/CA', flag: '🇺🇸' },
-  { code: '+39', country: 'IT', flag: '🇮🇹' },
-  { code: '+44', country: 'UK', flag: '🇬🇧' },
-  { code: '+33', country: 'FR', flag: '🇫🇷' },
-  { code: '+49', country: 'DE', flag: '🇩🇪' },
-  { code: '+34', country: 'ES', flag: '🇪🇸' },
-  { code: '+31', country: 'NL', flag: '🇳🇱' },
-  { code: '+41', country: 'CH', flag: '🇨🇭' },
-  { code: '+43', country: 'AT', flag: '🇦🇹' },
-  { code: '+32', country: 'BE', flag: '🇧🇪' },
-];
-
 interface Particle {
   x: number;
   y: number;
@@ -35,16 +21,61 @@ interface Particle {
 
 const Index = () => {
   const [email, setEmail] = useState('');
-  const [countryCode, setCountryCode] = useState('+39');
-  const [whatsappNumber, setWhatsappNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [currentLangIndex, setCurrentLangIndex] = useState(0);
   const { toast } = useToast();
   
   const particlesRef = useRef<Particle[]>([]);
   const particleCounterRef = useRef(0);
   const lastTimeRef = useRef(0);
   const animationIdRef = useRef<number>();
+
+  const languages = {
+    en: {
+      label: "EN",
+      description: "zerox is a technological innovation lab where distributed systems, artificial intelligence, blockchain, cryptocurrencies and cybersecurity converge to explore new technological frontiers",
+      more: "more",
+      emailPlaceholder: "Enter your email",
+      submit: "Submit",
+      htmlLang: "en",
+    },
+    it: {
+      label: "IT", 
+      description: "zerox è un laboratorio di innovazione tecnologica in cui sistemi distribuiti, intelligenza artificiale, blockchain, criptovalute e cybersecurity convergono per esplorare nuove frontiere tecnologiche",
+      more: "scopri di più",
+      emailPlaceholder: "Inserisci la tua email",
+      submit: "Invia",
+      htmlLang: "it",
+    },
+    es: {
+      label: "ES",
+      description: "zerox es un laboratorio de innovación tecnológica donde los sistemas distribuidos, la inteligencia artificial, la cadena de bloques, las criptomonedas y la ciberseguridad convergen para explorar nuevas fronteras tecnológicas",
+      more: "más",
+      emailPlaceholder: "Introduce tu correo electrónico", 
+      submit: "Enviar",
+      htmlLang: "es",
+    },
+    zh: {
+      label: "中",
+      description: "zerox 是一个技术创新实验室，在这里分布式系统、人工智能、区块链、加密货币和网络安全交汇，探索新的技术前沿",
+      more: "更多",
+      emailPlaceholder: "输入您的邮箱",
+      submit: "提交", 
+      htmlLang: "zh-Hans",
+    },
+  };
+
+  const languageOrder = ["en", "it", "es", "zh"] as const;
+  const currentLang = languages[languageOrder[currentLangIndex]];
+
+  const cycleLanguage = () => {
+    setCurrentLangIndex((prev) => (prev + 1) % languageOrder.length);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", currentLang.htmlLang);
+  }, [currentLang]);
 
   useEffect(() => {
     const maxParticles = 70;
@@ -318,8 +349,8 @@ const Index = () => {
   const handleSubmit = async () => {
     if (!email.trim()) {
       toast({
-        title: "Errore",
-        description: "Per favore inserisci un indirizzo email valido",
+        title: "Error",
+        description: "Please enter a valid email address",
         variant: "destructive"
       });
       return;
@@ -331,9 +362,7 @@ const Index = () => {
       const { error } = await supabase
         .from('contacts')
         .insert([{ 
-          email: email.trim(),
-          country_code: whatsappNumber ? countryCode : null,
-          whatsapp_number: whatsappNumber.trim() || null
+          email: email.trim()
         }]);
 
       if (error) {
@@ -341,18 +370,17 @@ const Index = () => {
       }
 
       toast({
-        title: "Successo!",
-        description: "Grazie per il tuo interesse. Ti contatteremo presto!",
+        title: "Success!",
+        description: "Thank you for subscribing!",
       });
       
       setEmail('');
-      setWhatsappNumber('');
       setShowModal(false);
     } catch (error: any) {
       console.error('Error saving contact:', error);
       toast({
-        title: "Errore",
-        description: "Si è verificato un errore. Riprova più tardi.",
+        title: "Error",
+        description: "An error occurred. Please try again later.",
         variant: "destructive"
       });
     } finally {
@@ -369,6 +397,7 @@ const Index = () => {
           overflow: hidden;
           font-family: 'Courier New', monospace;
         }
+        
         /* Particles */
         .ascii-object {
           position: absolute;
@@ -386,7 +415,7 @@ const Index = () => {
           text-shadow: 0 0 5px rgba(255,153,0,0.6);
         }
         
-        /* Logo and description container */
+        /* Header */
         .header-container {
           position: absolute;
           top: 5%;
@@ -396,12 +425,12 @@ const Index = () => {
           z-index: 3;
           width: 80%;
           max-width: 800px;
-          pointer-events: none;
+          pointer-events: auto;
         }
         
         .logo {
           max-width: 340px;
-          margin-bottom: 0px;
+          margin-bottom: 0;
         }
         
         .company-title {
@@ -410,7 +439,7 @@ const Index = () => {
           letter-spacing: 15px;
           font-size: 1.8rem;
           margin-top: -10px;
-          margin-bottom: 15px; 
+          margin-bottom: 15px;
           text-shadow: 0 0 10px rgba(0,255,153,0.6);
           font-weight: 300;
           font-family: 'Courier New', monospace;
@@ -421,7 +450,7 @@ const Index = () => {
         }
         
         .description-container {
-          background-color: rgba(0, 0, 0, 0.1);
+          background: rgba(0, 0, 0, 0.1);
           padding: 15px;
           border-radius: 10px;
           border: 1px solid rgba(0, 255, 153, 0.3);
@@ -431,6 +460,8 @@ const Index = () => {
           max-width: 650px;
           margin-left: auto;
           margin-right: auto;
+          cursor: pointer;
+          position: relative;
         }
         
         .company-description {
@@ -443,13 +474,34 @@ const Index = () => {
           margin-right: auto;
         }
         
-        /* Fixed button in the center */
+        /* Language toggle */
+        .language-toggle {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 50%;
+          transform: translateX(-50%);
+          border: none;
+          background: none;
+          padding: 0;
+          font-size: 0.9rem;
+          color: #00ff99;
+          cursor: pointer;
+          user-select: none;
+          pointer-events: auto;
+          font-family: 'Courier New', monospace;
+        }
+        
+        .language-toggle:hover {
+          text-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+        }
+        
+        /* Subscribe button */
         #subscribe-button {
           position: absolute;
           left: 50%;
           top: 70%;
           transform: translate(-50%, -50%);
-          background: rgba(0,255,153,0.15);
+          background: rgba(0, 255, 153, 0.15);
           color: #00ff99;
           padding: 15px 40px;
           border-radius: 8px;
@@ -459,27 +511,30 @@ const Index = () => {
           letter-spacing: 2px;
           font-size: 1.1rem;
           border: 2px solid #00ff99;
-          box-shadow: 0 0 15px rgba(0,255,153,0.3);
+          box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
           z-index: 3;
         }
+        
         #subscribe-button:hover {
-          background: rgba(0,255,153,0.25);
-          box-shadow: 0 0 20px rgba(0,255,153,0.6);
+          background: rgba(0, 255, 153, 0.25);
+          box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
           transform: translate(-50%, -50%) scale(1.05);
         }
-        /* Modal for email input */
+        
+        /* Modal */
         .email-modal {
           position: fixed;
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,0.8);
+          background: rgba(0, 0, 0, 0.8);
           z-index: 4;
           display: flex;
           justify-content: center;
           align-items: center;
         }
+        
         .email-modal-content {
           background: #1a1a1a;
           padding: 30px;
@@ -487,43 +542,21 @@ const Index = () => {
           border-radius: 15px;
           text-align: center;
           color: #00ff99;
-          width: 400px;
-          max-width: 90vw;
+          width: 350px;
         }
+        
         .modal-input {
           padding: 14px;
           margin: 12px 0;
           background: #1a1a1a;
           border: 2px solid #00ff99;
           color: #00ff99;
-          font-family: 'Courier New', monospace;
-          font-size: 1rem;
-          border-radius: 5px;
           width: 85%;
-        }
-        .modal-select {
-          padding: 14px;
-          margin: 12px 0;
-          background: #1a1a1a;
-          border: 2px solid #00ff99;
-          color: #00ff99;
           font-family: 'Courier New', monospace;
           font-size: 1rem;
           border-radius: 5px;
-          width: 30%;
         }
-        .modal-phone-input {
-          padding: 14px;
-          margin: 12px 0;
-          background: #1a1a1a;
-          border: 2px solid #00ff99;
-          color: #00ff99;
-          font-family: 'Courier New', monospace;
-          font-size: 1rem;
-          border-radius: 5px;
-          width: 55%;
-          margin-left: 10px;
-        }
+        
         .modal-button {
           background: #00ff99;
           color: #1a1a1a;
@@ -538,52 +571,43 @@ const Index = () => {
           border-radius: 5px;
           font-size: 1.1rem;
         }
+        
         .modal-button:hover {
           opacity: 0.8;
         }
+        
         .modal-button:disabled {
           opacity: 0.5;
           cursor: not-allowed;
         }
-        .phone-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
         
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
           .header-container {
             top: 5%;
             width: 90%;
           }
-          
           .logo {
             max-width: 280px;
           }
-          
           .company-title {
             font-size: 1.6rem;
             letter-spacing: 10px;
             margin-top: -5px;
             margin-bottom: 15px;
           }
-          
           .description-container {
             padding: 12px;
             margin-top: 20px;
           }
-          
           .company-description {
             font-size: 1rem;
           }
-          
           #subscribe-button {
             top: 75%;
             padding: 12px 30px;
             font-size: 1rem;
           }
-          
           .email-modal-content {
             width: 80%;
             max-width: 320px;
@@ -594,115 +618,76 @@ const Index = () => {
           .header-container {
             top: 4%;
           }
-          
           .logo {
             max-width: 280px;
           }
-          
           .company-title {
             font-size: 1.5rem;
             letter-spacing: 10px;
             margin-top: -5px;
             margin-bottom: 12px;
           }
-          
           .description-container {
             padding: 10px;
             margin-top: 15px;
           }
-          
           .company-description {
             font-size: 0.9rem;
             line-height: 1.4;
           }
-          
           #subscribe-button {
             padding: 10px 25px;
             font-size: 0.9rem;
           }
-          
-          .phone-container {
-            flex-direction: column;
-          }
-          .modal-select, .modal-phone-input {
-            width: 85%;
-            margin-left: 0;
-          }
         }
       `}</style>
 
-      {/* Header with logo and description */}
+      {/* Header */}
       <div className="header-container">
         <div className="logo-title-container">
           <img src="/lovable-uploads/8fcb2cf1-bd72-44a2-954c-c2e57d5811d5.png" alt="Zerox Lab Logo" className="logo" />
           <h1 className="company-title">TECHNOLOGY</h1>
         </div>
-        <div className="description-container">
+
+        <div className="description-container" onClick={cycleLanguage}>
           <p className="company-description">
-            zerox is a technological innovation lab where distributed systems, artificial intelligence, blockchain, cryptocurrencies and cybersecurity converge to explore new technological frontiers
+            {currentLang.description}
           </p>
+          <button className="language-toggle" onClick={cycleLanguage} title="Change language">
+            {currentLang.label}
+          </button>
         </div>
       </div>
 
-      {/* Fixed button */}
+      {/* Subscribe button */}
       <div 
         id="subscribe-button" 
         onClick={() => setShowModal(true)}
       >
-        more
+        {currentLang.more}
       </div>
 
-      {/* Modal for email input */}
+      {/* Email modal */}
       {showModal && (
         <div className="email-modal" onClick={(e) => {
           if (e.target === e.currentTarget) setShowModal(false);
         }}>
           <div className="email-modal-content">
-            <h3 style={{ margin: '0 0 20px 0', fontFamily: "'Courier New', monospace" }}>
-              Join our network
-            </h3>
-            
             <input
               type="email"
-              placeholder="Enter your email *"
+              placeholder={currentLang.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="modal-input"
               required
             />
-            
-            <p style={{ margin: '10px 0 5px 0', fontSize: '0.9rem', color: '#cccccc' }}>
-              WhatsApp (optional)
-            </p>
-            
-            <div className="phone-container">
-              <select
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
-                className="modal-select"
-              >
-                {countryCodes.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.flag} {country.code}
-                  </option>
-                ))}
-              </select>
-              
-              <input
-                type="tel"
-                placeholder="Number"
-                value={whatsappNumber}
-                onChange={(e) => setWhatsappNumber(e.target.value)}
-                className="modal-phone-input"
-              />
-            </div>
-            
+            <br />
             <button
               onClick={handleSubmit}
               disabled={isSubmitting}
               className="modal-button"
             >
-              {isSubmitting ? 'Sending...' : 'Submit'}
+              {isSubmitting ? 'Sending...' : currentLang.submit}
             </button>
           </div>
         </div>

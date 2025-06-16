@@ -36,7 +36,7 @@ const Index = () => {
       label: "EN",
       description: "zerox is a technological innovation lab where distributed systems, artificial intelligence, blockchain, cryptocurrencies and cybersecurity converge to explore new technological frontiers",
       more: "more",
-      emailPlaceholder: "Enter your email",
+      emailPlaceholder: "enter your email",
       submit: "Submit",
       htmlLang: "en",
     },
@@ -44,7 +44,7 @@ const Index = () => {
       label: "IT", 
       description: "zerox è un laboratorio di innovazione tecnologica in cui sistemi distribuiti, intelligenza artificiale, blockchain, criptovalute e cybersecurity convergono per esplorare nuove frontiere tecnologiche",
       more: "scopri di più",
-      emailPlaceholder: "Inserisci la tua email",
+      emailPlaceholder: "inserisci email",
       submit: "Invia",
       htmlLang: "it",
     },
@@ -52,7 +52,7 @@ const Index = () => {
       label: "ES",
       description: "zerox es un laboratorio de innovación tecnológica donde los sistemas distribuidos, la inteligencia artificial, la cadena de bloques, las criptomonedas y la ciberseguridad convergen para explorar nuevas fronteras tecnológicas",
       more: "más",
-      emailPlaceholder: "Introduce tu correo electrónico", 
+      emailPlaceholder: "introduce email", 
       submit: "Enviar",
       htmlLang: "es",
     },
@@ -431,6 +431,9 @@ const Index = () => {
         .logo {
           max-width: 340px;
           margin-bottom: 0;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
         
         .company-title {
@@ -443,10 +446,12 @@ const Index = () => {
           text-shadow: 0 0 10px rgba(0,255,153,0.6);
           font-weight: 300;
           font-family: 'Courier New', monospace;
+          text-align: center;
         }
         
         .logo-title-container {
           margin-bottom: 40px;
+          text-align: center;
         }
         
         .description-container {

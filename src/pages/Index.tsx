@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -27,6 +26,10 @@ interface Particle {
   opacity: number;
   fading: boolean;
   el: HTMLDivElement;
+  update: (deltaTime: number) => boolean;
+  startFade: () => void;
+  remove: () => void;
+  reset: () => void;
 }
 
 const Index = () => {
@@ -55,7 +58,7 @@ const Index = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    class ParticleClass {
+    class ParticleClass implements Particle {
       el: HTMLDivElement;
       x: number;
       y: number;
@@ -258,7 +261,7 @@ const Index = () => {
         particles[0].startFade();
       } else {
         const p = new ParticleClass();
-        particles.push(p as any);
+        particles.push(p);
       }
     };
 

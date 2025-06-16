@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -368,6 +369,7 @@ const Index = () => {
           overflow: hidden;
           font-family: 'Courier New', monospace;
         }
+        /* Particles */
         .ascii-object {
           position: absolute;
           font-size: 20px;
@@ -378,10 +380,13 @@ const Index = () => {
           will-change: transform;
           transition: opacity 0.5s ease-out;
         }
+        
         .bitcoin-symbol {
           color: rgb(255,153,0);
           text-shadow: 0 0 5px rgba(255,153,0,0.6);
         }
+        
+        /* Logo and description container */
         .header-container {
           position: absolute;
           top: 5%;
@@ -393,10 +398,12 @@ const Index = () => {
           max-width: 800px;
           pointer-events: none;
         }
+        
         .logo {
           max-width: 340px;
           margin-bottom: 0px;
         }
+        
         .company-title {
           color: #00ff99;
           text-transform: uppercase;
@@ -408,9 +415,11 @@ const Index = () => {
           font-weight: 300;
           font-family: 'Courier New', monospace;
         }
+        
         .logo-title-container {
           margin-bottom: 40px;
         }
+        
         .description-container {
           background-color: rgba(0, 0, 0, 0.1);
           padding: 15px;
@@ -423,6 +432,7 @@ const Index = () => {
           margin-left: auto;
           margin-right: auto;
         }
+        
         .company-description {
           color: #cccccc;
           font-size: 1.15rem;
@@ -432,6 +442,8 @@ const Index = () => {
           margin-left: auto;
           margin-right: auto;
         }
+        
+        /* Fixed button in the center */
         #subscribe-button {
           position: absolute;
           left: 50%;
@@ -449,13 +461,13 @@ const Index = () => {
           border: 2px solid #00ff99;
           box-shadow: 0 0 15px rgba(0,255,153,0.3);
           z-index: 3;
-          pointer-events: auto;
         }
         #subscribe-button:hover {
           background: rgba(0,255,153,0.25);
           box-shadow: 0 0 20px rgba(0,255,153,0.6);
           transform: translate(-50%, -50%) scale(1.05);
         }
+        /* Modal for email input */
         .email-modal {
           position: fixed;
           left: 0;
@@ -538,62 +550,77 @@ const Index = () => {
           align-items: center;
           justify-content: center;
         }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
           .header-container {
             top: 5%;
             width: 90%;
           }
+          
           .logo {
             max-width: 280px;
           }
+          
           .company-title {
             font-size: 1.6rem;
             letter-spacing: 10px;
             margin-top: -5px;
             margin-bottom: 15px;
           }
+          
           .description-container {
             padding: 12px;
             margin-top: 20px;
           }
+          
           .company-description {
             font-size: 1rem;
           }
+          
           #subscribe-button {
             top: 75%;
             padding: 12px 30px;
             font-size: 1rem;
           }
+          
           .email-modal-content {
             width: 80%;
             max-width: 320px;
           }
         }
+        
         @media (max-width: 480px) {
           .header-container {
             top: 4%;
           }
+          
           .logo {
             max-width: 280px;
           }
+          
           .company-title {
             font-size: 1.5rem;
             letter-spacing: 10px;
             margin-top: -5px;
             margin-bottom: 12px;
           }
+          
           .description-container {
             padding: 10px;
             margin-top: 15px;
           }
+          
           .company-description {
             font-size: 0.9rem;
             line-height: 1.4;
           }
+          
           #subscribe-button {
             padding: 10px 25px;
             font-size: 0.9rem;
           }
+          
           .phone-container {
             flex-direction: column;
           }
@@ -604,9 +631,10 @@ const Index = () => {
         }
       `}</style>
 
+      {/* Header with logo and description */}
       <div className="header-container">
         <div className="logo-title-container">
-          <img src="/placeholder.svg" alt="Zerox Lab Logo" className="logo" />
+          <img src="/lovable-uploads/8fcb2cf1-bd72-44a2-954c-c2e57d5811d5.png" alt="Zerox Lab Logo" className="logo" />
           <h1 className="company-title">TECHNOLOGY</h1>
         </div>
         <div className="description-container">
@@ -616,14 +644,15 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Fixed button */}
       <div 
         id="subscribe-button" 
         onClick={() => setShowModal(true)}
-        style={{ pointerEvents: 'auto' }}
       >
         more
       </div>
 
+      {/* Modal for email input */}
       {showModal && (
         <div className="email-modal" onClick={(e) => {
           if (e.target === e.currentTarget) setShowModal(false);

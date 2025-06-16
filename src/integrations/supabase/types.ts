@@ -11,25 +11,19 @@ export type Database = {
     Tables: {
       contacts: {
         Row: {
-          country_code: string | null
           created_at: string
           email: string
           id: string
-          whatsapp_number: string | null
         }
         Insert: {
-          country_code?: string | null
           created_at?: string
           email: string
           id?: string
-          whatsapp_number?: string | null
         }
         Update: {
-          country_code?: string | null
           created_at?: string
           email?: string
           id?: string
-          whatsapp_number?: string | null
         }
         Relationships: []
       }

@@ -11,7 +11,7 @@
 
 ### 2. Configurazione GitHub Pages
 1. Vai nelle impostazioni del repository su GitHub
-2. Sezione "Pages" → Source: "GitHub Actions"
+2. Sezione "Pages" → Source: **"GitHub Actions"** (NON "Deploy from a branch")
 3. Il workflow si attiverà automaticamente ad ogni push
 
 ### 3. Configurazione DNS su Register.it
@@ -51,24 +51,33 @@ TTL: 3600
 ### 4. Configurazione Supabase
 Nel dashboard Supabase, vai su Authentication → URL Configuration:
 
-**Site URL:** `https://tuodominio.com`
+**Site URL:** `https://zerox.technology`
 
 **Redirect URLs:**
-- `https://tuodominio.com/**`
-- `https://www.tuodominio.com/**`
+- `https://zerox.technology/**`
+- `https://www.zerox.technology/**`
 - `https://tuousername.github.io/**` (per testing)
 
-### 5. Aggiorna il file CNAME
-Modifica il file `CNAME` sostituendo "tuodominio.com" con il tuo dominio reale.
+### 5. Verifica Configurazione GitHub Pages
+**IMPORTANTE:** Nella sezione Pages delle impostazioni GitHub:
+- Source deve essere impostato su **"GitHub Actions"**
+- NON selezionare "Deploy from a branch"
+- Il file CNAME viene gestito automaticamente dal workflow
 
 ### 6. Test del Deploy
 Dopo aver configurato tutto:
 1. Fai un commit e push al repository
 2. Controlla la tab "Actions" su GitHub per vedere il progresso
-3. Una volta completato, il sito sarà disponibile su tuodominio.com
+3. Una volta completato, il sito sarà disponibile su zerox.technology
 
 ## Note Importanti:
+- Usa il nuovo sistema GitHub Actions (non il vecchio gh-pages)
 - La propagazione DNS può richiedere 24-48 ore
 - GitHub Pages abilita automaticamente HTTPS
 - Il sito si aggiorna automaticamente ad ogni push su main
 - Tutti i file statici sono ottimizzati per la produzione
+
+## Risoluzione Problemi:
+- Se vedi 404, verifica che Source sia "GitHub Actions" nelle impostazioni Pages
+- Controlla che il workflow sia completato con successo nella tab Actions
+- Verifica che il dominio personalizzato sia configurato correttamente

@@ -25,30 +25,17 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
   onAcceptNecessary,
   onShowSettings
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (consent) {
-      setIsVisible(false);
-    }
-  }, []);
-
   const handleAcceptAll = () => {
     onAcceptAll();
-    setIsVisible(false);
   };
 
   const handleAcceptNecessary = () => {
     onAcceptNecessary();
-    setIsVisible(false);
   };
 
   const handleShowSettings = () => {
     onShowSettings();
   };
-
-  if (!isVisible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t p-2 md:p-3 z-50" style={{ borderTopColor: 'rgba(0, 255, 153, 0.3)' }}>

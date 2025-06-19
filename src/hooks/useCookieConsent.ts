@@ -8,7 +8,8 @@ interface CookiePreferences {
 }
 
 export const useCookieConsent = () => {
-  const [hasConsent, setHasConsent] = useState(false);
+  // Inizializziamo con null per indicare che non abbiamo ancora controllato
+  const [hasConsent, setHasConsent] = useState<boolean | null>(null);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
     analytics: false,
@@ -19,14 +20,15 @@ export const useCookieConsent = () => {
     const savedConsent = localStorage.getItem('cookie-consent');
     const savedPreferences = localStorage.getItem('cookie-preferences');
     
-    // Se non c'è consenso salvato, hasConsent rimane false (banner deve apparire)
+    console.log('Checking cookie consent:', savedConsent); // Debug log
+    
     if (savedConsent === 'true') {
       setHasConsent(true);
       if (savedPreferences) {
         setPreferences(JSON.parse(savedPreferences));
       }
     } else {
-      // Assicuriamoci che hasConsent sia false se non c'è consenso
+      // Impostiamo esplicitamente a false solo se non c'è consenso
       setHasConsent(false);
     }
   }, []);
@@ -45,6 +47,8 @@ export const useCookieConsent = () => {
     localStorage.setItem('cookie-preferences', JSON.stringify(cookiePrefs));
     localStorage.setItem('cookie-consent-date', new Date().toISOString());
 
+    console.log('Cookie consent saved:', cookiePrefs); // Debug log
+
     // Initialize analytics if allowed
     if (cookiePrefs.analytics) {
       console.log('Analytics cookies accepted');
@@ -57,6 +61,7 @@ export const useCookieConsent = () => {
   };
 
   const acceptAll = () => {
+    console.log('Accepting all cookies'); // Debug log
     saveConsent({
       necessary: true,
       analytics: true,
@@ -65,6 +70,7 @@ export const useCookieConsent = () => {
   };
 
   const acceptNecessary = () => {
+    console.log('Accepting necessary cookies only'); // Debug log
     saveConsent({
       necessary: true,
       analytics: false,

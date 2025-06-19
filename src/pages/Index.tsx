@@ -39,8 +39,8 @@ const Index = () => {
         currentLangIndex={currentLangIndex}
       />
 
-      {/* Cookie Banner - mostra sempre quando hasConsent è false */}
-      {!hasConsent && (
+      {/* Cookie Banner - mostra solo quando hasConsent è esplicitamente false */}
+      {hasConsent === false && (
         <CookieBanner
           currentLang={currentLang}
           onAcceptAll={acceptAll}

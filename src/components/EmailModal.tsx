@@ -25,7 +25,12 @@ const EmailModal: React.FC<EmailModalProps> = ({
   const { toast } = useToast();
 
   const handleSubmit = async () => {
-    if (!email.trim()) {
+    console.log('Submitting email:', email); // Debug log
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim() || !emailRegex.test(email.trim())) {
+      console.log('Email validation failed'); // Debug log
       toast({
         title: currentLang.error || "Error",
         description: currentLang.emailError || "Please enter a valid email address",
@@ -35,6 +40,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
     }
 
     if (!emailConsent) {
+      console.log('Consent not given'); // Debug log
       toast({
         title: currentLang.error || "Error", 
         description: currentLang.consentError || "Please accept the privacy policy to continue",
@@ -46,16 +52,24 @@ const EmailModal: React.FC<EmailModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
+      console.log('Attempting to insert email into database'); // Debug log
+      
+      const { data, error } = await supabase
         .from('contacts')
         .insert([{ 
           email: email.trim()
-        }]);
+        }])
+        .select();
+
+      console.log('Supabase response:', { data, error }); // Debug log
 
       if (error) {
+        console.error('Supabase error:', error); // Debug log
         throw error;
       }
 
+      console.log('Email saved successfully'); // Debug log
+      
       toast({
         title: currentLang.success || "Success!",
         description: currentLang.thankYou || "Thank you for subscribing!",
@@ -66,9 +80,20 @@ const EmailModal: React.FC<EmailModalProps> = ({
       onClose();
     } catch (error: any) {
       console.error('Error saving contact:', error);
+      
+      // More specific error handling
+      let errorMessage = currentLang.genericError || "An error occurred. Please try again later.";
+      
+      if (error.code === '23505') {
+        // Unique constraint violation (duplicate email)
+        errorMessage = currentLang.duplicateEmailError || "This email is already registered.";
+      } else if (error.message) {
+        errorMessage = `Error: ${error.message}`;
+      }
+      
       toast({
         title: currentLang.error || "Error",
-        description: currentLang.genericError || "An error occurred. Please try again later.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {

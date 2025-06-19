@@ -25,15 +25,14 @@ export const useParticleSystem = () => {
 
   useEffect(() => {
     const maxParticles = 70;
-    const gravity = 0.5;
-    const floorRestitution = 0.7;
+    const gravity = 0.3;
+    const floorRestitution = 0.2;
     const wallRestitution = 0.8;
-    const floorFriction = 0.85;
-    
-    let floorY = window.innerHeight - 20;
+    const floorFriction = 0.9;
+    let floorY = window.innerHeight;
 
     const handleResize = () => {
-      floorY = window.innerHeight - 20;
+      floorY = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
@@ -55,24 +54,24 @@ export const useParticleSystem = () => {
         this.el.style.fontSize = '20px';
         this.el.style.lineHeight = '20px';
         this.el.style.color = '#00ff99';
-        this.el.style.textShadow = '0 0 8px rgba(0,255,153,0.8)';
+        this.el.style.textShadow = '0 0 5px rgba(0,255,153,0.6)';
         this.el.style.zIndex = '2';
         this.el.style.willChange = 'transform';
         this.el.style.transition = 'opacity 0.5s ease-out';
         this.el.style.fontFamily = "'Courier New', monospace";
 
         particleCounterRef.current++;
-        if (particleCounterRef.current % 25 === 0) {
+        if (particleCounterRef.current % 30 === 0) {
           this.el.textContent = '₿';
           this.el.style.color = 'rgb(255,153,0)';
-          this.el.style.textShadow = '0 0 8px rgba(255,153,0,0.8)';
+          this.el.style.textShadow = '0 0 5px rgba(255,153,0,0.6)';
         } else {
           this.el.textContent = Math.random() < 0.5 ? '0' : '1';
         }
 
         document.body.appendChild(this.el);
-        this.radius = 12;
-        this.mass = Math.random() * 0.8 + 0.5;
+        this.radius = 10;
+        this.mass = Math.random() * 0.5 + 0.8;
         this.opacity = 1.0;
         this.fading = false;
         this.x = 0;
@@ -83,10 +82,10 @@ export const useParticleSystem = () => {
       }
 
       reset() {
-        this.x = Math.random() * (window.innerWidth - this.radius * 2) + this.radius;
-        this.y = -30;
-        this.vx = (Math.random() * 4 - 2);
-        this.vy = Math.random() * 3 + 2;
+        this.x = Math.random() * window.innerWidth;
+        this.y = -20;
+        this.vx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+        this.vy = Math.random() * 2 + 1;
         this.opacity = 1.0;
         this.fading = false;
         this.el.style.opacity = this.opacity.toString();
@@ -94,7 +93,7 @@ export const useParticleSystem = () => {
 
       update(deltaTime: number): boolean {
         if (this.fading) {
-          this.opacity -= 0.02;
+          this.opacity -= 0.05;
           this.el.style.opacity = this.opacity.toString();
           if (this.opacity <= 0) {
             return false;
@@ -102,38 +101,31 @@ export const useParticleSystem = () => {
           return true;
         }
 
-        if (this.y > window.innerHeight + 100) {
+        if (this.y > floorY + 50) {
           this.reset();
           return true;
         }
 
-        const timeScale = Math.min(deltaTime / (1000/60), 2);
-        
-        // Apply gravity
-        this.vy += gravity * timeScale;
-        
-        // Update position
+        const timeScale = deltaTime / (1000/60);
+        this.vy += gravity * timeScale * this.mass;
         this.x += this.vx * timeScale;
         this.y += this.vy * timeScale;
 
-        // Collision with side walls
-        if (this.x - this.radius <= 0) {
+        if (this.x - this.radius < 0) {
           this.x = this.radius;
-          this.vx = Math.abs(this.vx) * wallRestitution;
+          this.vx = -this.vx * wallRestitution;
         }
-        if (this.x + this.radius >= window.innerWidth) {
+        if (this.x + this.radius > window.innerWidth) {
           this.x = window.innerWidth - this.radius;
-          this.vx = -Math.abs(this.vx) * wallRestitution;
+          this.vx = -this.vx * wallRestitution;
         }
 
-        // Collision with floor
-        if (this.y + this.radius >= floorY) {
+        if (this.y + this.radius > floorY) {
           this.y = floorY - this.radius;
-          this.vy = -Math.abs(this.vy) * floorRestitution;
+          this.vy = -this.vy * floorRestitution;
           this.vx *= floorFriction;
-          
-          if (Math.abs(this.vy) < 1) this.vy = 0;
-          if (Math.abs(this.vx) < 0.5) this.vx = 0;
+          if (Math.abs(this.vy) < 0.1) this.vy = 0;
+          if (Math.abs(this.vx) < 0.1) this.vx = 0;
         }
 
         this.el.style.transform = `translate(${this.x - this.radius}px, ${this.y - this.radius}px)`;
@@ -145,8 +137,8 @@ export const useParticleSystem = () => {
       }
 
       remove() {
-        if (this.el && this.el.parentNode) {
-          this.el.parentNode.removeChild(this.el);
+        if (this.el.parentNode) {
+          document.body.removeChild(this.el);
         }
       }
     }
@@ -167,7 +159,6 @@ export const useParticleSystem = () => {
             const overlap = minDist - dist;
             const nx = dx / dist;
             const ny = dy / dist;
-            
             const totalMass = a.mass + b.mass;
             const aRatio = b.mass / totalMass;
             const bRatio = a.mass / totalMass;
@@ -183,15 +174,20 @@ export const useParticleSystem = () => {
             
             if (vDotN > 0) continue;
             
-            const restitution = 0.9;
-            const impulse = -(1 + restitution) * vDotN / (1 / a.mass + 1 / b.mass);
-            const impulseX = impulse * nx;
-            const impulseY = impulse * ny;
+            const restitution = 0.8;
+            const j = -(1 + restitution) * vDotN / (1 / a.mass + 1 / b.mass);
+            const impulseX = j * nx;
+            const impulseY = j * ny;
             
             a.vx -= impulseX / a.mass;
             a.vy -= impulseY / a.mass;
             b.vx += impulseX / b.mass;
             b.vy += impulseY / b.mass;
+            
+            a.vx *= 0.98;
+            a.vy *= 0.98;
+            b.vx *= 0.98;
+            b.vy *= 0.98;
           }
         }
       }
@@ -199,35 +195,40 @@ export const useParticleSystem = () => {
 
     const checkCollisionWithElement = (p: Particle, element: HTMLElement) => {
       const rect = element.getBoundingClientRect();
-      const buffer = 5;
-      
       if (
-        p.x + p.radius > rect.left - buffer &&
-        p.x - p.radius < rect.right + buffer &&
-        p.y + p.radius > rect.top - buffer &&
-        p.y - p.radius < rect.bottom + buffer
+        p.x + p.radius > rect.left &&
+        p.x - p.radius < rect.right &&
+        p.y + p.radius > rect.top &&
+        p.y - p.radius < rect.bottom
       ) {
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+        const penetrationLeft = p.x + p.radius - rect.left;
+        const penetrationRight = rect.right - (p.x - p.radius);
+        const penetrationTop = p.y + p.radius - rect.top;
+        const penetrationBottom = rect.bottom - (p.y - p.radius);
         
-        const dx = p.x - centerX;
-        const dy = p.y - centerY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        let minPenetration = penetrationLeft;
+        let normal = { x: -1, y: 0 };
+        if (penetrationRight < minPenetration) {
+          minPenetration = penetrationRight;
+          normal = { x: 1, y: 0 };
+        }
+        if (penetrationTop < minPenetration) {
+          minPenetration = penetrationTop;
+          normal = { x: 0, y: -1 };
+        }
+        if (penetrationBottom < minPenetration) {
+          minPenetration = penetrationBottom;
+          normal = { x: 0, y: 1 };
+        }
         
-        if (distance > 0) {
-          const nx = dx / distance;
-          const ny = dy / distance;
-          
-          const minDistance = Math.max(rect.width, rect.height) / 2 + p.radius + buffer;
-          p.x = centerX + nx * minDistance;
-          p.y = centerY + ny * minDistance;
-          
-          const restitution = 0.8;
-          const vDotN = p.vx * nx + p.vy * ny;
-          if (vDotN < 0) {
-            p.vx = p.vx - (1 + restitution) * vDotN * nx;
-            p.vy = p.vy - (1 + restitution) * vDotN * ny;
-          }
+        p.x += normal.x * minPenetration;
+        p.y += normal.y * minPenetration;
+        
+        const restitution = 0.5;
+        const vDotN = p.vx * normal.x + p.vy * normal.y;
+        if (vDotN < 0) {
+          p.vx = p.vx - (1 + restitution) * vDotN * normal.x;
+          p.vy = p.vy - (1 + restitution) * vDotN * normal.y;
         }
       }
     };
@@ -235,10 +236,7 @@ export const useParticleSystem = () => {
     const createParticle = () => {
       const particles = particlesRef.current;
       if (particles.length >= maxParticles) {
-        const oldestIndex = Math.floor(Math.random() * Math.min(10, particles.length));
-        if (particles[oldestIndex]) {
-          particles[oldestIndex].startFade();
-        }
+        particles[0].startFade();
       } else {
         const p = new ParticleClass();
         particles.push(p);
@@ -252,29 +250,34 @@ export const useParticleSystem = () => {
       
       const particles = particlesRef.current;
       for (let i = particles.length - 1; i >= 0; i--) {
-        if (particles[i]) {
-          const keepParticle = particles[i].update(deltaTime);
-          if (!keepParticle) {
-            particles[i].remove();
-            particles.splice(i, 1);
-          }
+        const keepParticle = particles[i].update(deltaTime);
+        if (!keepParticle) {
+          particles[i].remove();
+          particles.splice(i, 1);
         }
       }
       
       resolveCollisions();
       
+      // Collisione con il pulsante subscribe
       const subscribeButton = document.getElementById('subscribe-button');
       if (subscribeButton) {
-        particles.forEach(p => {
-          if (p) checkCollisionWithElement(p, subscribeButton);
-        });
+        for (let i = 0; i < 3; i++) {
+          particles.forEach(p => {
+            checkCollisionWithElement(p, subscribeButton);
+          });
+        }
       }
 
+      // Collisione con il banner dei cookies quando è visibile - fix del selettore
       const cookieBanner = document.querySelector('.fixed.bottom-0') as HTMLElement;
       if (cookieBanner && cookieBanner.offsetHeight > 0) {
-        particles.forEach(p => {
-          if (p) checkCollisionWithElement(p, cookieBanner);
-        });
+        // Esegue più iterazioni per collisioni più precise
+        for (let i = 0; i < 8; i++) {
+          particles.forEach(p => {
+            checkCollisionWithElement(p, cookieBanner);
+          });
+        }
       }
       
       animationIdRef.current = requestAnimationFrame(update);
@@ -282,12 +285,12 @@ export const useParticleSystem = () => {
 
     const intervalId = setInterval(() => {
       createParticle();
-    }, 500);
+    }, 667);
 
     animationIdRef.current = requestAnimationFrame(update);
 
-    for (let i = 0; i < 15; i++) {
-      setTimeout(() => createParticle(), i * 100);
+    for (let i = 0; i < 20; i++) {
+      createParticle();
     }
 
     return () => {
@@ -296,9 +299,7 @@ export const useParticleSystem = () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      particlesRef.current.forEach(p => {
-        if (p) p.remove();
-      });
+      particlesRef.current.forEach(p => p.remove());
       particlesRef.current = [];
     };
   }, []);

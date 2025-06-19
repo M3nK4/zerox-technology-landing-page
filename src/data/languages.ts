@@ -20,7 +20,7 @@ export const languages = {
     sending: "Sending...",
     cookieBanner: {
       title: "Cookie Preferences",
-      description: "We use cookies to improve your experience. Choose your preferences.",
+      description: "We use cookies to enhance your browsing experience and analyze our traffic. You can choose which cookies to accept.",
       acceptAll: "Accept All",
       acceptNecessary: "Accept Necessary",
       settings: "Settings",
@@ -52,7 +52,7 @@ export const languages = {
     emailPlaceholder: "inserisci email",
     submit: "Invia",
     htmlLang: "it",
-    emailConsent: "Acconsento al trattamento dei miei dati personali secondo l'Informativa sulla Privacy",
+    emailConsent: "Acconsento al trattamento dei miei dati personali secondo l'",
     privacyPolicy: "Informativa sulla Privacy",
     and: "e la",
     cookiePolicy: "Politica sui Cookie",
@@ -65,7 +65,7 @@ export const languages = {
     sending: "Invio in corso...",
     cookieBanner: {
       title: "Preferenze Cookie",
-      description: "Utilizziamo i cookie per migliorare la tua esperienza. Scegli le tue preferenze.",
+      description: "Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il nostro traffico. Puoi scegliere quali cookie accettare.",
       acceptAll: "Accetta Tutti",
       acceptNecessary: "Accetta Necessari",
       settings: "Impostazioni",
@@ -110,7 +110,7 @@ export const languages = {
     sending: "Enviando...",
     cookieBanner: {
       title: "Preferencias de Cookies",
-      description: "Utilizamos cookies para mejorar tu experiencia. Elige tus preferencias.",
+      description: "Utilizamos cookies para mejorar tu experiencia de navegación y analizar nuestro tráfico. Puedes elegir qué cookies aceptar.",
       acceptAll: "Aceptar Todas",
       acceptNecessary: "Aceptar Necesarias",
       settings: "Configuración",
@@ -155,7 +155,7 @@ export const languages = {
     sending: "发送中...",
     cookieBanner: {
       title: "Cookie偏好",
-      description: "我们使用cookie改善您的体验。选择您的偏好。",
+      description: "我们使用cookie来增强您的浏览体验并分析我们的流量。您可以选择接受哪些cookie。",
       acceptAll: "接受全部",
       acceptNecessary: "接受必要",
       settings: "设置",

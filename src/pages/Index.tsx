@@ -1,8 +1,11 @@
-
 // GitHub Actions deploy trigger - Updated for zerox.technology domain
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useCookieConsent } from "@/hooks/useCookieConsent";
+import CookieBanner from "@/components/CookieBanner";
+import CookieSettings from "@/components/CookieSettings";
+import { Link } from 'react-router-dom';
 
 interface Particle {
   x: number;
@@ -24,8 +27,11 @@ const Index = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showCookieSettings, setShowCookieSettings] = useState(false);
   const [currentLangIndex, setCurrentLangIndex] = useState(0);
+  const [emailConsent, setEmailConsent] = useState(false);
   const { toast } = useToast();
+  const { hasConsent, acceptAll, acceptNecessary, saveConsent } = useCookieConsent();
   
   const particlesRef = useRef<Particle[]>([]);
   const particleCounterRef = useRef(0);
@@ -40,6 +46,36 @@ const Index = () => {
       emailPlaceholder: "enter your email",
       submit: "Submit",
       htmlLang: "en",
+      emailConsent: "I agree to the processing of my personal data according to the",
+      privacyPolicy: "Privacy Policy",
+      and: "and",
+      cookiePolicy: "Cookie Policy",
+      cookieBanner: {
+        title: "Cookie Preferences",
+        description: "We use cookies to enhance your browsing experience and analyze our traffic. You can choose which cookies to accept.",
+        acceptAll: "Accept All",
+        acceptNecessary: "Accept Necessary",
+        settings: "Settings",
+        privacyPolicy: "Privacy Policy"
+      },
+      cookieSettings: {
+        title: "Cookie Settings",
+        description: "Manage your cookie preferences. You can enable or disable different types of cookies below.",
+        necessary: {
+          name: "Necessary Cookies",
+          description: "These cookies are essential for the website to function and cannot be switched off."
+        },
+        analytics: {
+          name: "Analytics Cookies",
+          description: "These cookies help us understand how visitors interact with our website."
+        },
+        marketing: {
+          name: "Marketing Cookies",
+          description: "These cookies are used to track visitors across websites for marketing purposes."
+        },
+        saveSettings: "Save Settings",
+        acceptAll: "Accept All"
+      }
     },
     it: {
       label: "IT", 
@@ -48,6 +84,36 @@ const Index = () => {
       emailPlaceholder: "inserisci email",
       submit: "Invia",
       htmlLang: "it",
+      emailConsent: "Acconsento al trattamento dei miei dati personali secondo l'",
+      privacyPolicy: "Informativa sulla Privacy",
+      and: "e la",
+      cookiePolicy: "Politica sui Cookie",
+      cookieBanner: {
+        title: "Preferenze Cookie",
+        description: "Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il nostro traffico. Puoi scegliere quali cookie accettare.",
+        acceptAll: "Accetta Tutti",
+        acceptNecessary: "Accetta Necessari",
+        settings: "Impostazioni",
+        privacyPolicy: "Informativa Privacy"
+      },
+      cookieSettings: {
+        title: "Impostazioni Cookie",
+        description: "Gestisci le tue preferenze sui cookie. Puoi abilitare o disabilitare diversi tipi di cookie qui sotto.",
+        necessary: {
+          name: "Cookie Necessari",
+          description: "Questi cookie sono essenziali per il funzionamento del sito web e non possono essere disattivati."
+        },
+        analytics: {
+          name: "Cookie Analitici",
+          description: "Questi cookie ci aiutano a capire come i visitatori interagiscono con il nostro sito web."
+        },
+        marketing: {
+          name: "Cookie di Marketing",
+          description: "Questi cookie vengono utilizzati per tracciare i visitatori attraverso i siti web per scopi di marketing."
+        },
+        saveSettings: "Salva Impostazioni",
+        acceptAll: "Accetta Tutti"
+      }
     },
     es: {
       label: "ES",
@@ -56,6 +122,36 @@ const Index = () => {
       emailPlaceholder: "introduce email", 
       submit: "Enviar",
       htmlLang: "es",
+      emailConsent: "Acepto el procesamiento de mis datos personales según la",
+      privacyPolicy: "Política de Privacidad",
+      and: "y la",
+      cookiePolicy: "Política de Cookies",
+      cookieBanner: {
+        title: "Preferencias de Cookies",
+        description: "Utilizamos cookies para mejorar tu experiencia de navegación y analizar nuestro tráfico. Puedes elegir qué cookies aceptar.",
+        acceptAll: "Aceptar Todas",
+        acceptNecessary: "Aceptar Necesarias",
+        settings: "Configuración",
+        privacyPolicy: "Política de Privacidad"
+      },
+      cookieSettings: {
+        title: "Configuración de Cookies",
+        description: "Gestiona tus preferencias de cookies. Puedes habilitar o deshabilitar diferentes tipos de cookies a continuación.",
+        necessary: {
+          name: "Cookies Necesarias",
+          description: "Estas cookies son esenciales para que el sitio web funcione y no se pueden desactivar."
+        },
+        analytics: {
+          name: "Cookies Analíticas",
+          description: "Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web."
+        },
+        marketing: {
+          name: "Cookies de Marketing",
+          description: "Estas cookies se utilizan para rastrear visitantes a través de sitios web con fines de marketing."
+        },
+        saveSettings: "Guardar Configuración",
+        acceptAll: "Aceptar Todas"
+      }
     },
     zh: {
       label: "中",
@@ -64,6 +160,36 @@ const Index = () => {
       emailPlaceholder: "输入您的邮箱",
       submit: "提交", 
       htmlLang: "zh-Hans",
+      emailConsent: "我同意根据",
+      privacyPolicy: "隐私政策",
+      and: "和",
+      cookiePolicy: "Cookie政策",
+      cookieBanner: {
+        title: "Cookie偏好",
+        description: "我们使用cookie来增强您的浏览体验并分析我们的流量。您可以选择接受哪些cookie。",
+        acceptAll: "接受全部",
+        acceptNecessary: "接受必要",
+        settings: "设置",
+        privacyPolicy: "隐私政策"
+      },
+      cookieSettings: {
+        title: "Cookie设置",
+        description: "管理您的cookie偏好。您可以在下面启用或禁用不同类型的cookie。",
+        necessary: {
+          name: "必要Cookie",
+          description: "这些cookie对网站功能至关重要，无法关闭。"
+        },
+        analytics: {
+          name: "分析Cookie",
+          description: "这些cookie帮助我们了解访问者如何与我们的网站互动。"
+        },
+        marketing: {
+          name: "营销Cookie",
+          description: "这些cookie用于跨网站跟踪访问者以进行营销。"
+        },
+        saveSettings: "保存设置",
+        acceptAll: "接受全部"
+      }
     },
   };
 
@@ -357,6 +483,15 @@ const Index = () => {
       return;
     }
 
+    if (!emailConsent) {
+      toast({
+        title: "Error",
+        description: "Please accept the privacy policy to continue",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -376,6 +511,7 @@ const Index = () => {
       });
       
       setEmail('');
+      setEmailConsent(false);
       setShowModal(false);
     } catch (error: any) {
       console.error('Error saving contact:', error);
@@ -673,7 +809,7 @@ const Index = () => {
         {currentLang.more}
       </div>
 
-      {/* Email modal */}
+      {/* Email modal with consent */}
       {showModal && (
         <div className="email-modal" onClick={(e) => {
           if (e.target === e.currentTarget) setShowModal(false);
@@ -687,10 +823,39 @@ const Index = () => {
               className="modal-input"
               required
             />
-            <br />
+            
+            <div className="text-left my-4">
+              <label className="flex items-start gap-2 text-xs text-gray-400 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={emailConsent}
+                  onChange={(e) => setEmailConsent(e.target.checked)}
+                  className="mt-1 accent-green-500"
+                />
+                <span className="leading-relaxed">
+                  {currentLang.emailConsent}{" "}
+                  <Link 
+                    to={`/privacy?lang=${languageOrder[currentLangIndex]}`}
+                    className="text-green-400 hover:text-green-300 underline"
+                    target="_blank"
+                  >
+                    {currentLang.privacyPolicy}
+                  </Link>
+                  {" "}{currentLang.and}{" "}
+                  <Link 
+                    to={`/cookies?lang=${languageOrder[currentLangIndex]}`}
+                    className="text-green-400 hover:text-green-300 underline"
+                    target="_blank"
+                  >
+                    {currentLang.cookiePolicy}
+                  </Link>
+                </span>
+              </label>
+            </div>
+            
             <button
               onClick={handleSubmit}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !emailConsent}
               className="modal-button"
             >
               {isSubmitting ? 'Sending...' : currentLang.submit}
@@ -698,6 +863,24 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      {/* Cookie Banner */}
+      {!hasConsent && (
+        <CookieBanner
+          currentLang={currentLang}
+          onAcceptAll={acceptAll}
+          onAcceptNecessary={acceptNecessary}
+          onShowSettings={() => setShowCookieSettings(true)}
+        />
+      )}
+
+      {/* Cookie Settings Modal */}
+      <CookieSettings
+        isOpen={showCookieSettings}
+        onClose={() => setShowCookieSettings(false)}
+        onSave={saveConsent}
+        currentLang={currentLang}
+      />
     </>
   );
 };

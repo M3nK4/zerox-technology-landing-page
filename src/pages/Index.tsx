@@ -19,6 +19,8 @@ const Index = () => {
   // Initialize particle system
   useParticleSystem();
 
+  console.log('Cookie consent status:', hasConsent); // Debug log
+
   return (
     <>
       <GlobalStyles />
@@ -37,7 +39,7 @@ const Index = () => {
         currentLangIndex={currentLangIndex}
       />
 
-      {/* Cookie Banner */}
+      {/* Cookie Banner - mostra sempre quando hasConsent è false */}
       {!hasConsent && (
         <CookieBanner
           currentLang={currentLang}

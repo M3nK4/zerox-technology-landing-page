@@ -19,11 +19,15 @@ export const useCookieConsent = () => {
     const savedConsent = localStorage.getItem('cookie-consent');
     const savedPreferences = localStorage.getItem('cookie-preferences');
     
-    if (savedConsent) {
+    // Se non c'è consenso salvato, hasConsent rimane false (banner deve apparire)
+    if (savedConsent === 'true') {
       setHasConsent(true);
       if (savedPreferences) {
         setPreferences(JSON.parse(savedPreferences));
       }
+    } else {
+      // Assicuriamoci che hasConsent sia false se non c'è consenso
+      setHasConsent(false);
     }
   }, []);
 
@@ -43,13 +47,11 @@ export const useCookieConsent = () => {
 
     // Initialize analytics if allowed
     if (cookiePrefs.analytics) {
-      // Here you would initialize Google Analytics or other tracking
       console.log('Analytics cookies accepted');
     }
 
     // Initialize marketing if allowed
     if (cookiePrefs.marketing) {
-      // Here you would initialize marketing tools
       console.log('Marketing cookies accepted');
     }
   };

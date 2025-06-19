@@ -25,12 +25,12 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
   onAcceptNecessary,
   onShowSettings
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      setIsVisible(true);
+    if (consent) {
+      setIsVisible(false);
     }
   }, []);
 
@@ -46,30 +46,29 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
 
   const handleShowSettings = () => {
     onShowSettings();
-    setIsVisible(false);
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t p-3 md:p-4 z-50" style={{ borderTopColor: 'rgba(0, 255, 153, 0.3)' }}>
+    <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t p-2 md:p-3 z-50" style={{ borderTopColor: 'rgba(0, 255, 153, 0.3)' }}>
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col gap-3 md:gap-4">
+        <div className="flex flex-col gap-2 md:gap-3">
           {/* Header e descrizione */}
           <div className="text-center md:text-left">
-            <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2 font-mono" style={{ color: 'rgb(0, 255, 153)' }}>
+            <h3 className="font-semibold text-xs md:text-sm mb-1 font-mono" style={{ color: 'rgb(0, 255, 153)' }}>
               {currentLang.cookieBanner.title}
             </h3>
-            <p className="text-gray-300 text-xs md:text-sm leading-relaxed font-mono">
+            <p className="text-gray-300 text-xs leading-relaxed font-mono">
               {currentLang.cookieBanner.description}
             </p>
           </div>
           
           {/* Pulsanti */}
-          <div className="flex flex-col sm:flex-row gap-2 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 justify-center md:justify-start">
             <Button
               onClick={handleAcceptAll}
-              className="text-black font-mono text-xs md:text-sm px-4 py-2 h-auto hover:opacity-80"
+              className="text-black font-mono text-xs px-3 py-1 h-auto hover:opacity-80"
               style={{ backgroundColor: 'rgb(0, 255, 153)' }}
             >
               {currentLang.cookieBanner.acceptAll}
@@ -77,7 +76,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             <Button
               onClick={handleAcceptNecessary}
               variant="outline"
-              className="font-mono text-xs md:text-sm px-4 py-2 h-auto"
+              className="font-mono text-xs px-3 py-1 h-auto"
               style={{ 
                 borderColor: 'rgb(0, 255, 153)', 
                 color: 'rgb(0, 255, 153)',
@@ -89,7 +88,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             <Button
               onClick={handleShowSettings}
               variant="ghost"
-              className="text-gray-400 font-mono text-xs md:text-sm px-4 py-2 h-auto"
+              className="text-gray-400 font-mono text-xs px-3 py-1 h-auto"
               style={{ color: 'rgb(0, 255, 153)' }}
             >
               {currentLang.cookieBanner.settings}

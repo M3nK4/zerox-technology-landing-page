@@ -27,8 +27,8 @@ const EmailModal: React.FC<EmailModalProps> = ({
   const handleSubmit = async () => {
     if (!email.trim()) {
       toast({
-        title: "Error",
-        description: "Please enter a valid email address",
+        title: currentLang.error || "Error",
+        description: currentLang.emailError || "Please enter a valid email address",
         variant: "destructive"
       });
       return;
@@ -36,8 +36,8 @@ const EmailModal: React.FC<EmailModalProps> = ({
 
     if (!emailConsent) {
       toast({
-        title: "Error",
-        description: "Please accept the privacy policy to continue",
+        title: currentLang.error || "Error", 
+        description: currentLang.consentError || "Please accept the privacy policy to continue",
         variant: "destructive"
       });
       return;
@@ -57,8 +57,8 @@ const EmailModal: React.FC<EmailModalProps> = ({
       }
 
       toast({
-        title: "Success!",
-        description: "Thank you for subscribing!",
+        title: currentLang.success || "Success!",
+        description: currentLang.thankYou || "Thank you for subscribing!",
       });
       
       setEmail('');
@@ -67,8 +67,8 @@ const EmailModal: React.FC<EmailModalProps> = ({
     } catch (error: any) {
       console.error('Error saving contact:', error);
       toast({
-        title: "Error",
-        description: "An error occurred. Please try again later.",
+        title: currentLang.error || "Error",
+        description: currentLang.genericError || "An error occurred. Please try again later.",
         variant: "destructive"
       });
     } finally {
@@ -98,13 +98,15 @@ const EmailModal: React.FC<EmailModalProps> = ({
               type="checkbox"
               checked={emailConsent}
               onChange={(e) => setEmailConsent(e.target.checked)}
-              className="mt-1 accent-green-500"
+              className="mt-1"
+              style={{ accentColor: 'rgb(0, 255, 153)' }}
             />
             <span className="leading-relaxed">
               {currentLang.emailConsent}{" "}
               <Link 
                 to={`/privacy?lang=${languageOrder[currentLangIndex]}`}
-                className="text-green-400 hover:text-green-300 underline"
+                className="underline"
+                style={{ color: 'rgb(0, 255, 153)' }}
                 target="_blank"
               >
                 {currentLang.privacyPolicy}
@@ -112,7 +114,8 @@ const EmailModal: React.FC<EmailModalProps> = ({
               {" "}{currentLang.and}{" "}
               <Link 
                 to={`/cookies?lang=${languageOrder[currentLangIndex]}`}
-                className="text-green-400 hover:text-green-300 underline"
+                className="underline"
+                style={{ color: 'rgb(0, 255, 153)' }}
                 target="_blank"
               >
                 {currentLang.cookiePolicy}
@@ -126,7 +129,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
           disabled={isSubmitting || !emailConsent}
           className="modal-button"
         >
-          {isSubmitting ? 'Sending...' : currentLang.submit}
+          {isSubmitting ? (currentLang.sending || 'Sending...') : currentLang.submit}
         </button>
       </div>
     </div>

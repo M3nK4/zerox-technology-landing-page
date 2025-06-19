@@ -33,14 +33,54 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
     - name: Install dependencies
-      run: bun install
+      run: |
+        echo "Installing dependencies..."
+        bun install
+        echo "Dependencies installed successfully"
+
+    - name: Debug - List files before build
+      run: |
+        echo "Files in project root:"
+        ls -la
+        echo "Files in src:"
+        ls -la src/
+        echo "Package.json content:"
+        cat package.json
 
     - name: Build
-      run: bun run build
+      run: |
+        echo "Starting build process..."
+        NODE_ENV=production bun run build
+        echo "Build completed successfully"
+
+    - name: Debug - List files after build
+      run: |
+        echo "Files in dist directory:"
+        ls -la dist/
+        echo "Checking if index.html exists:"
+        test -f dist/index.html && echo "index.html found" || echo "index.html NOT found"
 
     - name: Copy CNAME to dist
-      run: cp CNAME dist/
+      run: |
+        echo "Copying CNAME file..."
+        cp CNAME dist/
+        echo "CNAME copied successfully"
+
+    - name: Verify build output
+      run: |
+        echo "Final verification of dist directory:"
+        ls -la dist/
+        echo "Content of dist/index.html (first 20 lines):"
+        head -20 dist/index.html
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3

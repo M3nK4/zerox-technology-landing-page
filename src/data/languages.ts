@@ -52,7 +52,7 @@ export const languages = {
     emailPlaceholder: "inserisci email",
     submit: "Invia",
     htmlLang: "it",
-    emailConsent: "Acconsento al trattamento dei miei dati personali secondo l'",
+    emailConsent: "Acconsento al trattamento dei miei dati personali secondo l'Informativa sulla Privacy",
     privacyPolicy: "Informativa sulla Privacy",
     and: "e la",
     cookiePolicy: "Politica sui Cookie",

@@ -28,7 +28,7 @@ export const useCookieConsent = () => {
         setPreferences(JSON.parse(savedPreferences));
       }
     } else {
-      // Impostiamo esplicitamente a false solo se non c'è consenso
+      // Se non c'è consenso salvato, impostiamo a false per mostrare il banner
       setHasConsent(false);
     }
   }, []);

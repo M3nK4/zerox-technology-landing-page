@@ -8,7 +8,7 @@ export const baseStyles = `
     position: relative;
   }
   
-  /* CRT Monitor Effect - Random interference spots */
+  /* CRT Monitor Effect - Scanlines */
   body::before {
     content: '';
     position: fixed;
@@ -19,13 +19,13 @@ export const baseStyles = `
     background: 
       linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
       linear-gradient(90deg, rgba(255, 0, 0, 0.08), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.08));
-    background-size: 100% 8px, 12px 100%;
+    background-size: 100% 6px, 12px 100%;
     pointer-events: none;
     z-index: 1000;
     opacity: 0.7;
   }
   
-  /* Random interference spots */
+  /* Electrical interference overlay */
   body::after {
     content: '';
     position: fixed;
@@ -33,16 +33,11 @@ export const baseStyles = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
-      radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
-      radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
-      radial-gradient(circle at 10% 90%, rgba(255,255,255,0.2) 1px, transparent 1px),
-      radial-gradient(circle at 90% 10%, rgba(0,255,153,0.3) 2px, transparent 2px),
-      radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(45deg, transparent 0%, transparent 98%, rgba(255,255,255,0.9) 98.5%, rgba(255,255,255,0.9) 99%, transparent 99.5%);
     pointer-events: none;
-    z-index: 999;
-    animation: random-interference 3s ease-in-out infinite;
+    z-index: 1001;
+    opacity: 0;
+    animation: electrical-interference 4s ease-in-out infinite;
   }
   
   /* CRT Screen glow */
@@ -55,44 +50,128 @@ export const baseStyles = `
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    animation: content-flicker 6s ease-in-out infinite;
   }
   
-  /* Random interference animation */
-  @keyframes random-interference {
-    0% { 
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
-        radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
-        radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
-        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+  /* Electrical interference animation */
+  @keyframes electrical-interference {
+    0%, 85%, 100% { 
+      opacity: 0;
+      background: linear-gradient(45deg, transparent 0%, transparent 98%, rgba(255,255,255,0.9) 98.5%, rgba(255,255,255,0.9) 99%, transparent 99.5%);
     }
-    25% { 
+    87% { 
+      opacity: 1;
       background: 
-        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.4) 1px, transparent 1px),
-        radial-gradient(circle at 30% 20%, rgba(0,255,153,0.3) 2px, transparent 2px),
-        radial-gradient(circle at 90% 50%, rgba(255,0,0,0.3) 2px, transparent 2px),
-        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+        linear-gradient(0deg, transparent 0%, rgba(255,255,255,0.8) 20%, transparent 25%),
+        linear-gradient(90deg, transparent 60%, rgba(0,255,255,0.9) 65%, transparent 70%),
+        linear-gradient(45deg, transparent 30%, rgba(255,255,0,0.7) 35%, transparent 40%);
     }
-    50% { 
+    89% { 
+      opacity: 0.3;
       background: 
-        radial-gradient(circle at 10% 60%, rgba(255,255,255,0.2) 3px, transparent 3px),
-        radial-gradient(circle at 85% 15%, rgba(0,255,153,0.5) 1px, transparent 1px),
-        radial-gradient(circle at 40% 90%, rgba(255,0,0,0.2) 2px, transparent 2px),
-        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+        linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 10%),
+        linear-gradient(270deg, transparent 80%, rgba(255,0,255,0.8) 85%, transparent 90%);
     }
-    75% { 
-      background: 
-        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.3) 2px, transparent 2px),
-        radial-gradient(circle at 20% 85%, rgba(0,255,153,0.2) 3px, transparent 3px),
-        radial-gradient(circle at 80% 40%, rgba(255,0,0,0.4) 1px, transparent 1px),
-        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+    91% { 
+      opacity: 0.8;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.9) 5%, transparent 10%);
     }
-    100% { 
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
-        radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
-        radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
-        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+  }
+  
+  /* Content flicker - makes everything disappear and reappear */
+  @keyframes content-flicker {
+    0%, 82%, 100% { 
+      opacity: 1;
+      filter: brightness(1) contrast(1.1);
+    }
+    83% { 
+      opacity: 0.1;
+      filter: brightness(0.3) contrast(2);
+    }
+    84% { 
+      opacity: 0.8;
+      filter: brightness(1.5) contrast(0.8);
+    }
+    85% { 
+      opacity: 0.2;
+      filter: brightness(0.1) contrast(3);
+    }
+    86% { 
+      opacity: 1;
+      filter: brightness(1.2) contrast(1.1);
+    }
+    87% { 
+      opacity: 0.05;
+      filter: brightness(0.05) contrast(5);
+    }
+    88% { 
+      opacity: 0.9;
+      filter: brightness(1.3) contrast(0.9);
+    }
+    90% { 
+      opacity: 1;
+      filter: brightness(1) contrast(1.1);
+    }
+  }
+  
+  /* Header specific interference */
+  .header-container {
+    animation: header-interference 8s ease-in-out infinite;
+  }
+  
+  @keyframes header-interference {
+    0%, 78%, 100% { 
+      opacity: 1;
+      transform: translateX(-50%) translateY(0px);
+      filter: brightness(1);
+    }
+    80% { 
+      opacity: 0.1;
+      transform: translateX(-50%) translateY(2px);
+      filter: brightness(0.2);
+    }
+    81% { 
+      opacity: 0.8;
+      transform: translateX(-50%) translateY(-1px);
+      filter: brightness(1.5);
+    }
+    82% { 
+      opacity: 0.05;
+      transform: translateX(-50%) translateY(1px);
+      filter: brightness(0.1);
+    }
+    84% { 
+      opacity: 1;
+      transform: translateX(-50%) translateY(0px);
+      filter: brightness(1);
+    }
+  }
+  
+  /* Logo specific glitching */
+  .logo {
+    animation: logo-glitch 7s ease-in-out infinite;
+  }
+  
+  @keyframes logo-glitch {
+    0%, 79%, 100% { 
+      opacity: 1;
+      filter: brightness(1) hue-rotate(0deg);
+    }
+    81% { 
+      opacity: 0.2;
+      filter: brightness(0.3) hue-rotate(180deg);
+    }
+    82% { 
+      opacity: 0.9;
+      filter: brightness(1.4) hue-rotate(-90deg);
+    }
+    83% { 
+      opacity: 0.1;
+      filter: brightness(0.1) hue-rotate(90deg);
+    }
+    85% { 
+      opacity: 1;
+      filter: brightness(1) hue-rotate(0deg);
     }
   }
   

@@ -224,7 +224,7 @@ export const useParticleSystem = () => {
         p.x += normal.x * minPenetration;
         p.y += normal.y * minPenetration;
         
-        const restitution = 0.3;
+        const restitution = 0.5;
         const vDotN = p.vx * normal.x + p.vy * normal.y;
         if (vDotN < 0) {
           p.vx = p.vx - (1 + restitution) * vDotN * normal.x;
@@ -269,10 +269,11 @@ export const useParticleSystem = () => {
         }
       }
 
-      // Collisione con il banner dei cookies quando è visibile
-      const cookieBanner = document.querySelector('[class*="fixed"][class*="bottom-0"]') as HTMLElement;
-      if (cookieBanner) {
-        for (let i = 0; i < 5; i++) {
+      // Collisione con il banner dei cookies quando è visibile - fix del selettore
+      const cookieBanner = document.querySelector('.fixed.bottom-0') as HTMLElement;
+      if (cookieBanner && cookieBanner.offsetHeight > 0) {
+        // Esegue più iterazioni per collisioni più precise
+        for (let i = 0; i < 8; i++) {
           particles.forEach(p => {
             checkCollisionWithElement(p, cookieBanner);
           });

@@ -52,36 +52,38 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-green-500/30 p-4 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-green-500/30 p-3 md:p-4 z-50">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-          <div className="flex-1">
-            <h3 className="text-green-400 font-semibold mb-2 font-mono">
+        <div className="flex flex-col gap-3 md:gap-4">
+          {/* Header e descrizione */}
+          <div className="text-center md:text-left">
+            <h3 className="text-green-400 font-semibold text-sm md:text-base mb-1 md:mb-2 font-mono">
               {currentLang.cookieBanner.title}
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed font-mono">
+            <p className="text-gray-300 text-xs md:text-sm leading-relaxed font-mono">
               {currentLang.cookieBanner.description}
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-2 min-w-fit">
+          {/* Pulsanti */}
+          <div className="flex flex-col sm:flex-row gap-2 justify-center md:justify-start">
             <Button
               onClick={handleAcceptAll}
-              className="bg-green-500 hover:bg-green-600 text-black font-mono px-6"
+              className="bg-green-500 hover:bg-green-600 text-black font-mono text-xs md:text-sm px-4 py-2 h-auto"
             >
               {currentLang.cookieBanner.acceptAll}
             </Button>
             <Button
               onClick={handleAcceptNecessary}
               variant="outline"
-              className="border-green-500 text-green-400 hover:bg-green-500/10 font-mono px-6"
+              className="border-green-500 text-green-400 hover:bg-green-500/10 font-mono text-xs md:text-sm px-4 py-2 h-auto"
             >
               {currentLang.cookieBanner.acceptNecessary}
             </Button>
             <Button
               onClick={handleShowSettings}
               variant="ghost"
-              className="text-gray-400 hover:text-green-400 font-mono px-6"
+              className="text-gray-400 hover:text-green-400 font-mono text-xs md:text-sm px-4 py-2 h-auto"
             >
               {currentLang.cookieBanner.settings}
             </Button>

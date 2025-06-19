@@ -259,11 +259,22 @@ export const useParticleSystem = () => {
       
       resolveCollisions();
       
+      // Collisione con il pulsante subscribe
       const subscribeButton = document.getElementById('subscribe-button');
       if (subscribeButton) {
         for (let i = 0; i < 3; i++) {
           particles.forEach(p => {
             checkCollisionWithElement(p, subscribeButton);
+          });
+        }
+      }
+
+      // Collisione con il banner dei cookies quando è visibile
+      const cookieBanner = document.querySelector('[class*="fixed"][class*="bottom-0"]') as HTMLElement;
+      if (cookieBanner) {
+        for (let i = 0; i < 5; i++) {
+          particles.forEach(p => {
+            checkCollisionWithElement(p, cookieBanner);
           });
         }
       }

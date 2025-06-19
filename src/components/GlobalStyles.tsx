@@ -80,6 +80,7 @@ const GlobalStyles: React.FC = () => {
         margin-right: auto;
         cursor: pointer;
         position: relative;
+        margin-bottom: 60px;
       }
       
       .company-description {
@@ -117,8 +118,8 @@ const GlobalStyles: React.FC = () => {
       #subscribe-button {
         position: absolute;
         left: 50%;
-        top: 70%;
-        transform: translate(-50%, -50%);
+        top: calc(100% + 80px);
+        transform: translateX(-50%);
         background: rgba(0, 255, 153, 0.15);
         color: #00ff99;
         padding: 15px 40px;
@@ -136,7 +137,7 @@ const GlobalStyles: React.FC = () => {
       #subscribe-button:hover {
         background: rgba(0, 255, 153, 0.25);
         box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
-        transform: translate(-50%, -50%) scale(1.05);
+        transform: translateX(-50%) scale(1.05);
       }
       
       /* Modal */
@@ -217,12 +218,13 @@ const GlobalStyles: React.FC = () => {
         .description-container {
           padding: 12px;
           margin-top: 20px;
+          margin-bottom: 50px;
         }
         .company-description {
           font-size: 1rem;
         }
         #subscribe-button {
-          top: 75%;
+          top: calc(100% + 60px);
           padding: 12px 30px;
           font-size: 1rem;
         }
@@ -248,12 +250,14 @@ const GlobalStyles: React.FC = () => {
         .description-container {
           padding: 10px;
           margin-top: 15px;
+          margin-bottom: 40px;
         }
         .company-description {
           font-size: 0.9rem;
           line-height: 1.4;
         }
         #subscribe-button {
+          top: calc(100% + 50px);
           padding: 10px 25px;
           font-size: 0.9rem;
         }

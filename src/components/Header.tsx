@@ -22,14 +22,14 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onMore, cycleLanguage }) =
         <button className="language-toggle" onClick={cycleLanguage} title="Change language">
           {currentLang.label}
         </button>
-      </div>
-
-      {/* Subscribe button */}
-      <div 
-        id="subscribe-button" 
-        onClick={onMore}
-      >
-        {currentLang.more}
+        
+        {/* Subscribe button ora posizionato relativamente al container */}
+        <div 
+          id="subscribe-button" 
+          onClick={onMore}
+        >
+          {currentLang.more}
+        </div>
       </div>
     </div>
   );

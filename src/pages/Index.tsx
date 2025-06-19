@@ -9,11 +9,12 @@ import CookieSettings from "@/components/CookieSettings";
 import Header from "@/components/Header";
 import EmailModal from "@/components/EmailModal";
 import GlobalStyles from "@/components/GlobalStyles";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCookieSettings, setShowCookieSettings] = useState(false);
-  const { hasConsent, acceptAll, acceptNecessary, saveConsent } = useCookieConsent();
+  const { hasConsent, acceptAll, acceptNecessary, saveConsent, resetConsent } = useCookieConsent();
   const { currentLang, currentLangIndex, languageOrder, cycleLanguage } = useLanguage();
   
   // Initialize particle system
@@ -24,6 +25,16 @@ const Index = () => {
   return (
     <>
       <GlobalStyles />
+
+      {/* Pulsante temporaneo per testare il reset del consenso */}
+      <div className="fixed top-4 right-4 z-50">
+        <Button 
+          onClick={resetConsent}
+          className="bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1"
+        >
+          Reset Cookie Consent (Test)
+        </Button>
+      </div>
 
       <Header 
         currentLang={currentLang}

@@ -29,6 +29,7 @@ export const useParticleSystem = () => {
     const floorRestitution = 0.7;
     const wallRestitution = 0.8;
     const floorFriction = 0.85;
+    
     let floorY = window.innerHeight - 20;
 
     const handleResize = () => {
@@ -131,7 +132,6 @@ export const useParticleSystem = () => {
           this.vy = -Math.abs(this.vy) * floorRestitution;
           this.vx *= floorFriction;
           
-          // Ferma la particella se ha poca energia
           if (Math.abs(this.vy) < 1) this.vy = 0;
           if (Math.abs(this.vx) < 0.5) this.vx = 0;
         }
@@ -145,8 +145,8 @@ export const useParticleSystem = () => {
       }
 
       remove() {
-        if (this.el.parentNode) {
-          document.body.removeChild(this.el);
+        if (this.el && this.el.parentNode) {
+          this.el.parentNode.removeChild(this.el);
         }
       }
     }
@@ -168,7 +168,6 @@ export const useParticleSystem = () => {
             const nx = dx / dist;
             const ny = dy / dist;
             
-            // Separa le particelle
             const totalMass = a.mass + b.mass;
             const aRatio = b.mass / totalMass;
             const bRatio = a.mass / totalMass;
@@ -178,7 +177,6 @@ export const useParticleSystem = () => {
             b.x += nx * overlap * bRatio;
             b.y += ny * overlap * bRatio;
             
-            // Calcola le velocità dopo la collisione
             const vRelativeX = b.vx - a.vx;
             const vRelativeY = b.vy - a.vy;
             const vDotN = vRelativeX * nx + vRelativeY * ny;
@@ -220,12 +218,10 @@ export const useParticleSystem = () => {
           const nx = dx / distance;
           const ny = dy / distance;
           
-          // Sposta la particella fuori dall'elemento
           const minDistance = Math.max(rect.width, rect.height) / 2 + p.radius + buffer;
           p.x = centerX + nx * minDistance;
           p.y = centerY + ny * minDistance;
           
-          // Rifletti la velocità
           const restitution = 0.8;
           const vDotN = p.vx * nx + p.vy * ny;
           if (vDotN < 0) {
@@ -240,7 +236,9 @@ export const useParticleSystem = () => {
       const particles = particlesRef.current;
       if (particles.length >= maxParticles) {
         const oldestIndex = Math.floor(Math.random() * Math.min(10, particles.length));
-        particles[oldestIndex].startFade();
+        if (particles[oldestIndex]) {
+          particles[oldestIndex].startFade();
+        }
       } else {
         const p = new ParticleClass();
         particles.push(p);
@@ -254,28 +252,28 @@ export const useParticleSystem = () => {
       
       const particles = particlesRef.current;
       for (let i = particles.length - 1; i >= 0; i--) {
-        const keepParticle = particles[i].update(deltaTime);
-        if (!keepParticle) {
-          particles[i].remove();
-          particles.splice(i, 1);
+        if (particles[i]) {
+          const keepParticle = particles[i].update(deltaTime);
+          if (!keepParticle) {
+            particles[i].remove();
+            particles.splice(i, 1);
+          }
         }
       }
       
       resolveCollisions();
       
-      // Collisione con il pulsante subscribe
       const subscribeButton = document.getElementById('subscribe-button');
       if (subscribeButton) {
         particles.forEach(p => {
-          checkCollisionWithElement(p, subscribeButton);
+          if (p) checkCollisionWithElement(p, subscribeButton);
         });
       }
 
-      // Collisione con il banner dei cookies
       const cookieBanner = document.querySelector('.fixed.bottom-0') as HTMLElement;
       if (cookieBanner && cookieBanner.offsetHeight > 0) {
         particles.forEach(p => {
-          checkCollisionWithElement(p, cookieBanner);
+          if (p) checkCollisionWithElement(p, cookieBanner);
         });
       }
       
@@ -288,7 +286,6 @@ export const useParticleSystem = () => {
 
     animationIdRef.current = requestAnimationFrame(update);
 
-    // Crea particelle iniziali
     for (let i = 0; i < 15; i++) {
       setTimeout(() => createParticle(), i * 100);
     }
@@ -299,7 +296,9 @@ export const useParticleSystem = () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      particlesRef.current.forEach(p => p.remove());
+      particlesRef.current.forEach(p => {
+        if (p) p.remove();
+      });
       particlesRef.current = [];
     };
   }, []);

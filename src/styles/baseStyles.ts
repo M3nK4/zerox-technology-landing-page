@@ -8,7 +8,7 @@ export const baseStyles = `
     position: relative;
   }
   
-  /* CRT Monitor Effect - Linee più grosse e effetto più forte */
+  /* CRT Monitor Effect - Effetto flickering più intenso */
   body::before {
     content: '';
     position: fixed;
@@ -17,16 +17,16 @@ export const baseStyles = `
     width: 100%;
     height: 100%;
     background: 
-      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
-      linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.03), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 6px 100%;
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.08), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.08));
+    background-size: 100% 6px, 8px 100%;
     pointer-events: none;
     z-index: 1000;
-    animation: flicker 0.2s infinite linear alternate;
-    opacity: 0.5;
+    animation: intense-flicker 0.1s infinite linear alternate;
+    opacity: 0.6;
   }
   
-  /* Screen curvature effect - Più forte */
+  /* Screen curvature effect */
   body::after {
     content: '';
     position: fixed;
@@ -39,7 +39,7 @@ export const baseStyles = `
     z-index: 999;
   }
   
-  /* CRT Screen glow - Rimosso bordo */
+  /* CRT Screen glow */
   #root {
     background: #1a1a1a;
     box-shadow: 
@@ -51,13 +51,31 @@ export const baseStyles = `
     overflow: hidden;
   }
   
-  /* CRT flicker animation - Più veloce e forte */
-  @keyframes flicker {
-    0% { opacity: 0.5; }
-    100% { opacity: 0.4; }
+  /* CRT flicker animation - Molto più intenso e veloce */
+  @keyframes intense-flicker {
+    0% { 
+      opacity: 0.6; 
+      filter: brightness(1) contrast(1.2);
+    }
+    25% { 
+      opacity: 0.4; 
+      filter: brightness(0.8) contrast(1.5);
+    }
+    50% { 
+      opacity: 0.7; 
+      filter: brightness(1.3) contrast(0.9);
+    }
+    75% { 
+      opacity: 0.3; 
+      filter: brightness(0.7) contrast(1.8);
+    }
+    100% { 
+      opacity: 0.8; 
+      filter: brightness(1.1) contrast(1.1);
+    }
   }
   
-  /* Text glow for CRT effect - Più forte */
+  /* Text glow for CRT effect */
   * {
     text-shadow: 0 0 4px currentColor;
   }

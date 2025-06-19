@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: mode === 'production' ? '/zerox.technology/' : '/',
+  base: '/', // Per dominio personalizzato, il base path deve essere '/'
   plugins: [
     react(),
     mode === 'development' &&
@@ -30,8 +30,6 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          supabase: ['@supabase/supabase-js'],
-          ui: ['@radix-ui/react-toast', '@radix-ui/react-tooltip']
         }
       }
     }

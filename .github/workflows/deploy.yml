@@ -11,8 +11,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -25,62 +24,46 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        bun-version: latest
+        node-version: '18'
+        cache: 'npm'
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.bun/install/cache
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-        restore-keys: |
-          ${{ runner.os }}-bun-
-
     - name: Install dependencies
       run: |
-        echo "Installing dependencies..."
-        bun install
+        echo "Installing dependencies with npm..."
+        npm ci
         echo "Dependencies installed successfully"
-
-    - name: Debug - List files before build
-      run: |
-        echo "Files in project root:"
-        ls -la
-        echo "Files in src:"
-        ls -la src/
-        echo "Package.json content:"
-        cat package.json
 
     - name: Build
       run: |
         echo "Starting build process..."
-        NODE_ENV=production bun run build
+        npm run build
         echo "Build completed successfully"
 
-    - name: Debug - List files after build
+    - name: Verify build output
       run: |
-        echo "Files in dist directory:"
+        echo "Verifying build output..."
         ls -la dist/
-        echo "Checking if index.html exists:"
-        test -f dist/index.html && echo "index.html found" || echo "index.html NOT found"
+        if [ ! -f dist/index.html ]; then
+          echo "ERROR: index.html not found in dist/"
+          exit 1
+        fi
+        echo "Build verification successful"
 
     - name: Copy CNAME to dist
       run: |
         echo "Copying CNAME file..."
-        cp CNAME dist/
-        echo "CNAME copied successfully"
-
-    - name: Verify build output
-      run: |
-        echo "Final verification of dist directory:"
-        ls -la dist/
-        echo "Content of dist/index.html (first 20 lines):"
-        head -20 dist/index.html
+        if [ -f CNAME ]; then
+          cp CNAME dist/
+          echo "CNAME copied successfully"
+        else
+          echo "CNAME file not found, skipping..."
+        fi
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3

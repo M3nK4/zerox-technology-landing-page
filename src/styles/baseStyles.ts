@@ -8,7 +8,7 @@ export const baseStyles = `
     position: relative;
   }
   
-  /* CRT Monitor Effect */
+  /* CRT Monitor Effect - Ridotte le righe e reso più realistico */
   body::before {
     content: '';
     position: fixed;
@@ -17,15 +17,16 @@ export const baseStyles = `
     width: 100%;
     height: 100%;
     background: 
-      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-      linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    background-size: 100% 6px, 8px 100%;
     pointer-events: none;
     z-index: 1000;
-    animation: flicker 0.15s infinite linear alternate;
+    animation: flicker 0.3s infinite linear alternate;
+    opacity: 0.3;
   }
   
-  /* Screen curvature effect */
+  /* Screen curvature effect - Più sottile */
   body::after {
     content: '';
     position: fixed;
@@ -33,7 +34,7 @@ export const baseStyles = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, transparent 70%, rgba(0,0,0,0.8) 100%);
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 80%, rgba(0,0,0,0.4) 100%);
     pointer-events: none;
     z-index: 999;
   }
@@ -42,8 +43,8 @@ export const baseStyles = `
   #root {
     background: #1a1a1a;
     box-shadow: 
-      inset 0 0 100px rgba(0, 255, 153, 0.1),
-      0 0 50px rgba(0, 255, 153, 0.2);
+      inset 0 0 100px rgba(0, 255, 153, 0.05),
+      0 0 50px rgba(0, 255, 153, 0.1);
     border-radius: 15px;
     margin: 20px;
     min-height: calc(100vh - 40px);
@@ -51,21 +52,15 @@ export const baseStyles = `
     overflow: hidden;
   }
   
-  /* CRT flicker animation */
+  /* CRT flicker animation - Più lento e meno invasivo */
   @keyframes flicker {
-    0% { opacity: 1; }
-    100% { opacity: 0.98; }
+    0% { opacity: 0.3; }
+    100% { opacity: 0.25; }
   }
   
-  /* Scanlines effect */
-  @keyframes scanlines {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-  }
-  
-  /* Text glow for CRT effect */
+  /* Text glow for CRT effect - Ridotto */
   * {
-    text-shadow: 0 0 5px currentColor;
+    text-shadow: 0 0 2px currentColor;
   }
   
   /* Hide Lovable banner completely */

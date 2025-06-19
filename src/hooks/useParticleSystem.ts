@@ -109,14 +109,14 @@ export const useParticleSystem = () => {
 
         const timeScale = Math.min(deltaTime / (1000/60), 2);
         
-        // Applica gravità
+        // Apply gravity
         this.vy += gravity * timeScale;
         
-        // Aggiorna posizione
+        // Update position
         this.x += this.vx * timeScale;
         this.y += this.vy * timeScale;
 
-        // Collisione con i bordi laterali
+        // Collision with side walls
         if (this.x - this.radius <= 0) {
           this.x = this.radius;
           this.vx = Math.abs(this.vx) * wallRestitution;
@@ -126,7 +126,7 @@ export const useParticleSystem = () => {
           this.vx = -Math.abs(this.vx) * wallRestitution;
         }
 
-        // Collisione con il pavimento
+        // Collision with floor
         if (this.y + this.radius >= floorY) {
           this.y = floorY - this.radius;
           this.vy = -Math.abs(this.vy) * floorRestitution;

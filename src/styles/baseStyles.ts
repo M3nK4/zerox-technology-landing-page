@@ -8,7 +8,7 @@ export const baseStyles = `
     position: relative;
   }
   
-  /* CRT Monitor Effect - Effetto flickering più intenso */
+  /* CRT Monitor Effect - Random interference spots */
   body::before {
     content: '';
     position: fixed;
@@ -19,14 +19,13 @@ export const baseStyles = `
     background: 
       linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
       linear-gradient(90deg, rgba(255, 0, 0, 0.08), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.08));
-    background-size: 100% 6px, 8px 100%;
+    background-size: 100% 8px, 12px 100%;
     pointer-events: none;
     z-index: 1000;
-    animation: intense-flicker 0.1s infinite linear alternate;
-    opacity: 0.6;
+    opacity: 0.7;
   }
   
-  /* Screen curvature effect */
+  /* Random interference spots */
   body::after {
     content: '';
     position: fixed;
@@ -34,9 +33,16 @@ export const baseStyles = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
+      radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
+      radial-gradient(circle at 10% 90%, rgba(255,255,255,0.2) 1px, transparent 1px),
+      radial-gradient(circle at 90% 10%, rgba(0,255,153,0.3) 2px, transparent 2px),
+      radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     pointer-events: none;
     z-index: 999;
+    animation: random-interference 3s ease-in-out infinite;
   }
   
   /* CRT Screen glow */
@@ -51,27 +57,42 @@ export const baseStyles = `
     overflow: hidden;
   }
   
-  /* CRT flicker animation - Molto più intenso e veloce */
-  @keyframes intense-flicker {
+  /* Random interference animation */
+  @keyframes random-interference {
     0% { 
-      opacity: 0.6; 
-      filter: brightness(1) contrast(1.2);
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
+        radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     }
     25% { 
-      opacity: 0.4; 
-      filter: brightness(0.8) contrast(1.5);
+      background: 
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.4) 1px, transparent 1px),
+        radial-gradient(circle at 30% 20%, rgba(0,255,153,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 90% 50%, rgba(255,0,0,0.3) 2px, transparent 2px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     }
     50% { 
-      opacity: 0.7; 
-      filter: brightness(1.3) contrast(0.9);
+      background: 
+        radial-gradient(circle at 10% 60%, rgba(255,255,255,0.2) 3px, transparent 3px),
+        radial-gradient(circle at 85% 15%, rgba(0,255,153,0.5) 1px, transparent 1px),
+        radial-gradient(circle at 40% 90%, rgba(255,0,0,0.2) 2px, transparent 2px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     }
     75% { 
-      opacity: 0.3; 
-      filter: brightness(0.7) contrast(1.8);
+      background: 
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 20% 85%, rgba(0,255,153,0.2) 3px, transparent 3px),
+        radial-gradient(circle at 80% 40%, rgba(255,0,0,0.4) 1px, transparent 1px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     }
     100% { 
-      opacity: 0.8; 
-      filter: brightness(1.1) contrast(1.1);
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(0,255,153,0.4) 1px, transparent 1px),
+        radial-gradient(circle at 60% 20%, rgba(255,0,0,0.2) 3px, transparent 3px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 75%, rgba(0,0,0,0.6) 100%);
     }
   }
   

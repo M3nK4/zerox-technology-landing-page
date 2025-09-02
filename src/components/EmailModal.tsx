@@ -4,10 +4,27 @@ import { Link } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+interface LanguageContent {
+  error: string;
+  emailError: string;
+  consentError: string;
+  success: string;
+  thankYou: string;
+  genericError: string;
+  duplicateEmailError: string;
+  sending: string;
+  submit: string;
+  emailPlaceholder: string;
+  emailConsent: string;
+  privacyPolicy: string;
+  and: string;
+  cookiePolicy: string;
+}
+
 interface EmailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  currentLang: any;
+  currentLang: LanguageContent;
   languageOrder: readonly string[];
   currentLangIndex: number;
 }
@@ -78,16 +95,16 @@ const EmailModal: React.FC<EmailModalProps> = ({
       setEmail('');
       setEmailConsent(false);
       onClose();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error saving contact:', error);
       
       // More specific error handling
       let errorMessage = currentLang.genericError || "An error occurred. Please try again later.";
       
-      if (error.code === '23505') {
+      if (error && typeof error === 'object' && 'code' in error && error.code === '23505') {
         // Unique constraint violation (duplicate email)
         errorMessage = currentLang.duplicateEmailError || "This email is already registered.";
-      } else if (error.message) {
+      } else if (error && typeof error === 'object' && 'message' in error && typeof error.message === 'string') {
         errorMessage = `Error: ${error.message}`;
       }
       

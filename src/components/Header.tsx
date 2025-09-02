@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onMore, cycleLanguage }) =
   return (
     <div className="header-container">
       <div className="logo-title-container">
-        <img src="/logo.svg" alt="Zerox Technology Logo" className="logo" />
+        <img src="/assets/zerox-logo.png" alt="Zerox Technology Logo" className="logo" />
         <h1 className="company-title">TECHNOLOGY</h1>
       </div>
 

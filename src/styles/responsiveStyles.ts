@@ -25,7 +25,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 25px;
-      top: calc(100% + 60px);
+      top: calc(100% + 100px);
     }
     #subscribe-button {
       padding: 12px 15px;
@@ -70,7 +70,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 15px;
-      top: calc(100% + 50px);
+      top: calc(100% + 90px);
     }
     #subscribe-button {
       padding: 10px 10px;

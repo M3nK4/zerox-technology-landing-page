@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { languages, languageOrder, type LanguageKey } from '@/data/languages';
 
 export const useLanguage = () => {
-  const [currentLangIndex, setCurrentLangIndex] = useState(0);
+  // Start with Italian (index 1)
+  const [currentLangIndex, setCurrentLangIndex] = useState(1);
   const currentLang = languages[languageOrder[currentLangIndex]];
 
   const cycleLanguage = () => {

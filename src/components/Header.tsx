@@ -6,6 +6,7 @@ interface Language {
   label: string;
   more: string;
   whatsapp: string;
+  whatsappMessage: string;
 }
 
 interface HeaderProps {
@@ -43,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onMore, cycleLanguage }) =
 
           <a
             id="whatsapp-button"
-            href="https://wa.me/393505392924"
+            href={`https://wa.me/393505392924?text=${encodeURIComponent(currentLang.whatsappMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

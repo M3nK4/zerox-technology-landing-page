@@ -259,12 +259,22 @@ export const useParticleSystem = () => {
       
       resolveCollisions();
       
-      // Collisione con il pulsante subscribe
+      // Collisione con i pulsanti subscribe e WhatsApp
       const subscribeButton = document.getElementById('subscribe-button');
+      const whatsappButton = document.getElementById('whatsapp-button');
+
       if (subscribeButton) {
         for (let i = 0; i < 3; i++) {
           particles.forEach(p => {
             checkCollisionWithElement(p, subscribeButton);
+          });
+        }
+      }
+
+      if (whatsappButton) {
+        for (let i = 0; i < 3; i++) {
+          particles.forEach(p => {
+            checkCollisionWithElement(p, whatsappButton);
           });
         }
       }

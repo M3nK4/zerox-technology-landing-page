@@ -86,15 +86,24 @@ export const headerStyles = `
     text-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
   }
   
-  /* Subscribe button */
-  #subscribe-button {
+  /* Action buttons container */
+  .action-buttons-container {
     position: absolute;
     left: 50%;
     top: calc(100% + 80px);
     transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 3;
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+
+  /* Subscribe button */
+  #subscribe-button {
     background: rgba(0, 255, 153, 0.15);
     color: #00ff99;
-    padding: 15px 40px;
+    padding: 15px 20px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
@@ -104,11 +113,43 @@ export const headerStyles = `
     border: 2px solid #00ff99;
     box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
     z-index: 3;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: 220px;
+    text-align: center;
   }
-  
+
   #subscribe-button:hover {
     background: rgba(0, 255, 153, 0.25);
     box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.05);
+  }
+
+  /* WhatsApp button - identico al subscribe button */
+  #whatsapp-button {
+    background: rgba(0, 255, 153, 0.15);
+    color: #00ff99;
+    padding: 15px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    border: 2px solid #00ff99;
+    box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+    z-index: 3;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: 220px;
+    text-align: center;
+  }
+
+  #whatsapp-button:hover {
+    background: rgba(0, 255, 153, 0.25);
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
+    transform: scale(1.05);
   }
 `;

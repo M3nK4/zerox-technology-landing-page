@@ -4,7 +4,7 @@ export const responsiveStyles = `
   @media (max-width: 768px) {
     .header-container {
       top: 5%;
-      width: 90%;
+      width: 95%;
     }
     .logo {
       max-width: 280px;
@@ -23,10 +23,21 @@ export const responsiveStyles = `
     .company-description {
       font-size: 1rem;
     }
-    #subscribe-button {
+    .action-buttons-container {
+      gap: 25px;
       top: calc(100% + 60px);
-      padding: 12px 30px;
-      font-size: 1rem;
+    }
+    #subscribe-button {
+      padding: 12px 15px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      width: 180px;
+    }
+    #whatsapp-button {
+      padding: 12px 15px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      width: 180px;
     }
     .email-modal-content {
       width: 80%;
@@ -37,13 +48,14 @@ export const responsiveStyles = `
   @media (max-width: 480px) {
     .header-container {
       top: 4%;
+      width: 98%;
     }
     .logo {
-      max-width: 280px;
+      max-width: 240px;
     }
     .company-title {
-      font-size: 1.5rem;
-      letter-spacing: 10px;
+      font-size: 1.4rem;
+      letter-spacing: 8px;
       margin-top: -5px;
       margin-bottom: 12px;
     }
@@ -53,13 +65,24 @@ export const responsiveStyles = `
       margin-bottom: 40px;
     }
     .company-description {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.4;
     }
-    #subscribe-button {
+    .action-buttons-container {
+      gap: 15px;
       top: calc(100% + 50px);
-      padding: 10px 25px;
-      font-size: 0.9rem;
+    }
+    #subscribe-button {
+      padding: 10px 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      width: 145px;
+    }
+    #whatsapp-button {
+      padding: 10px 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      width: 145px;
     }
   }
 `;

@@ -5,6 +5,7 @@ interface Language {
   description: string;
   label: string;
   more: string;
+  whatsapp: string;
 }
 
 interface HeaderProps {
@@ -31,12 +32,23 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onMore, cycleLanguage }) =
           </button>
         </div>
         
-        {/* Subscribe button ora separato dall'evento di cambio lingua */}
-        <div 
-          id="subscribe-button" 
-          onClick={onMore}
-        >
-          {currentLang.more}
+        {/* Action buttons container */}
+        <div className="action-buttons-container">
+          <div
+            id="subscribe-button"
+            onClick={onMore}
+          >
+            {currentLang.more}
+          </div>
+
+          <a
+            id="whatsapp-button"
+            href="https://wa.me/393505392924"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {currentLang.whatsapp}
+          </a>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const CookiePolicy = () => {
         },
         types: {
           title: "Types of Cookies We Use",
-          content: "Necessary Cookies:\n• Essential for the website to function properly\n• Remember your cookie preferences\n• Cannot be disabled\n\nAnalytics Cookies:\n• Help us understand how visitors use our website\n• Provide statistics on page views and user behavior\n• Can be disabled in cookie settings\n\nMarketing Cookies:\n• Used to track visitors across websites\n• Help us display relevant content\n• Can be disabled in cookie settings"
+          content: "Necessary Cookies:\n• cookie-consent: Stores your cookie preferences\n• cookie-preferences: Stores granular cookie settings\n• Essential for the website to function properly\n• Duration: 12 months\n• Cannot be disabled\n\nAnalytics Cookies (Optional):\n• Help us understand how visitors use our website\n• Provide statistics on page views and user behavior\n• No third-party analytics currently implemented\n• Can be disabled in cookie settings\n\nMarketing Cookies (Optional):\n• Used to track visitors across websites\n• Help us display relevant content\n• No third-party marketing cookies currently implemented\n• Can be disabled in cookie settings"
         },
         management: {
           title: "Managing Cookies",
@@ -46,7 +46,7 @@ const CookiePolicy = () => {
         },
         types: {
           title: "Tipi di Cookie che Utilizziamo",
-          content: "Cookie Necessari:\n• Essenziali per il corretto funzionamento del sito web\n• Ricordano le tue preferenze sui cookie\n• Non possono essere disabilitati\n\nCookie Analitici:\n• Ci aiutano a capire come i visitatori utilizzano il nostro sito web\n• Forniscono statistiche su visualizzazioni di pagina e comportamento utente\n• Possono essere disabilitati nelle impostazioni dei cookie\n\nCookie di Marketing:\n• Utilizzati per tracciare i visitatori attraverso i siti web\n• Ci aiutano a mostrare contenuti rilevanti\n• Possono essere disabilitati nelle impostazioni dei cookie"
+          content: "Cookie Necessari:\n• cookie-consent: Memorizza le tue preferenze sui cookie\n• cookie-preferences: Memorizza le impostazioni granulari dei cookie\n• Essenziali per il corretto funzionamento del sito web\n• Durata: 12 mesi\n• Non possono essere disabilitati\n\nCookie Analitici (Opzionali):\n• Ci aiutano a capire come i visitatori utilizzano il nostro sito web\n• Forniscono statistiche su visualizzazioni di pagina e comportamento utente\n• Nessun sistema di analytics di terze parti attualmente implementato\n• Possono essere disabilitati nelle impostazioni dei cookie\n\nCookie di Marketing (Opzionali):\n• Utilizzati per tracciare i visitatori attraverso i siti web\n• Ci aiutano a mostrare contenuti rilevanti\n• Nessun cookie di marketing di terze parti attualmente implementato\n• Possono essere disabilitati nelle impostazioni dei cookie"
         },
         management: {
           title: "Gestione dei Cookie",

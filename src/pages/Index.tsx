@@ -9,6 +9,7 @@ import CookieSettings from "@/components/CookieSettings";
 import Header from "@/components/Header";
 import EmailModal from "@/components/EmailModal";
 import GlobalStyles from "@/components/GlobalStyles";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +26,7 @@ const Index = () => {
     <>
       <GlobalStyles />
 
-      <Header 
+      <Header
         currentLang={currentLang}
         onMore={() => setShowModal(true)}
         cycleLanguage={cycleLanguage}
@@ -56,6 +57,9 @@ const Index = () => {
         onSave={saveConsent}
         currentLang={currentLang}
       />
+
+      {/* Footer with legal links */}
+      <Footer currentLang={currentLang} />
     </>
   );
 };

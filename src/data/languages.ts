@@ -43,6 +43,14 @@ export const languages = {
       },
       saveSettings: "Save Settings",
       acceptAll: "Accept All"
+    },
+    footer: {
+      company: "Zerox Technology",
+      allRightsReserved: "All rights reserved",
+      privacyPolicy: "Privacy Policy",
+      cookiePolicy: "Cookie Policy",
+      terms: "Terms of Service",
+      legalNotice: "Legal Notice"
     }
   },
   it: {
@@ -88,6 +96,14 @@ export const languages = {
       },
       saveSettings: "Salva Impostazioni",
       acceptAll: "Accetta Tutti"
+    },
+    footer: {
+      company: "Zerox Technology",
+      allRightsReserved: "Tutti i diritti riservati",
+      privacyPolicy: "Informativa sulla Privacy",
+      cookiePolicy: "Politica sui Cookie",
+      terms: "Termini di Servizio",
+      legalNotice: "Informativa Legale"
     }
   },
   es: {
@@ -133,6 +149,14 @@ export const languages = {
       },
       saveSettings: "Guardar Configuración",
       acceptAll: "Aceptar Todas"
+    },
+    footer: {
+      company: "Zerox Technology",
+      allRightsReserved: "Todos los derechos reservados",
+      privacyPolicy: "Política de Privacidad",
+      cookiePolicy: "Política de Cookies",
+      terms: "Términos de Servicio",
+      legalNotice: "Aviso Legal"
     }
   },
   zh: {
@@ -178,6 +202,14 @@ export const languages = {
       },
       saveSettings: "保存设置",
       acceptAll: "接受全部"
+    },
+    footer: {
+      company: "Zerox Technology",
+      allRightsReserved: "版权所有",
+      privacyPolicy: "隐私政策",
+      cookiePolicy: "Cookie政策",
+      terms: "服务条款",
+      legalNotice: "法律声明"
     }
   },
 };

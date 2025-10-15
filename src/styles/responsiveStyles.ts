@@ -4,7 +4,7 @@ export const responsiveStyles = `
   @media (max-width: 768px) {
     .header-container {
       top: 5%;
-      width: 95%;
+      width: 85%;
     }
     .logo {
       max-width: 280px;
@@ -19,6 +19,7 @@ export const responsiveStyles = `
       padding: 12px;
       margin-top: 20px;
       margin-bottom: 50px;
+      max-width: 550px;
     }
     .company-description {
       font-size: 1rem;
@@ -48,7 +49,7 @@ export const responsiveStyles = `
   @media (max-width: 480px) {
     .header-container {
       top: 4%;
-      width: 98%;
+      width: 85%;
     }
     .logo {
       max-width: 240px;
@@ -63,6 +64,7 @@ export const responsiveStyles = `
       padding: 10px;
       margin-top: 15px;
       margin-bottom: 40px;
+      max-width: 400px;
     }
     .company-description {
       font-size: 0.85rem;

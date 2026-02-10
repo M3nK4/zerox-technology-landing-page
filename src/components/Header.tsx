@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LanguageKey } from '@/data/languages';
 
@@ -59,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           className="action-button"
           title={currentLang.email}
         >
-          <span className="action-icon">&#x1F4E7;&#xFE0E;</span>
+          <span className="action-icon">@</span>
         </div>
 
         <a
@@ -70,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           rel="noopener noreferrer"
           title={currentLang.whatsapp}
         >
-          <span className="action-icon">&#x1F5E8;&#xFE0E;</span>
+          <span className="action-icon">&gt;</span>
         </a>
 
         <div
@@ -78,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           className="action-button"
           title={currentLang.voiceAgent}
         >
-          <span className="action-icon">&#x1F5E3;&#xFE0E;</span>
+          <span className="action-icon">~</span>
         </div>
       </div>
     </div>

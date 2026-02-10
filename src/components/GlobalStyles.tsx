@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { baseStyles } from '@/styles/baseStyles';
 import { particleStyles } from '@/styles/particleStyles';
 import { headerStyles } from '@/styles/headerStyles';
 import { responsiveStyles } from '@/styles/responsiveStyles';
+import { crtStyles } from '@/styles/crtStyles';
 
 const GlobalStyles: React.FC = () => {
   const combinedStyles = `
@@ -11,6 +11,7 @@ const GlobalStyles: React.FC = () => {
     ${particleStyles}
     ${headerStyles}
     ${responsiveStyles}
+    ${crtStyles}
   `;
 
   return <style>{combinedStyles}</style>;

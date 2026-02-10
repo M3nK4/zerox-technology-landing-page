@@ -1,4 +1,3 @@
-
 export const responsiveStyles = `
   /* Large desktops (1440px+) */
   @media (min-width: 1440px) {
@@ -44,6 +43,9 @@ export const responsiveStyles = `
       letter-spacing: 14px;
       padding-left: 14px;
     }
+    .company-description {
+      font-size: 0.95rem;
+    }
     .action-buttons-container {
       gap: 35px;
     }
@@ -66,11 +68,13 @@ export const responsiveStyles = `
       padding-left: 10px;
     }
     .company-description {
-      font-size: clamp(0.72rem, 1.6vw, 0.95rem);
+      font-size: 0.93rem;
+      line-height: 1.75;
     }
     .language-btn {
-      font-size: 0.72rem;
-      padding: 3px 6px;
+      font-size: 0.75rem;
+      padding: 4px 7px;
+      color: rgba(255, 255, 255, 0.45);
     }
     .action-buttons-container {
       gap: 28px;
@@ -95,14 +99,16 @@ export const responsiveStyles = `
       margin-top: -6px;
     }
     .company-description {
-      font-size: clamp(0.74rem, 1.8vw, 0.92rem);
+      font-size: 0.9rem;
+      line-height: 1.8;
     }
     .language-btn {
-      font-size: 0.65rem;
-      padding: 2px 5px;
+      font-size: 0.7rem;
+      padding: 3px 6px;
+      color: rgba(255, 255, 255, 0.45);
     }
     .language-selector {
-      gap: 5px;
+      gap: 6px;
     }
     .action-buttons-container {
       gap: 22px;
@@ -124,14 +130,16 @@ export const responsiveStyles = `
       padding-left: 6px;
     }
     .company-description {
-      font-size: 0.75rem;
+      font-size: 0.88rem;
+      line-height: 1.8;
     }
     .language-btn {
-      font-size: 0.58rem;
-      padding: 2px 4px;
+      font-size: 0.65rem;
+      padding: 3px 5px;
+      color: rgba(255, 255, 255, 0.45);
     }
     .language-selector {
-      gap: 3px;
+      gap: 4px;
     }
     .action-buttons-container {
       gap: 18px;
@@ -140,7 +148,7 @@ export const responsiveStyles = `
       width: 48px;
       height: 48px;
       border-radius: 8px;
-      border-width: 1.5px;
+      border-width: 1px;
     }
     .action-icon {
       font-size: 1.2rem;

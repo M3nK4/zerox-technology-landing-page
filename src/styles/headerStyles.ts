@@ -1,4 +1,3 @@
-
 export const headerStyles = `
   /* Header */
   .header-container {
@@ -49,12 +48,12 @@ export const headerStyles = `
   }
 
   .company-description {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: clamp(0.7rem, 1.4vw, 1rem);
-    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(0.92rem, 1.6vw, 1.08rem);
+    line-height: 1.7;
     margin: 0;
     white-space: pre-line;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 0 30px rgba(0, 0, 0, 1), 0 0 60px rgba(0, 0, 0, 0.6);
   }
 
   /* Language selector */
@@ -72,7 +71,7 @@ export const headerStyles = `
     border: none;
     padding: 4px 8px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     font-family: 'Courier New', monospace;
     transition: color 0.2s, text-shadow 0.2s;
@@ -80,12 +79,12 @@ export const headerStyles = `
   }
 
   .language-btn:hover {
-    color: rgba(0, 255, 153, 0.6);
+    color: rgba(0, 255, 153, 0.7);
   }
 
   .language-btn-active {
     color: #00ff99;
-    text-shadow: 0 0 8px rgba(0, 255, 153, 0.5);
+    text-shadow: 0 0 10px rgba(0, 255, 153, 0.6);
   }
 
   .language-separator {
@@ -97,7 +96,7 @@ export const headerStyles = `
   /* Action buttons container */
   .action-buttons-container {
     display: flex;
-    gap: 45px;
+    gap: 30px;
     z-index: 3;
     flex-wrap: nowrap;
     align-items: center;
@@ -107,15 +106,15 @@ export const headerStyles = `
 
   /* Shared action button style */
   .action-button {
-    background: rgba(0, 255, 153, 0.1);
+    background: rgba(0, 255, 153, 0.08);
     color: #00ff99;
     width: 70px;
     height: 70px;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s;
-    border: 2px solid #00ff99;
-    box-shadow: 0 0 6px 1px rgba(0, 255, 153, 0.3);
+    border: 1.5px solid rgba(0, 255, 153, 0.6);
+    box-shadow: 0 0 6px 1px rgba(0, 255, 153, 0.2);
     z-index: 3;
     text-decoration: none;
     display: flex;
@@ -126,15 +125,16 @@ export const headerStyles = `
   }
 
   .action-button:hover {
-    background: rgba(0, 255, 153, 0.2);
-    box-shadow: 0 0 8px 1px rgba(0, 255, 153, 0.7);
+    background: rgba(0, 255, 153, 0.15);
+    border-color: #00ff99;
+    box-shadow: 0 0 8px 1px rgba(0, 255, 153, 0.5);
   }
 
   .action-icon {
     font-size: 1.8rem;
     line-height: 1;
+    font-weight: 700;
     text-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
-    font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', sans-serif;
-    font-variant-emoji: text;
+    font-family: 'Courier New', monospace;
   }
 `;

@@ -43,7 +43,7 @@ src/
 │       └── switch.tsx          # Radix Switch (used by CookieSettings)
 │
 ├── pages/
-│   ├── Index.tsx               # Main landing page (Header + particles + CookieBanner + Footer)
+│   ├── Index.tsx               # Main landing page (Header + particles + CRT effects + CookieBanner + Footer)
 │   ├── PrivacyPolicy.tsx       # /privacy — GDPR privacy policy (4 languages)
 │   ├── CookiePolicy.tsx        # /cookies — cookie policy (4 languages)
 │   ├── Terms.tsx               # /terms — terms of service (4 languages)
@@ -62,7 +62,8 @@ src/
 │   ├── baseStyles.ts           # Body + footer CSS
 │   ├── headerStyles.ts         # Header, logo, title, language selector, action buttons CSS
 │   ├── particleStyles.ts       # Particle (.ascii-object) CSS
-│   └── responsiveStyles.ts     # Width breakpoints (320–1440px+) + height breakpoints (500–700px)
+│   ├── responsiveStyles.ts     # Width breakpoints (320–1440px+) + height breakpoints (500–700px)
+│   └── crtStyles.ts            # CRT monitor effects (scanlines, vignette, noise, interference)
 │
 └── lib/
     └── utils.ts                # cn() utility (clsx + tailwind-merge)
@@ -107,10 +108,18 @@ DOM-based particle engine running in `requestAnimationFrame`. Key physics:
 - Primary accent color: `#00ff99` / `rgb(0,255,153)` everywhere
 - Font: `'Courier New', monospace` throughout
 - Dark theme: `#1a1a1a` background for landing, `bg-black` for legal pages
-- Button icons use emoji with text variation selector (VS15 `&#xFE0E;`) for consistent rendering
-- `font-variant-emoji: text` on action icons to prevent colorful emoji
+- Button icons use ASCII characters: `@` (email), `>` (WhatsApp), `~` (voice agent)
 - No unused imports, no dead code, no unused dependencies
 - Build must pass (`npm run build`) before considering work done
+
+## CRT Effects (`crtStyles.ts` + `Index.tsx`)
+
+Background-only distortion effects that simulate an old CRT monitor, all at `z-index: 0` (behind content):
+- **Scanlines** (`body::before`): 6 overlapping `repeating-linear-gradient` layers with prime-number spacings and slight angle offsets for irregular pattern. Animated with flicker + vertical drift.
+- **Vignette** (`body::after`): Strong radial gradient darkening edges to near-black from 88% outward.
+- **Noise** (`.crt-noise` div): Canvas-generated 128x128 grain texture (2px pixel size), tiled and animated with position shifts every 80ms.
+- **Interference** (`.crt-interference` div): 300%-height gradient with ~20 irregular horizontal bands that scroll slowly.
+- **Chromatic aberration** (`.crt-color-fringe` div): Subtle red/blue edge fringing with opacity animation.
 
 ## Deployment
 

@@ -71,10 +71,10 @@ export const headerStyles = `
     border: none;
     padding: 4px 8px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     font-family: 'Courier New', monospace;
-    transition: color 0.2s, text-shadow 0.2s;
+    transition: color 0.2s, text-shadow 0.2s, border-bottom 0.2s;
     letter-spacing: 1px;
   }
 
@@ -85,6 +85,8 @@ export const headerStyles = `
   .language-btn-active {
     color: #00ff99;
     text-shadow: 0 0 10px rgba(0, 255, 153, 0.6);
+    border-bottom: 1px solid rgba(0, 255, 153, 0.5);
+    padding-bottom: 2px;
   }
 
   .language-separator {

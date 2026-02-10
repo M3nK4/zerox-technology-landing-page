@@ -40,7 +40,7 @@ export const baseStyles = `
 
   .footer-company {
     color: #00ff99;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 1px;
   }
@@ -55,7 +55,7 @@ export const baseStyles = `
 
   .footer-link {
     color: rgba(255, 255, 255, 0.35);
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     text-decoration: none;
     transition: color 0.2s;
     letter-spacing: 0.5px;
@@ -67,12 +67,12 @@ export const baseStyles = `
 
   .footer-dot {
     color: rgba(255, 255, 255, 0.2);
-    font-size: 0.6rem;
+    font-size: 0.65rem;
   }
 
   .footer-copyright {
     color: rgba(255, 255, 255, 0.25);
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     letter-spacing: 0.5px;
   }
 
@@ -93,16 +93,16 @@ export const baseStyles = `
       gap: 5px;
     }
     .footer-company {
-      font-size: 0.6rem;
+      font-size: 0.65rem;
     }
     .footer-link {
-      font-size: 0.52rem;
+      font-size: 0.56rem;
     }
     .footer-dot {
-      font-size: 0.52rem;
+      font-size: 0.56rem;
     }
     .footer-copyright {
-      font-size: 0.48rem;
+      font-size: 0.52rem;
     }
   }
 

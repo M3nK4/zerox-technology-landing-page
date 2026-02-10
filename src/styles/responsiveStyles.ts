@@ -74,7 +74,7 @@ export const responsiveStyles = `
     .language-btn {
       font-size: 0.75rem;
       padding: 4px 7px;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.5);
     }
     .action-buttons-container {
       gap: 28px;
@@ -105,7 +105,7 @@ export const responsiveStyles = `
     .language-btn {
       font-size: 0.7rem;
       padding: 3px 6px;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.5);
     }
     .language-selector {
       gap: 6px;
@@ -136,7 +136,7 @@ export const responsiveStyles = `
     .language-btn {
       font-size: 0.65rem;
       padding: 3px 5px;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.5);
     }
     .language-selector {
       gap: 4px;

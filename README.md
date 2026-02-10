@@ -1,12 +1,12 @@
-# Zerox Technology Landing Page
+# Zerox Technology
 
-Sito web professionale per Zerox Technology con form di contatto integrato con Supabase.
+Sito web per zerox.technology.
 
 ## Tecnologie utilizzate
 - React + TypeScript
 - Vite
 - Tailwind CSS
-- Supabase (database)
+- shadcn/ui
 - GitHub Pages (hosting)
 
 ## Sviluppo locale
@@ -16,7 +16,7 @@ npm install
 npm run dev
 ```
 
-Il sito sarà disponibile su http://localhost:8080
+Il sito sara' disponibile su http://localhost:8080
 
 ## Build e Deploy
 
@@ -24,14 +24,10 @@ Il sito sarà disponibile su http://localhost:8080
 npm run build
 ```
 
-Il sito viene automaticamente deployato su GitHub Pages da questo repository.
+Il sito viene automaticamente deployato su GitHub Pages tramite GitHub Actions.
 
 ## Domain: https://zerox.technology
 
 - **Apex domain**: zerox.technology
-- **WWW redirect**: www.zerox.technology → zerox.technology
+- **WWW redirect**: www.zerox.technology -> zerox.technology
 - **HTTPS**: Certificato SSL automatico via GitHub Pages
-
-## Database
-
-Il form di contatto salva le email in una tabella Supabase `contacts`.

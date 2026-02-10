@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 
 interface CookieCategory {
@@ -34,6 +33,7 @@ interface CookieSettingsProps {
       };
       saveSettings: string;
       acceptAll: string;
+      alwaysActive: string;
     };
   };
 }
@@ -140,7 +140,7 @@ const CookieSettings: React.FC<CookieSettingsProps> = ({
                 </p>
                 {category.required && (
                   <p className="text-yellow-500 font-mono text-xs mt-1">
-                    Always active - required for basic functionality
+                    {currentLang.cookieSettings.alwaysActive}
                   </p>
                 )}
               </div>
@@ -148,19 +148,20 @@ const CookieSettings: React.FC<CookieSettingsProps> = ({
           </div>
           
           <div className="flex gap-3 pt-4">
-            <Button
+            <button
               onClick={handleSave}
-              className="bg-green-500 hover:bg-green-600 text-black font-mono flex-1"
+              className="font-mono flex-1 px-4 py-2 rounded-md transition-opacity hover:opacity-80"
+              style={{ backgroundColor: '#00ff99', color: '#000000' }}
             >
               {currentLang.cookieSettings.saveSettings}
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={handleAcceptAll}
-              variant="outline"
-              className="border-green-500 text-green-400 hover:bg-green-500/10 font-mono flex-1"
+              className="font-mono flex-1 px-4 py-2 rounded-md transition-opacity hover:opacity-80"
+              style={{ border: '1px solid #00ff99', color: '#00ff99', backgroundColor: 'transparent' }}
             >
               {currentLang.cookieSettings.acceptAll}
-            </Button>
+            </button>
           </div>
         </div>
       </DialogContent>

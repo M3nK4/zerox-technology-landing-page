@@ -8,7 +8,6 @@ interface CookiePreferences {
 }
 
 export const useCookieConsent = () => {
-  // Inizializziamo con null per indicare che non abbiamo ancora controllato
   const [hasConsent, setHasConsent] = useState<boolean | null>(null);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
@@ -19,49 +18,33 @@ export const useCookieConsent = () => {
   useEffect(() => {
     const savedConsent = localStorage.getItem('cookie-consent');
     const savedPreferences = localStorage.getItem('cookie-preferences');
-    
-    console.log('Checking cookie consent:', savedConsent); // Debug log
-    
+
     if (savedConsent === 'true') {
       setHasConsent(true);
       if (savedPreferences) {
         setPreferences(JSON.parse(savedPreferences));
       }
     } else {
-      // Se non c'è consenso salvato, impostiamo a false per mostrare il banner
       setHasConsent(false);
     }
   }, []);
 
   const saveConsent = (newPreferences: Record<string, boolean>) => {
     const cookiePrefs: CookiePreferences = {
-      necessary: true, // Always true
+      necessary: true,
       analytics: newPreferences.analytics || false,
       marketing: newPreferences.marketing || false
     };
 
     setPreferences(cookiePrefs);
     setHasConsent(true);
-    
+
     localStorage.setItem('cookie-consent', 'true');
     localStorage.setItem('cookie-preferences', JSON.stringify(cookiePrefs));
     localStorage.setItem('cookie-consent-date', new Date().toISOString());
-
-    console.log('Cookie consent saved:', cookiePrefs); // Debug log
-
-    // Initialize analytics if allowed
-    if (cookiePrefs.analytics) {
-      console.log('Analytics cookies accepted');
-    }
-
-    // Initialize marketing if allowed
-    if (cookiePrefs.marketing) {
-      console.log('Marketing cookies accepted');
-    }
   };
 
   const acceptAll = () => {
-    console.log('Accepting all cookies'); // Debug log
     saveConsent({
       necessary: true,
       analytics: true,
@@ -70,7 +53,6 @@ export const useCookieConsent = () => {
   };
 
   const acceptNecessary = () => {
-    console.log('Accepting necessary cookies only'); // Debug log
     saveConsent({
       necessary: true,
       analytics: false,

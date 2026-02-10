@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import LegalLayout from '@/components/LegalLayout';
@@ -11,140 +10,112 @@ const Terms = () => {
     en: {
       title: "Terms of Service",
       backText: "Back to Home",
-      lastUpdated: "Last updated: December 19, 2024",
+      lastUpdated: "Last updated: February 10, 2025",
       sections: {
         intro: {
-          title: "Introduction",
-          content: "These Terms of Service govern your use of the Zerox Technology website. By accessing or using our website, you agree to be bound by these terms."
+          title: "Acceptance",
+          content: "By accessing zerox.technology you agree to these terms. If you do not agree, do not use the website."
+        },
+        provider: {
+          title: "Service Provider",
+          content: "zerox.technology\nWebsite: https://zerox.technology"
         },
         use: {
-          title: "Use of Website",
-          content: "You may use our website for lawful purposes only. You agree not to:\n• Use the website in any way that violates applicable laws\n• Attempt to gain unauthorized access to our systems\n• Interfere with the proper functioning of the website\n• Upload or transmit harmful content"
+          title: "Permitted Use",
+          content: "The website may be used for lawful purposes only. You agree not to:\n\u2022 Violate applicable laws\n\u2022 Attempt unauthorized access to our systems\n\u2022 Interfere with website operations\n\u2022 Upload or transmit harmful content"
         },
-        content: {
-          title: "Content and Intellectual Property",
-          content: "All content on this website, including text, graphics, logos, and software, is the property of Zerox Technology and is protected by copyright and other intellectual property laws."
+        ip: {
+          title: "Intellectual Property",
+          content: "All content on this website \u2014 text, graphics, logos, and software \u2014 is the property of zerox.technology and protected by applicable intellectual property laws."
         },
         liability: {
           title: "Limitation of Liability",
-          content: "Zerox Technology shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the website."
+          content: "zerox.technology is not liable for indirect, incidental, special, or consequential damages arising from the use of the website."
         },
-        privacy: {
-          title: "Privacy",
-          content: "Your privacy is important to us. Please review our Privacy Policy to understand how we collect and use your information."
-        },
-        changes: {
-          title: "Changes to Terms",
-          content: "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting on this page."
-        },
-        contact: {
-          title: "Contact Information",
-          content: "If you have any questions about these Terms of Service, please contact us through our website."
+        law: {
+          title: "Governing Law",
+          content: "These terms are governed by the laws of Italy and the European Union. Disputes are subject to the exclusive jurisdiction of Italian courts."
         }
       }
     },
     it: {
       title: "Termini di Servizio",
       backText: "Torna alla Home",
-      lastUpdated: "Ultimo aggiornamento: 19 dicembre 2024",
+      lastUpdated: "Ultimo aggiornamento: 10 febbraio 2025",
       sections: {
         intro: {
-          title: "Introduzione",
-          content: "Questi Termini di Servizio disciplinano l'uso del sito web Zerox Technology. Accedendo o utilizzando il nostro sito web, accetti di essere vincolato da questi termini."
+          title: "Accettazione",
+          content: "Accedendo a zerox.technology accetti i presenti termini. Se non li condividi, non utilizzare il sito."
+        },
+        provider: {
+          title: "Fornitore del Servizio",
+          content: "zerox.technology\nSito Web: https://zerox.technology"
         },
         use: {
-          title: "Uso del Sito Web",
-          content: "Puoi utilizzare il nostro sito web solo per scopi legali. Accetti di non:\n• Utilizzare il sito web in modo che violi le leggi applicabili\n• Tentare di ottenere accesso non autorizzato ai nostri sistemi\n• Interferire con il corretto funzionamento del sito web\n• Caricare o trasmettere contenuti dannosi"
+          title: "Utilizzo Consentito",
+          content: "Il sito pu\u00f2 essere utilizzato esclusivamente per scopi leciti. \u00c8 vietato:\n\u2022 Violare le leggi applicabili\n\u2022 Tentare accessi non autorizzati ai sistemi\n\u2022 Interferire con il funzionamento del sito\n\u2022 Caricare o trasmettere contenuti dannosi"
         },
-        content: {
-          title: "Contenuto e Proprietà Intellettuale",
-          content: "Tutto il contenuto di questo sito web, inclusi testo, grafica, loghi e software, è proprietà di Zerox Technology ed è protetto da copyright e altre leggi sulla proprietà intellettuale."
+        ip: {
+          title: "Propriet\u00e0 Intellettuale",
+          content: "Tutti i contenuti del sito \u2014 testi, grafica, loghi e software \u2014 sono propriet\u00e0 di zerox.technology e protetti dalle leggi sulla propriet\u00e0 intellettuale."
         },
         liability: {
-          title: "Limitazione di Responsabilità",
-          content: "Zerox Technology non sarà responsabile per eventuali danni indiretti, incidentali, speciali o consequenziali derivanti dal tuo utilizzo del sito web."
-        },
-        privacy: {
-          title: "Privacy",
-          content: "La tua privacy è importante per noi. Consulta la nostra Informativa sulla Privacy per capire come raccogliamo e utilizziamo le tue informazioni."
+          title: "Limitazione di Responsabilit\u00e0",
+          content: "zerox.technology non \u00e8 responsabile per danni indiretti, incidentali, speciali o consequenziali derivanti dall\u2019utilizzo del sito."
         },
         changes: {
-          title: "Modifiche ai Termini",
-          content: "Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche saranno efficaci immediatamente dopo la pubblicazione su questa pagina."
+          title: "Modifiche",
+          content: "Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche sono efficaci dalla pubblicazione su questa pagina."
         },
-        contact: {
-          title: "Informazioni di Contatto",
-          content: "Se hai domande su questi Termini di Servizio, contattaci attraverso il nostro sito web."
+        law: {
+          title: "Legge Applicabile",
+          content: "I presenti termini sono regolati dalle leggi italiane e dell\u2019Unione Europea. Le controversie sono soggette alla giurisdizione esclusiva dei tribunali italiani."
         }
       }
     },
     es: {
-      title: "Términos de Servicio",
+      title: "T\u00e9rminos de Servicio",
       backText: "Volver al Inicio",
-      lastUpdated: "Última actualización: 19 de diciembre de 2024",
+      lastUpdated: "\u00daltima actualizaci\u00f3n: 10 de febrero de 2025",
       sections: {
         intro: {
-          title: "Introducción",
-          content: "Estos Términos de Servicio rigen el uso del sitio web de Zerox Technology. Al acceder o usar nuestro sitio web, aceptas estar sujeto a estos términos."
+          title: "Aceptaci\u00f3n",
+          content: "Al acceder a zerox.technology acepta estos t\u00e9rminos. Si no est\u00e1 de acuerdo, no utilice el sitio."
+        },
+        provider: {
+          title: "Proveedor del Servicio",
+          content: "zerox.technology\nSitio Web: https://zerox.technology"
         },
         use: {
-          title: "Uso del Sitio Web",
-          content: "Puedes usar nuestro sitio web solo para propósitos legales. Aceptas no:\n• Usar el sitio web de manera que viole las leyes aplicables\n• Intentar obtener acceso no autorizado a nuestros sistemas\n• Interferir con el funcionamiento adecuado del sitio web\n• Subir o transmitir contenido dañino"
+          title: "Uso Permitido",
+          content: "El sitio solo puede usarse con fines l\u00edcitos. Queda prohibido:\n\u2022 Violar las leyes aplicables\n\u2022 Intentar acceso no autorizado\n\u2022 Interferir con el funcionamiento del sitio\n\u2022 Subir o transmitir contenido da\u00f1ino"
         },
-        content: {
-          title: "Contenido y Propiedad Intelectual",
-          content: "Todo el contenido de este sitio web, incluyendo texto, gráficos, logotipos y software, es propiedad de Zerox Technology y está protegido por derechos de autor y otras leyes de propiedad intelectual."
-        },
-        liability: {
-          title: "Limitación de Responsabilidad",
-          content: "Zerox Technology no será responsable de ningún daño indirecto, incidental, especial o consecuente que surja de tu uso del sitio web."
-        },
-        privacy: {
-          title: "Privacidad",
-          content: "Tu privacidad es importante para nosotros. Revisa nuestra Política de Privacidad para entender cómo recopilamos y usamos tu información."
-        },
-        changes: {
-          title: "Cambios en los Términos",
-          content: "Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en esta página."
-        },
-        contact: {
-          title: "Información de Contacto",
-          content: "Si tienes preguntas sobre estos Términos de Servicio, contáctanos a través de nuestro sitio web."
+        law: {
+          title: "Ley Aplicable",
+          content: "Estos t\u00e9rminos se rigen por las leyes de Italia y la Uni\u00f3n Europea. Las disputas se someten a la jurisdicci\u00f3n exclusiva de los tribunales italianos."
         }
       }
     },
     zh: {
-      title: "服务条款",
-      backText: "返回首页",
-      lastUpdated: "最后更新：2024年12月19日",
+      title: "\u670d\u52a1\u6761\u6b3e",
+      backText: "\u8fd4\u56de\u9996\u9875",
+      lastUpdated: "\u6700\u540e\u66f4\u65b0\uff1a2025\u5e742\u670810\u65e5",
       sections: {
         intro: {
-          title: "介绍",
-          content: "这些服务条款管理您对Zerox Technology网站的使用。通过访问或使用我们的网站，您同意受这些条款的约束。"
+          title: "\u63a5\u53d7\u6761\u6b3e",
+          content: "\u8bbf\u95eeszerox.technology\u5373\u8868\u793a\u63a5\u53d7\u672c\u6761\u6b3e\u3002\u5982\u4e0d\u540c\u610f\uff0c\u8bf7\u52ff\u4f7f\u7528\u672c\u7f51\u7ad9\u3002"
         },
-        use: {
-          title: "网站使用",
-          content: "您只能将我们的网站用于合法目的。您同意不：\n• 以违反适用法律的方式使用网站\n• 试图未经授权访问我们的系统\n• 干扰网站的正常运行\n• 上传或传输有害内容"
+        provider: {
+          title: "\u670d\u52a1\u63d0\u4f9b\u8005",
+          content: "zerox.technology\n\u7f51\u7ad9\uff1ahttps://zerox.technology"
         },
-        content: {
-          title: "内容和知识产权",
-          content: "本网站的所有内容，包括文本、图形、标志和软件，均为Zerox Technology的财产，受版权和其他知识产权法保护。"
+        ip: {
+          title: "\u77e5\u8bc6\u4ea7\u6743",
+          content: "\u672c\u7f51\u7ad9\u6240\u6709\u5185\u5bb9\u2014\u2014\u6587\u672c\u3001\u56fe\u5f62\u3001\u6807\u5fd7\u548c\u8f6f\u4ef6\u2014\u2014\u5747\u4e3azerox.technology\u7684\u8d22\u4ea7\uff0c\u53d7\u77e5\u8bc6\u4ea7\u6743\u6cd5\u4fdd\u62a4\u3002"
         },
-        liability: {
-          title: "责任限制",
-          content: "Zerox Technology不对因您使用网站而产生的任何间接、偶然、特殊或后果性损害承担责任。"
-        },
-        privacy: {
-          title: "隐私",
-          content: "您的隐私对我们很重要。请查看我们的隐私政策以了解我们如何收集和使用您的信息。"
-        },
-        changes: {
-          title: "条款变更",
-          content: "我们保留随时修改这些条款的权利。更改将在本页面发布后立即生效。"
-        },
-        contact: {
-          title: "联系信息",
-          content: "如果您对这些服务条款有任何疑问，请通过我们的网站联系我们。"
+        law: {
+          title: "\u9002\u7528\u6cd5\u5f8b",
+          content: "\u672c\u6761\u6b3e\u53d7\u610f\u5927\u5229\u548c\u6b27\u76df\u6cd5\u5f8b\u7ba1\u8f96\u3002\u4e89\u8bae\u7531\u610f\u5927\u5229\u6cd5\u9662\u4e13\u5c5e\u7ba1\u8f96\u3002"
         }
       }
     }
@@ -155,7 +126,6 @@ const Terms = () => {
   return (
     <LegalLayout title={currentContent.title} backText={currentContent.backText}>
       <p className="text-sm text-gray-400 mb-8">{currentContent.lastUpdated}</p>
-      
       {Object.entries(currentContent.sections).map(([key, section]) => (
         <section key={key} className="mb-8">
           <h2 className="text-xl font-semibold text-green-400 mb-4">{section.title}</h2>

@@ -3,153 +3,138 @@ export const headerStyles = `
   /* Header */
   .header-container {
     position: absolute;
-    top: 5%;
+    top: 2%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     z-index: 3;
-    width: 80%;
-    max-width: 800px;
+    width: 92%;
+    max-width: 900px;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .logo {
-    max-width: 340px;
+    max-width: min(500px, 55vw);
     margin-bottom: 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .company-title {
     color: #00ff99;
     text-transform: uppercase;
-    letter-spacing: 15px;
-    font-size: 1.8rem;
+    letter-spacing: 22px;
+    font-size: clamp(1.2rem, 3.5vw, 2.6rem);
     margin-top: -10px;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(0,255,153,0.6);
+    margin-bottom: 0;
+    text-shadow: 0 0 15px rgba(0,255,153,0.4), 0 0 30px rgba(0,255,153,0.15);
     font-weight: 300;
     font-family: 'Courier New', monospace;
     text-align: center;
+    padding-left: 22px;
   }
-  
+
   .logo-title-container {
-    margin-bottom: 40px;
+    margin-bottom: 2vh;
     text-align: center;
   }
-  
+
   .description-container {
-    background: rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 255, 153, 0.3);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
-    margin-top: 20px;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    position: relative;
-    margin-bottom: 60px;
-  }
-  
-  .company-description {
-    color: #cccccc;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    margin: 0;
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Language toggle */
-  .language-toggle {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: none;
-    background: none;
     padding: 0;
-    font-size: 0.9rem;
-    color: #00ff99;
+    margin-bottom: 3vh;
+  }
+
+  .company-description {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    line-height: 1.65;
+    margin: 0;
+    white-space: pre-line;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Language selector */
+  .language-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+  }
+
+  .language-btn {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
-    user-select: none;
-    pointer-events: auto;
     font-family: 'Courier New', monospace;
+    transition: color 0.2s, text-shadow 0.2s;
+    letter-spacing: 1px;
   }
-  
-  .language-toggle:hover {
-    text-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+
+  .language-btn:hover {
+    color: rgba(0, 255, 153, 0.6);
   }
-  
+
+  .language-btn-active {
+    color: #00ff99;
+    text-shadow: 0 0 8px rgba(0, 255, 153, 0.5);
+  }
+
+  .language-separator {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.7rem;
+    user-select: none;
+  }
+
   /* Action buttons container */
   .action-buttons-container {
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 80px);
-    transform: translateX(-50%);
     display: flex;
-    gap: 40px;
+    gap: 45px;
     z-index: 3;
     flex-wrap: nowrap;
-    width: max-content;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5vh;
   }
 
-  /* Subscribe button */
-  #subscribe-button {
-    background: rgba(0, 255, 153, 0.15);
+  /* Shared action button style */
+  .action-button {
+    background: rgba(0, 255, 153, 0.1);
     color: #00ff99;
-    padding: 15px 20px;
-    border-radius: 8px;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1.1rem;
     border: 2px solid #00ff99;
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
-    z-index: 3;
-    white-space: nowrap;
-    flex-shrink: 0;
-    width: 220px;
-    text-align: center;
-  }
-
-  #subscribe-button:hover {
-    background: rgba(0, 255, 153, 0.25);
-    box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
-    transform: scale(1.05);
-  }
-
-  /* WhatsApp button - identico al subscribe button */
-  #whatsapp-button {
-    background: rgba(0, 255, 153, 0.15);
-    color: #00ff99;
-    padding: 15px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1.1rem;
-    border: 2px solid #00ff99;
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 6px 1px rgba(0, 255, 153, 0.3);
     z-index: 3;
     text-decoration: none;
-    display: inline-block;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    width: 220px;
-    text-align: center;
+    font-family: 'Courier New', monospace;
   }
 
-  #whatsapp-button:hover {
-    background: rgba(0, 255, 153, 0.25);
-    box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
-    transform: scale(1.05);
+  .action-button:hover {
+    background: rgba(0, 255, 153, 0.2);
+    box-shadow: 0 0 8px 1px rgba(0, 255, 153, 0.7);
+  }
+
+  .action-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
+    font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', sans-serif;
+    font-variant-emoji: text;
   }
 `;

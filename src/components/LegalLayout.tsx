@@ -27,7 +27,7 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({ children, title, backText }) 
           <div className="w-full h-px bg-green-500/30"></div>
         </div>
         
-        <div className="prose prose-invert prose-green max-w-none">
+        <div className="max-w-none">
           <div className="text-gray-300 leading-relaxed space-y-6">
             {children}
           </div>

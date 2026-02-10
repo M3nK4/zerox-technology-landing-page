@@ -9,7 +9,7 @@ export default defineConfig(() => ({
     host: "::",
     port: 8080,
   },
-  base: '/', // Per dominio personalizzato, il base path deve essere '/'
+  base: '/',
   plugins: [
     react(),
   ],

@@ -1,14 +1,18 @@
 
 import { useState, useEffect } from 'react';
-import { languages, languageOrder, type LanguageKey } from '@/data/languages';
+import { languages, languageOrder, LanguageKey } from '@/data/languages';
 
 export const useLanguage = () => {
   // Start with Italian (index 1)
   const [currentLangIndex, setCurrentLangIndex] = useState(1);
-  const currentLang = languages[languageOrder[currentLangIndex]];
+  const currentLangKey = languageOrder[currentLangIndex];
+  const currentLang = languages[currentLangKey];
 
-  const cycleLanguage = () => {
-    setCurrentLangIndex((prev) => (prev + 1) % languageOrder.length);
+  const setLanguage = (key: LanguageKey) => {
+    const index = languageOrder.indexOf(key);
+    if (index !== -1) {
+      setCurrentLangIndex(index);
+    }
   };
 
   useEffect(() => {
@@ -17,8 +21,8 @@ export const useLanguage = () => {
 
   return {
     currentLang,
-    currentLangIndex,
-    languageOrder,
-    cycleLanguage
+    currentLangKey,
+    setLanguage,
+    languageOrder
   };
 };

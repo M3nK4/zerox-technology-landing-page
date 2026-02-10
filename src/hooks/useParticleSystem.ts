@@ -10,6 +10,7 @@ interface Particle {
   mass: number;
   opacity: number;
   fading: boolean;
+  restTime: number;
   el: HTMLDivElement;
   update: (deltaTime: number) => boolean;
   startFade: () => void;
@@ -24,11 +25,13 @@ export const useParticleSystem = () => {
   const animationIdRef = useRef<number>();
 
   useEffect(() => {
-    const maxParticles = 70;
-    const gravity = 0.3;
-    const floorRestitution = 0.2;
-    const wallRestitution = 0.8;
-    const floorFriction = 0.9;
+    const maxParticles = 200;
+    const gravity = 0.35;
+    const floorRestitution = 0.15;
+    const wallRestitution = 0.5;
+    const floorFriction = 0.95;
+    const airDrag = 0.9991;
+    const restFadeDelay = 2000;
     let floorY = window.innerHeight;
 
     const handleResize = () => {
@@ -46,6 +49,7 @@ export const useParticleSystem = () => {
       mass: number;
       opacity: number;
       fading: boolean;
+      restTime: number;
 
       constructor() {
         this.el = document.createElement('div');
@@ -62,7 +66,7 @@ export const useParticleSystem = () => {
 
         particleCounterRef.current++;
         if (particleCounterRef.current % 30 === 0) {
-          this.el.textContent = '₿';
+          this.el.textContent = '\u20BF';
           this.el.style.color = 'rgb(255,153,0)';
           this.el.style.textShadow = '0 0 5px rgba(255,153,0,0.6)';
         } else {
@@ -74,6 +78,7 @@ export const useParticleSystem = () => {
         this.mass = Math.random() * 0.5 + 0.8;
         this.opacity = 1.0;
         this.fading = false;
+        this.restTime = 0;
         this.x = 0;
         this.y = 0;
         this.vx = 0;
@@ -84,16 +89,17 @@ export const useParticleSystem = () => {
       reset() {
         this.x = Math.random() * window.innerWidth;
         this.y = -20;
-        this.vx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
-        this.vy = Math.random() * 2 + 1;
+        this.vx = (Math.random() * 1.5 + 0.5) * (Math.random() < 0.5 ? -1 : 1);
+        this.vy = Math.random() * 1.5 + 0.5;
         this.opacity = 1.0;
         this.fading = false;
+        this.restTime = 0;
         this.el.style.opacity = this.opacity.toString();
       }
 
       update(deltaTime: number): boolean {
         if (this.fading) {
-          this.opacity -= 0.05;
+          this.opacity -= 0.02;
           this.el.style.opacity = this.opacity.toString();
           if (this.opacity <= 0) {
             return false;
@@ -108,6 +114,11 @@ export const useParticleSystem = () => {
 
         const timeScale = deltaTime / (1000/60);
         this.vy += gravity * timeScale * this.mass;
+
+        // Air drag
+        this.vx *= Math.pow(airDrag, timeScale);
+        this.vy *= Math.pow(airDrag, timeScale);
+
         this.x += this.vx * timeScale;
         this.y += this.vy * timeScale;
 
@@ -124,8 +135,19 @@ export const useParticleSystem = () => {
           this.y = floorY - this.radius;
           this.vy = -this.vy * floorRestitution;
           this.vx *= floorFriction;
-          if (Math.abs(this.vy) < 0.1) this.vy = 0;
-          if (Math.abs(this.vx) < 0.1) this.vx = 0;
+          if (Math.abs(this.vy) < 0.5) this.vy = 0;
+          if (Math.abs(this.vx) < 0.2) this.vx = 0;
+        }
+
+        // Detect rest state and start fading
+        const speed = Math.abs(this.vx) + Math.abs(this.vy);
+        if (speed < 0.3) {
+          this.restTime += deltaTime;
+          if (this.restTime > restFadeDelay) {
+            this.startFade();
+          }
+        } else {
+          this.restTime = 0;
         }
 
         this.el.style.transform = `translate(${this.x - this.radius}px, ${this.y - this.radius}px)`;
@@ -153,7 +175,7 @@ export const useParticleSystem = () => {
           const dy = b.y - a.y;
           const distSquared = dx * dx + dy * dy;
           const minDist = a.radius + b.radius;
-          
+
           if (distSquared < minDist * minDist && distSquared > 0) {
             const dist = Math.sqrt(distSquared);
             const overlap = minDist - dist;
@@ -162,32 +184,33 @@ export const useParticleSystem = () => {
             const totalMass = a.mass + b.mass;
             const aRatio = b.mass / totalMass;
             const bRatio = a.mass / totalMass;
-            
+
             a.x -= nx * overlap * aRatio;
             a.y -= ny * overlap * aRatio;
             b.x += nx * overlap * bRatio;
             b.y += ny * overlap * bRatio;
-            
+
             const vRelativeX = b.vx - a.vx;
             const vRelativeY = b.vy - a.vy;
             const vDotN = vRelativeX * nx + vRelativeY * ny;
-            
+
             if (vDotN > 0) continue;
-            
-            const restitution = 0.8;
+
+            const restitution = 0.4;
             const j = -(1 + restitution) * vDotN / (1 / a.mass + 1 / b.mass);
             const impulseX = j * nx;
             const impulseY = j * ny;
-            
+
             a.vx -= impulseX / a.mass;
             a.vy -= impulseY / a.mass;
             b.vx += impulseX / b.mass;
             b.vy += impulseY / b.mass;
-            
-            a.vx *= 0.98;
-            a.vy *= 0.98;
-            b.vx *= 0.98;
-            b.vy *= 0.98;
+
+            // Post-collision damping
+            a.vx *= 0.92;
+            a.vy *= 0.92;
+            b.vx *= 0.92;
+            b.vy *= 0.92;
           }
         }
       }
@@ -205,7 +228,7 @@ export const useParticleSystem = () => {
         const penetrationRight = rect.right - (p.x - p.radius);
         const penetrationTop = p.y + p.radius - rect.top;
         const penetrationBottom = rect.bottom - (p.y - p.radius);
-        
+
         let minPenetration = penetrationLeft;
         let normal = { x: -1, y: 0 };
         if (penetrationRight < minPenetration) {
@@ -220,15 +243,18 @@ export const useParticleSystem = () => {
           minPenetration = penetrationBottom;
           normal = { x: 0, y: 1 };
         }
-        
+
         p.x += normal.x * minPenetration;
         p.y += normal.y * minPenetration;
-        
-        const restitution = 0.5;
+
+        const restitution = 0.3;
         const vDotN = p.vx * normal.x + p.vy * normal.y;
         if (vDotN < 0) {
           p.vx = p.vx - (1 + restitution) * vDotN * normal.x;
           p.vy = p.vy - (1 + restitution) * vDotN * normal.y;
+          // Friction on collision surface
+          if (normal.y !== 0) p.vx *= 0.98;
+          if (normal.x !== 0) p.vy *= 0.98;
         }
       }
     };
@@ -236,7 +262,13 @@ export const useParticleSystem = () => {
     const createParticle = () => {
       const particles = particlesRef.current;
       if (particles.length >= maxParticles) {
-        particles[0].startFade();
+        // Find a resting particle to recycle
+        const restingIdx = particles.findIndex(p => p.restTime > 500 && !p.fading);
+        if (restingIdx !== -1) {
+          particles[restingIdx].reset();
+        } else {
+          particles[0].startFade();
+        }
       } else {
         const p = new ParticleClass();
         particles.push(p);
@@ -245,9 +277,9 @@ export const useParticleSystem = () => {
 
     const update = (currentTime: number) => {
       if (!lastTimeRef.current) lastTimeRef.current = currentTime;
-      const deltaTime = currentTime - lastTimeRef.current;
+      const deltaTime = Math.min(currentTime - lastTimeRef.current, 50);
       lastTimeRef.current = currentTime;
-      
+
       const particles = particlesRef.current;
       for (let i = particles.length - 1; i >= 0; i--) {
         const keepParticle = particles[i].update(deltaTime);
@@ -256,50 +288,56 @@ export const useParticleSystem = () => {
           particles.splice(i, 1);
         }
       }
-      
+
       resolveCollisions();
-      
-      // Collisione con i pulsanti subscribe e WhatsApp
-      const subscribeButton = document.getElementById('subscribe-button');
-      const whatsappButton = document.getElementById('whatsapp-button');
 
-      if (subscribeButton) {
-        for (let i = 0; i < 3; i++) {
+      // Collisione con i pulsanti
+      const actionButtons = [
+        document.getElementById('email-button'),
+        document.getElementById('whatsapp-button'),
+        document.getElementById('voice-agent-button'),
+      ];
+
+      actionButtons.forEach(button => {
+        if (button) {
+          for (let i = 0; i < 3; i++) {
+            particles.forEach(p => {
+              checkCollisionWithElement(p, button);
+            });
+          }
+        }
+      });
+
+      // Collisione con footer
+      const footer = document.querySelector('.footer-container') as HTMLElement;
+      if (footer && footer.offsetHeight > 0) {
+        for (let i = 0; i < 4; i++) {
           particles.forEach(p => {
-            checkCollisionWithElement(p, subscribeButton);
+            checkCollisionWithElement(p, footer);
           });
         }
       }
 
-      if (whatsappButton) {
-        for (let i = 0; i < 3; i++) {
-          particles.forEach(p => {
-            checkCollisionWithElement(p, whatsappButton);
-          });
-        }
-      }
-
-      // Collisione con il banner dei cookies quando è visibile - fix del selettore
+      // Collisione con il banner dei cookies quando visibile
       const cookieBanner = document.querySelector('.fixed.bottom-0') as HTMLElement;
       if (cookieBanner && cookieBanner.offsetHeight > 0) {
-        // Esegue più iterazioni per collisioni più precise
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 4; i++) {
           particles.forEach(p => {
             checkCollisionWithElement(p, cookieBanner);
           });
         }
       }
-      
+
       animationIdRef.current = requestAnimationFrame(update);
     };
 
     const intervalId = setInterval(() => {
       createParticle();
-    }, 667);
+    }, 800);
 
     animationIdRef.current = requestAnimationFrame(update);
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
       createParticle();
     }
 

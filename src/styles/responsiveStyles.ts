@@ -224,19 +224,19 @@ export const responsiveStyles = `
   /* Tall phones (narrow + tall viewport, e.g. iPhone Pro Max) */
   @media (max-width: 480px) and (min-height: 800px) {
     .description-container {
-      padding-bottom: 30vh;
+      padding-bottom: 22vh;
     }
     .action-buttons-container {
-      bottom: 24%;
+      bottom: 20%;
     }
   }
 
   @media (max-width: 640px) and (min-height: 800px) {
     .description-container {
-      padding-bottom: 30vh;
+      padding-bottom: 22vh;
     }
     .action-buttons-container {
-      bottom: 24%;
+      bottom: 20%;
     }
   }
 

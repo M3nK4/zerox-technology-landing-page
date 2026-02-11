@@ -128,7 +128,7 @@ const Index = () => {
     const el = noiseRef.current;
     if (!el) return;
     const size = 64;
-    const grain = 4;
+    const grain = 3;
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;

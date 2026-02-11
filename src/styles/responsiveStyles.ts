@@ -227,7 +227,7 @@ export const responsiveStyles = `
       padding-bottom: 30vh;
     }
     .action-buttons-container {
-      bottom: 28%;
+      bottom: 24%;
     }
   }
 
@@ -236,7 +236,7 @@ export const responsiveStyles = `
       padding-bottom: 30vh;
     }
     .action-buttons-container {
-      bottom: 28%;
+      bottom: 24%;
     }
   }
 

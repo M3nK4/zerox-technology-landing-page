@@ -72,14 +72,19 @@ const Index = () => {
   const flashRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const transitioningRef = useRef(false);
+  const triggerRef = useRef<() => void>();
 
-  const triggerTransition = useRef(() => {
+  const scheduleNext = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => triggerRef.current?.(), 7000 + Math.random() * 2000 - 1000);
+  };
+
+  triggerRef.current = () => {
     if (transitioningRef.current) return;
     transitioningRef.current = true;
     const flash = flashRef.current;
     setIsTransitioning(true);
     if (flash) {
-      // Align flash to actual text dimensions
       const textEl = flash.parentElement?.querySelector('.company-description') as HTMLElement;
       if (textEl) {
         const container = flash.parentElement as HTMLElement;
@@ -107,14 +112,13 @@ const Index = () => {
       setIsTransitioning(false);
       transitioningRef.current = false;
     }, 130);
+    scheduleNext();
+  };
 
-    // Reset auto timer
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => triggerTransition.current(), 7000 + Math.random() * 2000 - 1000);
-  }).current;
+  const triggerTransition = () => triggerRef.current?.();
 
   useEffect(() => {
-    timerRef.current = setTimeout(triggerTransition, 7000);
+    timerRef.current = setTimeout(() => triggerRef.current?.(), 7000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
 

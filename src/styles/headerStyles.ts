@@ -97,9 +97,10 @@ export const headerStyles = `
     border: none;
     padding: 4px 8px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     font-family: 'Courier New', monospace;
+    font-weight: 700;
     transition: color 0.2s, text-shadow 0.2s, border-bottom 0.2s;
     letter-spacing: 1px;
   }

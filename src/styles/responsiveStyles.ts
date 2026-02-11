@@ -221,6 +221,25 @@ export const responsiveStyles = `
     }
   }
 
+  /* Tall phones (narrow + tall viewport, e.g. iPhone Pro Max) */
+  @media (max-width: 480px) and (min-height: 800px) {
+    .description-container {
+      padding-bottom: 30vh;
+    }
+    .action-buttons-container {
+      bottom: 28%;
+    }
+  }
+
+  @media (max-width: 640px) and (min-height: 800px) {
+    .description-container {
+      padding-bottom: 30vh;
+    }
+    .action-buttons-container {
+      bottom: 28%;
+    }
+  }
+
   /* ---- HEIGHT-BASED QUERIES ---- */
 
   /* Short viewports (< 700px height) */

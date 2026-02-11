@@ -14,28 +14,132 @@ const Index = () => {
   const { hasConsent, acceptAll, acceptNecessary, saveConsent } = useCookieConsent();
   const { currentLang, currentLangKey, setLanguage, languageOrder } = useLanguage();
 
+  const [descriptionIndex, setDescriptionIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   useParticleSystem();
+
+  // Random interference animation
+  const interferenceRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = interferenceRef.current;
+    if (!el) return;
+    let pos = 0;
+    let velocity = 0.02;
+    let targetOpacity = 7.0;
+    let currentOpacity = 7.0;
+    let nextChangeTime = 0;
+    let nextJitterTime = 0;
+    let animId: number;
+
+    const animate = (time: number) => {
+      // Random speed/direction changes every 4-10 seconds
+      if (time > nextChangeTime) {
+        velocity = (Math.random() * 0.06 + 0.01) * (Math.random() < 0.2 ? -1 : 1);
+        targetOpacity = Math.random() * 3.0 + 6.0;
+        nextChangeTime = time + 4000 + Math.random() * 6000;
+      }
+
+      // Random micro-jitter every 300-800ms
+      if (time > nextJitterTime) {
+        velocity += (Math.random() - 0.5) * 0.015;
+        nextJitterTime = time + 300 + Math.random() * 500;
+      }
+
+      // Random bright flash — rare but intense
+      if (Math.random() < 0.001) {
+        currentOpacity = Math.random() * 4.0 + 10.0;
+      }
+
+      currentOpacity += (targetOpacity - currentOpacity) * 0.01;
+      pos -= velocity;
+
+      // Wrap around
+      if (pos < -66.67) pos += 66.67;
+      if (pos > 0) pos -= 66.67;
+
+      el.style.transform = `translateY(${pos}%)`;
+      el.style.opacity = currentOpacity.toString();
+
+      animId = requestAnimationFrame(animate);
+    };
+
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  // Text transition + flash
+  const flashRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const transitioningRef = useRef(false);
+
+  const triggerTransition = useRef(() => {
+    if (transitioningRef.current) return;
+    transitioningRef.current = true;
+    const flash = flashRef.current;
+    setIsTransitioning(true);
+    if (flash) {
+      // Align flash to actual text dimensions
+      const textEl = flash.parentElement?.querySelector('.company-description') as HTMLElement;
+      if (textEl) {
+        const container = flash.parentElement as HTMLElement;
+        const containerRect = container.getBoundingClientRect();
+        const textRect = textEl.getBoundingClientRect();
+        const relTop = textRect.top - containerRect.top;
+        const centerY = relTop + textRect.height / 2;
+        flash.style.top = centerY + 'px';
+        flash.style.left = '50%';
+        flash.style.transform = 'translate(-50%, -50%)';
+        flash.style.width = textRect.width + 40 + 'px';
+        flash.style.height = textRect.height + 30 + 'px';
+      }
+      flash.style.transition = 'opacity 0.06s ease-in';
+      flash.style.opacity = '1';
+    }
+    setTimeout(() => {
+      setDescriptionIndex(prev => (prev + 1) % 3);
+    }, 90);
+    setTimeout(() => {
+      if (flash) {
+        flash.style.transition = 'opacity 0.15s ease-out';
+        flash.style.opacity = '0';
+      }
+      setIsTransitioning(false);
+      transitioningRef.current = false;
+    }, 130);
+
+    // Reset auto timer
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => triggerTransition.current(), 7000 + Math.random() * 2000 - 1000);
+  }).current;
+
+  useEffect(() => {
+    timerRef.current = setTimeout(triggerTransition, 7000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
 
   // Generate static noise texture via canvas
   const noiseRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = noiseRef.current;
     if (!el) return;
-    const size = 128;
-    const grain = 2;
+    const size = 64;
+    const grain = 4;
     const canvas = document.createElement('canvas');
-    canvas.width = size * grain;
-    canvas.height = size * grain;
+    canvas.width = size;
+    canvas.height = size;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    ctx.imageSmoothingEnabled = false;
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
         const v = Math.floor(Math.random() * 255);
         ctx.fillStyle = `rgb(${v},${v},${v})`;
-        ctx.fillRect(x * grain, y * grain, grain, grain);
+        ctx.fillRect(x, y, 1, 1);
       }
     }
     el.style.backgroundImage = `url(${canvas.toDataURL()})`;
+    el.style.backgroundSize = `${size * grain}px ${size * grain}px`;
     el.style.backgroundRepeat = 'repeat';
   }, []);
 
@@ -45,7 +149,7 @@ const Index = () => {
 
       {/* CRT background effects — behind everything */}
       <div className="crt-color-fringe" />
-      <div className="crt-interference" />
+      <div ref={interferenceRef} className="crt-interference" />
       <div ref={noiseRef} className="crt-noise" />
 
       <Header
@@ -53,6 +157,10 @@ const Index = () => {
         currentLangKey={currentLangKey}
         setLanguage={setLanguage}
         languageOrder={languageOrder}
+        descriptionIndex={descriptionIndex}
+        isTransitioning={isTransitioning}
+        flashRef={flashRef}
+        onClickDescription={triggerTransition}
       />
 
       {hasConsent === false && (

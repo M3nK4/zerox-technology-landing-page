@@ -1,8 +1,8 @@
 export const headerStyles = `
-  /* Header */
+  /* Header — logo at top, content centered in remaining space */
   .header-container {
-    position: absolute;
-    top: 2%;
+    position: fixed;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -13,10 +13,16 @@ export const headerStyles = `
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    height: 100dvh;
+    padding-top: 3vh;
+    padding-bottom: 240px;
+    gap: 0;
+    box-sizing: border-box;
   }
 
   .logo {
-    max-width: min(500px, 55vw);
+    max-width: min(520px, 65vw);
     margin-bottom: 0;
     display: block;
     margin-left: auto;
@@ -27,43 +33,63 @@ export const headerStyles = `
     color: #00ff99;
     text-transform: uppercase;
     letter-spacing: 22px;
-    font-size: clamp(1.2rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.4rem, 4vw, 3.4rem);
     margin-top: -10px;
     margin-bottom: 0;
-    text-shadow: 0 0 15px rgba(0,255,153,0.4), 0 0 30px rgba(0,255,153,0.15);
+    text-shadow: 0 0 10px rgba(0,255,153,0.5), 0 0 25px rgba(0,255,153,0.3), 0 0 50px rgba(0,255,153,0.15);
     font-weight: 300;
     font-family: 'Courier New', monospace;
     text-align: center;
     padding-left: 22px;
   }
 
+  /* Logo+title stay at top */
   .logo-title-container {
-    margin-bottom: 2vh;
     text-align: center;
+    flex-shrink: 0;
   }
 
-  .description-container {
-    padding: 0;
-    margin-bottom: 3vh;
-  }
-
-  .company-description {
-    color: rgba(255, 255, 255, 0.82);
-    font-size: clamp(0.92rem, 1.6vw, 1.08rem);
-    line-height: 1.7;
-    margin: 0;
-    white-space: pre-line;
-    text-shadow: 0 0 30px rgba(0, 0, 0, 1), 0 0 60px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Language selector */
+  /* Language stays near logo at top */
   .language-selector {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 14px;
-    margin-top: 1.5vh;
-    margin-bottom: 1.5vh;
+    flex-shrink: 0;
+    margin-top: 2vh;
+  }
+
+  /* Description centered in remaining space */
+  .description-container {
+    padding: 0 8%;
+    flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .company-description {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    line-height: 2.4;
+    margin: 0;
+    white-space: pre-line;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 1), 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Buttons fixed position — never shifts with text changes */
+  .action-buttons-container {
+    display: flex;
+    gap: 30px;
+    z-index: 3;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .language-btn {
@@ -93,17 +119,6 @@ export const headerStyles = `
     color: rgba(255, 255, 255, 0.15);
     font-size: 0.7rem;
     user-select: none;
-  }
-
-  /* Action buttons container */
-  .action-buttons-container {
-    display: flex;
-    gap: 30px;
-    z-index: 3;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5vh;
   }
 
   /* Shared action button style */
@@ -139,4 +154,18 @@ export const headerStyles = `
     text-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
     font-family: 'Courier New', monospace;
   }
-`;
+
+  /* Description dissolve/emerge */
+  .company-description {
+    transition: opacity 0.12s ease, filter 0.12s ease;
+  }
+
+  .desc-visible {
+    opacity: 1;
+    filter: blur(0) brightness(1);
+  }
+
+  .desc-dissolve {
+    opacity: 0;
+    filter: blur(8px) brightness(3);
+  }`;

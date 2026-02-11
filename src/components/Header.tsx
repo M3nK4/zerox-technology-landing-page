@@ -2,7 +2,7 @@ import React from 'react';
 import { LanguageKey } from '@/data/languages';
 
 interface Language {
-  description: string;
+  descriptions: string[];
   label: string;
   email: string;
   whatsapp: string;
@@ -15,6 +15,10 @@ interface HeaderProps {
   currentLangKey: LanguageKey;
   setLanguage: (key: LanguageKey) => void;
   languageOrder: readonly LanguageKey[];
+  descriptionIndex: number;
+  isTransitioning: boolean;
+  flashRef: React.RefObject<HTMLDivElement>;
+  onClickDescription: () => void;
 }
 
 const langLabels: Record<LanguageKey, string> = {
@@ -24,7 +28,7 @@ const langLabels: Record<LanguageKey, string> = {
   zh: '\u4e2d',
 };
 
-const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguage, languageOrder }) => {
+const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguage, languageOrder, descriptionIndex, isTransitioning, flashRef, onClickDescription }) => {
   return (
     <div className="header-container">
       <div className="logo-title-container">
@@ -47,8 +51,9 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
       </div>
 
       <div className="description-container">
-        <p className="company-description">
-          {currentLang.description}
+        <div ref={flashRef} className="crt-text-flash" />
+        <p className={`company-description ${isTransitioning ? 'desc-dissolve' : 'desc-visible'}`} onClick={onClickDescription} style={{ cursor: 'pointer' }}>
+          {currentLang.descriptions[descriptionIndex]}
         </p>
       </div>
 

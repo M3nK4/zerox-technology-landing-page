@@ -118,95 +118,95 @@ export const crtStyles = `
         to bottom,
         transparent 0%,
         transparent 2.1%,
-        rgba(0, 255, 153, 0.012) 2.0%,
-        rgba(255, 255, 255, 0.02) 2.15%,
-        rgba(255, 255, 255, 0.025) 2.3%,
-        rgba(0, 255, 153, 0.012) 2.55%,
+        rgba(0, 255, 153, 0.03) 2.0%,
+        rgba(255, 255, 255, 0.05) 2.15%,
+        rgba(255, 255, 255, 0.06) 2.3%,
+        rgba(0, 255, 153, 0.03) 2.55%,
         transparent 2.8%,
         transparent 5.8%,
-        rgba(0, 255, 153, 0.015) 5.75%,
-        rgba(0, 255, 153, 0.02) 5.85%,
-        rgba(0, 255, 153, 0.01) 5.98%,
+        rgba(0, 255, 153, 0.04) 5.75%,
+        rgba(0, 255, 153, 0.05) 5.85%,
+        rgba(0, 255, 153, 0.025) 5.98%,
         transparent 6.1%,
         transparent 9.3%,
-        rgba(0, 255, 153, 0.015) 9.2%,
-        rgba(255, 255, 255, 0.022) 9.35%,
-        rgba(255, 255, 255, 0.028) 9.5%,
-        rgba(0, 255, 153, 0.012) 9.75%,
+        rgba(0, 255, 153, 0.04) 9.2%,
+        rgba(255, 255, 255, 0.055) 9.35%,
+        rgba(255, 255, 255, 0.07) 9.5%,
+        rgba(0, 255, 153, 0.03) 9.75%,
         transparent 10.0%,
         transparent 14.7%,
-        rgba(0, 255, 153, 0.018) 14.65%,
-        rgba(0, 255, 153, 0.022) 14.75%,
-        rgba(0, 255, 153, 0.012) 14.88%,
+        rgba(0, 255, 153, 0.045) 14.65%,
+        rgba(0, 255, 153, 0.055) 14.75%,
+        rgba(0, 255, 153, 0.03) 14.88%,
         transparent 15.05%,
         transparent 19.1%,
-        rgba(255, 255, 255, 0.015) 19.15%,
+        rgba(255, 255, 255, 0.04) 19.15%,
         transparent 19.3%,
         transparent 22.6%,
-        rgba(0, 255, 153, 0.015) 22.5%,
-        rgba(255, 255, 255, 0.025) 22.65%,
-        rgba(255, 255, 255, 0.03) 22.9%,
-        rgba(0, 255, 153, 0.015) 23.15%,
+        rgba(0, 255, 153, 0.04) 22.5%,
+        rgba(255, 255, 255, 0.06) 22.65%,
+        rgba(255, 255, 255, 0.075) 22.9%,
+        rgba(0, 255, 153, 0.04) 23.15%,
         transparent 23.4%,
         transparent 28.4%,
-        rgba(0, 255, 153, 0.018) 28.45%,
+        rgba(0, 255, 153, 0.045) 28.45%,
         transparent 28.6%,
         transparent 33.3%,
-        rgba(0, 255, 153, 0.012) 33.2%,
-        rgba(255, 255, 255, 0.02) 33.35%,
-        rgba(255, 255, 255, 0.025) 33.5%,
-        rgba(0, 255, 153, 0.01) 33.7%,
+        rgba(0, 255, 153, 0.03) 33.2%,
+        rgba(255, 255, 255, 0.05) 33.35%,
+        rgba(255, 255, 255, 0.06) 33.5%,
+        rgba(0, 255, 153, 0.025) 33.7%,
         transparent 33.9%,
         transparent 37.8%,
-        rgba(0, 255, 153, 0.02) 37.75%,
-        rgba(0, 255, 153, 0.025) 37.85%,
-        rgba(0, 255, 153, 0.015) 38.0%,
+        rgba(0, 255, 153, 0.05) 37.75%,
+        rgba(0, 255, 153, 0.06) 37.85%,
+        rgba(0, 255, 153, 0.04) 38.0%,
         transparent 38.2%,
         transparent 43.2%,
-        rgba(255, 255, 255, 0.018) 43.25%,
+        rgba(255, 255, 255, 0.045) 43.25%,
         transparent 43.45%,
         transparent 48.7%,
-        rgba(0, 255, 153, 0.015) 48.6%,
-        rgba(255, 255, 255, 0.022) 48.75%,
-        rgba(255, 255, 255, 0.028) 48.95%,
-        rgba(0, 255, 153, 0.012) 49.15%,
+        rgba(0, 255, 153, 0.04) 48.6%,
+        rgba(255, 255, 255, 0.055) 48.75%,
+        rgba(255, 255, 255, 0.07) 48.95%,
+        rgba(0, 255, 153, 0.03) 49.15%,
         transparent 49.4%,
         transparent 54.1%,
-        rgba(0, 255, 153, 0.015) 54.15%,
+        rgba(0, 255, 153, 0.04) 54.15%,
         transparent 54.3%,
         transparent 59.9%,
-        rgba(0, 255, 153, 0.012) 59.8%,
-        rgba(255, 255, 255, 0.02) 59.95%,
-        rgba(255, 255, 255, 0.025) 60.1%,
-        rgba(0, 255, 153, 0.01) 60.3%,
+        rgba(0, 255, 153, 0.03) 59.8%,
+        rgba(255, 255, 255, 0.05) 59.95%,
+        rgba(255, 255, 255, 0.06) 60.1%,
+        rgba(0, 255, 153, 0.025) 60.3%,
         transparent 60.5%,
         transparent 64.6%,
-        rgba(0, 255, 153, 0.018) 64.55%,
-        rgba(0, 255, 153, 0.022) 64.65%,
-        rgba(0, 255, 153, 0.012) 64.82%,
+        rgba(0, 255, 153, 0.045) 64.55%,
+        rgba(0, 255, 153, 0.055) 64.65%,
+        rgba(0, 255, 153, 0.03) 64.82%,
         transparent 65.0%,
         transparent 70.3%,
-        rgba(255, 255, 255, 0.015) 70.35%,
+        rgba(255, 255, 255, 0.04) 70.35%,
         transparent 70.55%,
         transparent 76.1%,
-        rgba(0, 255, 153, 0.015) 76.0%,
-        rgba(255, 255, 255, 0.025) 76.15%,
-        rgba(255, 255, 255, 0.018) 76.35%,
+        rgba(0, 255, 153, 0.04) 76.0%,
+        rgba(255, 255, 255, 0.06) 76.15%,
+        rgba(255, 255, 255, 0.045) 76.35%,
         transparent 76.55%,
         transparent 81.8%,
-        rgba(0, 255, 153, 0.018) 81.85%,
+        rgba(0, 255, 153, 0.045) 81.85%,
         transparent 82.05%,
         transparent 87.4%,
-        rgba(0, 255, 153, 0.012) 87.3%,
-        rgba(255, 255, 255, 0.022) 87.45%,
-        rgba(255, 255, 255, 0.015) 87.65%,
+        rgba(0, 255, 153, 0.03) 87.3%,
+        rgba(255, 255, 255, 0.055) 87.45%,
+        rgba(255, 255, 255, 0.04) 87.65%,
         transparent 87.85%,
         transparent 93.2%,
-        rgba(0, 255, 153, 0.015) 93.25%,
+        rgba(0, 255, 153, 0.04) 93.25%,
         transparent 93.45%,
         transparent 100%
       );
-    animation: interference-scroll 18s linear infinite;
+    transition: opacity 0.3s ease-out;
   }
 
   /* Noise overlay — canvas generated */
@@ -218,9 +218,26 @@ export const crtStyles = `
     height: 200%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.09;
+    opacity: 0.18;
+    image-rendering: pixelated;
     animation: noise-shift 0.08s steps(5) infinite;
   }
+
+  /* Text change flash — positioned relative to description container */
+  .crt-text-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0.05) 60%, transparent 80%);
+    opacity: 0;
+    border-radius: 50%;
+  }
+
 
   /* --- Animations --- */
 
@@ -262,6 +279,20 @@ export const crtStyles = `
 
   @keyframes interference-scroll {
     0% { transform: translateY(0%); }
+    8% { transform: translateY(-6%); }
+    15% { transform: translateY(-4%); }
+    22% { transform: translateY(-16%); }
+    30% { transform: translateY(-13%); }
+    38% { transform: translateY(-28%); }
+    42% { transform: translateY(-25%); }
+    50% { transform: translateY(-35%); }
+    55% { transform: translateY(-38%); }
+    63% { transform: translateY(-44%); }
+    68% { transform: translateY(-42%); }
+    75% { transform: translateY(-52%); }
+    82% { transform: translateY(-56%); }
+    88% { transform: translateY(-54%); }
+    95% { transform: translateY(-63%); }
     100% { transform: translateY(-66.67%); }
   }
 

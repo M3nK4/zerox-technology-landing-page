@@ -39,10 +39,7 @@ export const baseStyles = `
   }
 
   .footer-company {
-    color: #00ff99;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    display: none;
   }
 
   .footer-links {
@@ -54,8 +51,8 @@ export const baseStyles = `
   }
 
   .footer-link {
-    color: rgba(255, 255, 255, 0.35);
-    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.75rem;
     text-decoration: none;
     transition: color 0.2s;
     letter-spacing: 0.5px;
@@ -66,13 +63,13 @@ export const baseStyles = `
   }
 
   .footer-dot {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.75rem;
   }
 
   .footer-copyright {
-    color: rgba(255, 255, 255, 0.25);
-    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.7rem;
     letter-spacing: 0.5px;
   }
 
@@ -92,17 +89,14 @@ export const baseStyles = `
     .footer-top {
       gap: 5px;
     }
-    .footer-company {
+    .footer-link {
       font-size: 0.65rem;
     }
-    .footer-link {
-      font-size: 0.56rem;
-    }
     .footer-dot {
-      font-size: 0.56rem;
+      font-size: 0.65rem;
     }
     .footer-copyright {
-      font-size: 0.52rem;
+      font-size: 0.6rem;
     }
   }
 

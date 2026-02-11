@@ -25,7 +25,8 @@ export const useParticleSystem = () => {
   const animationIdRef = useRef<number>();
 
   useEffect(() => {
-    const maxParticles = 200;
+    const maxParticles = 95;
+    let bitcoinAlive = false;
     const gravity = 0.35;
     const floorRestitution = 0.15;
     const wallRestitution = 0.5;
@@ -65,10 +66,12 @@ export const useParticleSystem = () => {
         this.el.style.fontFamily = "'Courier New', monospace";
 
         particleCounterRef.current++;
-        if (particleCounterRef.current % 30 === 0) {
+        if (!bitcoinAlive && particleCounterRef.current % 30 === 0) {
           this.el.textContent = '\u20BF';
           this.el.style.color = 'rgb(255,153,0)';
           this.el.style.textShadow = '0 0 5px rgba(255,153,0,0.6)';
+          this.el.dataset.bitcoin = '1';
+          bitcoinAlive = true;
         } else {
           this.el.textContent = Math.random() < 0.5 ? '0' : '1';
         }
@@ -159,6 +162,9 @@ export const useParticleSystem = () => {
       }
 
       remove() {
+        if (this.el.dataset.bitcoin) {
+          bitcoinAlive = false;
+        }
         if (this.el.parentNode) {
           document.body.removeChild(this.el);
         }
@@ -216,7 +222,29 @@ export const useParticleSystem = () => {
       }
     };
 
-    const checkCollisionWithElement = (p: Particle, element: HTMLElement) => {
+    const buttonFlashTimers: Map<string, number> = new Map();
+
+    const flashElement = (element: HTMLElement, speed: number) => {
+      const id = element.id;
+      const now = performance.now();
+      const lastFlash = buttonFlashTimers.get(id) || 0;
+      if (now - lastFlash < 300) return; // debounce
+      buttonFlashTimers.set(id, now);
+
+      const intensity = Math.min(speed / 5, 1);
+      const glowSize = 12 + intensity * 12;
+      const glowOpacity = 0.3 + intensity * 0.4;
+      element.style.transition = 'box-shadow 0.05s ease-in, background 0.05s ease-in';
+      element.style.boxShadow = `0 0 ${glowSize}px ${Math.round(glowSize / 3)}px rgba(0,255,153,${glowOpacity})`;
+      element.style.background = `rgba(0,255,153,${0.1 + intensity * 0.15})`;
+      setTimeout(() => {
+        element.style.transition = 'box-shadow 0.5s ease-out, background 0.5s ease-out';
+        element.style.boxShadow = '';
+        element.style.background = '';
+      }, 80);
+    };
+
+    const checkCollisionWithElement = (p: Particle, element: HTMLElement, triggerFlash: boolean) => {
       const rect = element.getBoundingClientRect();
       if (
         p.x + p.radius > rect.left &&
@@ -250,11 +278,16 @@ export const useParticleSystem = () => {
         const restitution = 0.3;
         const vDotN = p.vx * normal.x + p.vy * normal.y;
         if (vDotN < 0) {
+          const speed = Math.abs(vDotN);
           p.vx = p.vx - (1 + restitution) * vDotN * normal.x;
           p.vy = p.vy - (1 + restitution) * vDotN * normal.y;
           // Friction on collision surface
           if (normal.y !== 0) p.vx *= 0.98;
           if (normal.x !== 0) p.vy *= 0.98;
+          // Flash button on bounce
+          if (triggerFlash && speed > 1) {
+            flashElement(element, speed);
+          }
         }
       }
     };
@@ -302,7 +335,7 @@ export const useParticleSystem = () => {
         if (button) {
           for (let i = 0; i < 3; i++) {
             particles.forEach(p => {
-              checkCollisionWithElement(p, button);
+              checkCollisionWithElement(p, button, true);
             });
           }
         }
@@ -313,7 +346,7 @@ export const useParticleSystem = () => {
       if (footer && footer.offsetHeight > 0) {
         for (let i = 0; i < 4; i++) {
           particles.forEach(p => {
-            checkCollisionWithElement(p, footer);
+            checkCollisionWithElement(p, footer, false);
           });
         }
       }
@@ -323,7 +356,7 @@ export const useParticleSystem = () => {
       if (cookieBanner && cookieBanner.offsetHeight > 0) {
         for (let i = 0; i < 4; i++) {
           particles.forEach(p => {
-            checkCollisionWithElement(p, cookieBanner);
+            checkCollisionWithElement(p, cookieBanner, false);
           });
         }
       }

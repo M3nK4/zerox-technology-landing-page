@@ -3,7 +3,11 @@ export const languages = {
   en: {
     label: "EN",
     htmlLang: "en",
-    description: "zerox is a technology innovation lab where artificial intelligence, distributed systems, blockchain and cybersecurity converge to build new frontiers\n\nzerox builds on a neutral, global layer, above borders, shared and distributed across the World. The layer does not govern people, but enables them to coordinate and cooperate with equal rules for all",
+    descriptions: [
+      "zerox is a technology lab that builds on a neutral layer above borders, enabling people to coordinate and cooperate with equal rules for all",
+      "from idea to code through artificial intelligence, distributed systems, blockchain and cybersecurity",
+      "we build the systems that allow companies to move faster than they think possible, keeping the DNA of language to translate an idea into infrastructure"
+    ],
     email: "Email",
     whatsapp: "WhatsApp",
     whatsappMessage: "Good morning, I am interested in learning more about zerox",
@@ -47,7 +51,11 @@ export const languages = {
   it: {
     label: "IT",
     htmlLang: "it",
-    description: "zerox \u00e8 un laboratorio di innovazione tecnologica dove intelligenza artificiale, sistemi distribuiti, blockchain e cybersecurity convergono per costruire nuove frontiere\n\nzerox costruisce su uno strato neutrale, globale, al di sopra dei confini, condiviso e distribuito nel Mondo. Lo strato non governa le persone, ma permette loro di coordinarsi e cooperare con regole uguali per tutti",
+    descriptions: [
+      "zerox \u00e8 un laboratorio tecnologico che costruisce su uno strato neutrale e al di sopra dei confini che permette alle persone di coordinarsi e cooperare con regole uguali per tutti",
+      "dall'idea al codice attraverso intelligenza artificiale, sistemi distribuiti, blockchain e cybersecurity",
+      "costruiamo i sistemi che permettono alle aziende di muoversi pi\u00f9 velocemente di quanto credano possibile, mantenendo il DNA del linguaggio per tradurre una idea in infrastruttura"
+    ],
     email: "Email",
     whatsapp: "WhatsApp",
     whatsappMessage: "Buongiorno, sono interessato a scoprire qualcosa in pi\u00f9 riguardo a zerox",
@@ -91,7 +99,11 @@ export const languages = {
   es: {
     label: "ES",
     htmlLang: "es",
-    description: "zerox es un laboratorio de innovaci\u00f3n tecnol\u00f3gica donde la inteligencia artificial, los sistemas distribuidos, la blockchain y la ciberseguridad convergen para construir nuevas fronteras\n\nzerox construye sobre una capa neutral, global, por encima de las fronteras, compartida y distribuida en el Mundo. La capa no gobierna a las personas, sino que les permite coordinarse y cooperar con reglas iguales para todos",
+    descriptions: [
+      "zerox es un laboratorio tecnol\u00f3gico que construye sobre una capa neutral por encima de las fronteras, permitiendo a las personas coordinarse y cooperar con reglas iguales para todos",
+      "de la idea al c\u00f3digo a trav\u00e9s de inteligencia artificial, sistemas distribuidos, blockchain y ciberseguridad",
+      "construimos los sistemas que permiten a las empresas moverse m\u00e1s r\u00e1pido de lo que creen posible, manteniendo el ADN del lenguaje para traducir una idea en infraestructura"
+    ],
     email: "Email",
     whatsapp: "WhatsApp",
     whatsappMessage: "Buenos d\u00edas, estoy interesado en saber algo m\u00e1s sobre zerox",
@@ -135,7 +147,11 @@ export const languages = {
   zh: {
     label: "\u4e2d",
     htmlLang: "zh-Hans",
-    description: "zerox \u662f\u4e00\u4e2a\u6280\u672f\u521b\u65b0\u5b9e\u9a8c\u5ba4\uff0c\u4eba\u5de5\u667a\u80fd\u3001\u5206\u5e03\u5f0f\u7cfb\u7edf\u3001\u533a\u5757\u94fe\u548c\u7f51\u7edc\u5b89\u5168\u5728\u6b64\u6c47\u805a\uff0c\u6784\u5efa\u65b0\u7684\u6280\u672f\u524d\u6cbf\n\nzerox \u6784\u5efa\u5728\u4e00\u4e2a\u4e2d\u7acb\u7684\u3001\u5168\u7403\u7684\u3001\u8d85\u8d8a\u56fd\u754c\u7684\u3001\u5171\u4eab\u4e14\u5206\u5e03\u5728\u4e16\u754c\u5404\u5730\u7684\u5c42\u4e4b\u4e0a\u3002\u8fd9\u4e2a\u5c42\u4e0d\u6cbb\u7406\u4eba\u4eec\uff0c\u800c\u662f\u8ba9\u4ed6\u4eec\u80fd\u591f\u6309\u7167\u4eba\u4eba\u5e73\u7b49\u7684\u89c4\u5219\u8fdb\u884c\u534f\u8c03\u4e0e\u5408\u4f5c",
+    descriptions: [
+      "zerox \u662f\u4e00\u4e2a\u6280\u672f\u5b9e\u9a8c\u5ba4\uff0c\u6784\u5efa\u5728\u4e00\u4e2a\u8d85\u8d8a\u56fd\u754c\u7684\u4e2d\u7acb\u5c42\u4e4b\u4e0a\uff0c\u8ba9\u4eba\u4eec\u80fd\u591f\u6309\u7167\u4eba\u4eba\u5e73\u7b49\u7684\u89c4\u5219\u8fdb\u884c\u534f\u8c03\u4e0e\u5408\u4f5c",
+      "\u4ece\u521b\u610f\u5230\u4ee3\u7801\uff0c\u901a\u8fc7\u4eba\u5de5\u667a\u80fd\u3001\u5206\u5e03\u5f0f\u7cfb\u7edf\u3001\u533a\u5757\u94fe\u548c\u7f51\u7edc\u5b89\u5168",
+      "\u6211\u4eec\u6784\u5efa\u8ba9\u4f01\u4e1a\u4ee5\u8d85\u4e4e\u60f3\u8c61\u7684\u901f\u5ea6\u524d\u8fdb\u7684\u7cfb\u7edf\uff0c\u4fdd\u6301\u8bed\u8a00\u7684DNA\uff0c\u5c06\u521b\u610f\u8f6c\u5316\u4e3a\u57fa\u7840\u8bbe\u65bd"
+    ],
     email: "Email",
     whatsapp: "WhatsApp",
     whatsappMessage: "\u65e9\u4e0a\u597d\uff0c\u6211\u6709\u5174\u8da3\u4e86\u89e3\u66f4\u591a\u5173\u4e8ezerox\u7684\u4fe1\u606f",

@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = ({ currentLang, onOpenCookieSettings }) =>
           </button>
         </div>
         <div className="footer-copyright">
-          &copy; {currentYear} {currentLang.footer.company}. {currentLang.footer.allRightsReserved}.
+          &copy; {currentYear} {currentLang.footer.company} {currentLang.footer.allRightsReserved}.
         </div>
       </div>
     </footer>

@@ -29,25 +29,34 @@ export const responsiveStyles = `
       width: 92%;
     }
     .company-title {
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
       letter-spacing: 18px;
       padding-left: 18px;
     }
+    .company-description {
+      font-size: 1.3rem;
+    }
   }
 
-  /* Tablets portrait (768px) */
+  /* Tablets portrait (641px - 768px) */
   @media (max-width: 768px) {
     .header-container {
       width: 94%;
     }
+    .logo {
+      max-width: min(480px, 65vw);
+    }
     .company-title {
+      font-size: clamp(1.5rem, 4.5vw, 2.6rem);
       letter-spacing: 14px;
       padding-left: 14px;
     }
     .company-description {
-      font-size: 0.95rem;
+      font-size: 1.25rem;
     }
     .action-buttons-container {
       gap: 35px;
+      bottom: 20%;
     }
     .action-button {
       width: 65px;
@@ -62,22 +71,33 @@ export const responsiveStyles = `
   @media (max-width: 640px) {
     .header-container {
       width: 95%;
+      padding-bottom: 80px;
+      padding-top: 4vh;
+    }
+    .logo {
+      max-width: min(460px, 65vw);
     }
     .company-title {
       letter-spacing: 10px;
       padding-left: 10px;
     }
     .company-description {
-      font-size: 0.93rem;
-      line-height: 1.75;
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+    .description-container {
+      padding: 0 8%;
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-bottom: 40vh;
     }
     .language-btn {
       font-size: 0.75rem;
       padding: 4px 7px;
-      color: rgba(255, 255, 255, 0.5);
     }
     .action-buttons-container {
-      gap: 28px;
+      gap: 32px;
+      bottom: 36%;
     }
     .action-button {
       width: 58px;
@@ -92,6 +112,11 @@ export const responsiveStyles = `
   @media (max-width: 480px) {
     .header-container {
       width: 96%;
+      padding-top: 4vh;
+      padding-bottom: 70px;
+    }
+    .logo {
+      max-width: min(420px, 68vw);
     }
     .company-title {
       letter-spacing: 8px;
@@ -99,19 +124,25 @@ export const responsiveStyles = `
       margin-top: -6px;
     }
     .company-description {
-      font-size: 0.9rem;
-      line-height: 1.8;
+      font-size: 1.15rem;
+      line-height: 2;
+    }
+    .description-container {
+      padding: 0 6%;
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-bottom: 40vh;
     }
     .language-btn {
       font-size: 0.7rem;
       padding: 3px 6px;
-      color: rgba(255, 255, 255, 0.5);
     }
     .language-selector {
       gap: 6px;
     }
     .action-buttons-container {
-      gap: 22px;
+      gap: 28px;
+      bottom: 35%;
     }
     .action-button {
       width: 52px;
@@ -125,24 +156,35 @@ export const responsiveStyles = `
 
   /* Small phones (375px and below) */
   @media (max-width: 375px) {
+    .header-container {
+      padding-top: 3.5vh;
+      padding-bottom: 60px;
+    }
+    .logo {
+      max-width: min(380px, 80vw);
+    }
     .company-title {
       letter-spacing: 6px;
       padding-left: 6px;
     }
     .company-description {
-      font-size: 0.88rem;
-      line-height: 1.8;
+      font-size: 1.1rem;
+      line-height: 1.9;
+    }
+    .description-container {
+      padding: 0 2%;
+      padding-bottom: 36vh;
     }
     .language-btn {
       font-size: 0.65rem;
       padding: 3px 5px;
-      color: rgba(255, 255, 255, 0.5);
     }
     .language-selector {
       gap: 4px;
     }
     .action-buttons-container {
-      gap: 18px;
+      gap: 24px;
+      bottom: 32%;
     }
     .action-button {
       width: 48px;
@@ -157,8 +199,18 @@ export const responsiveStyles = `
 
   /* Very small phones (320px) */
   @media (max-width: 320px) {
+    .header-container {
+      padding-bottom: 50px;
+    }
+    .logo {
+      max-width: min(300px, 85vw);
+    }
+    .company-description {
+      font-size: 1.05rem;
+    }
     .action-buttons-container {
-      gap: 14px;
+      gap: 18px;
+      bottom: 30%;
     }
     .action-button {
       width: 42px;
@@ -174,19 +226,16 @@ export const responsiveStyles = `
   /* Short viewports (< 700px height) */
   @media (max-height: 700px) {
     .header-container {
-      top: 1%;
+      padding-top: 1.5vh;
     }
     .logo {
-      max-width: min(400px, 45vw);
-    }
-    .logo-title-container {
-      margin-bottom: 1vh;
+      max-width: min(450px, 65vw);
     }
     .company-title {
       margin-top: -8px;
     }
-    .description-container {
-      margin-bottom: 2vh;
+    .company-description {
+      font-size: 1.15rem;
     }
     .action-button {
       width: 60px;
@@ -195,21 +244,24 @@ export const responsiveStyles = `
     .action-icon {
       font-size: 1.5rem;
     }
+    .action-buttons-container {
+      bottom: 25%;
+    }
   }
 
   /* Very short viewports (< 600px height) */
   @media (max-height: 600px) {
+    .header-container {
+      padding-top: 1vh;
+    }
     .logo {
-      max-width: min(320px, 40vw);
+      max-width: min(380px, 55vw);
     }
     .company-title {
       margin-top: -6px;
     }
-    .description-container {
-      margin-bottom: 1.5vh;
-    }
-    .language-selector {
-      margin-top: 1vh;
+    .company-description {
+      font-size: 1.1rem;
     }
     .action-button {
       width: 54px;
@@ -217,6 +269,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 25px;
+      bottom: 22%;
     }
     .action-icon {
       font-size: 1.3rem;
@@ -226,22 +279,17 @@ export const responsiveStyles = `
   /* Extra short viewports (< 500px height) - landscape phones etc. */
   @media (max-height: 500px) {
     .header-container {
-      top: 1%;
+      padding-top: 0.5vh;
+      padding-bottom: 50px;
     }
     .logo {
-      max-width: min(250px, 30vw);
-    }
-    .logo-title-container {
-      margin-bottom: 0.5vh;
+      max-width: min(300px, 45vw);
     }
     .company-title {
       margin-top: -5px;
     }
-    .description-container {
-      margin-bottom: 1vh;
-    }
-    .language-selector {
-      margin-top: 0.5vh;
+    .company-description {
+      font-size: 1rem;
     }
     .action-button {
       width: 46px;
@@ -249,6 +297,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 20px;
+      bottom: 18%;
     }
     .action-icon {
       font-size: 1.2rem;

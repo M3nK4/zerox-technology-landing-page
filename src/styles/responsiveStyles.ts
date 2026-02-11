@@ -89,7 +89,7 @@ export const responsiveStyles = `
       padding: 0 8%;
       margin-top: auto;
       margin-bottom: auto;
-      padding-bottom: 40vh;
+      padding-bottom: 34vh;
     }
     .language-btn {
       font-size: 0.75rem;
@@ -97,7 +97,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 32px;
-      bottom: 36%;
+      bottom: 30%;
     }
     .action-button {
       width: 58px;
@@ -131,7 +131,7 @@ export const responsiveStyles = `
       padding: 0 6%;
       margin-top: auto;
       margin-bottom: auto;
-      padding-bottom: 40vh;
+      padding-bottom: 34vh;
     }
     .language-btn {
       font-size: 0.7rem;
@@ -142,7 +142,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 28px;
-      bottom: 35%;
+      bottom: 29%;
     }
     .action-button {
       width: 52px;
@@ -173,7 +173,7 @@ export const responsiveStyles = `
     }
     .description-container {
       padding: 0 2%;
-      padding-bottom: 36vh;
+      padding-bottom: 30vh;
     }
     .language-btn {
       font-size: 0.65rem;
@@ -184,7 +184,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 24px;
-      bottom: 32%;
+      bottom: 26%;
     }
     .action-button {
       width: 48px;
@@ -210,7 +210,7 @@ export const responsiveStyles = `
     }
     .action-buttons-container {
       gap: 18px;
-      bottom: 30%;
+      bottom: 24%;
     }
     .action-button {
       width: 42px;
@@ -224,19 +224,19 @@ export const responsiveStyles = `
   /* Tall phones (narrow + tall viewport, e.g. iPhone Pro Max) */
   @media (max-width: 480px) and (min-height: 800px) {
     .description-container {
-      padding-bottom: 22vh;
+      padding-bottom: 18vh;
     }
     .action-buttons-container {
-      bottom: 20%;
+      bottom: 16%;
     }
   }
 
   @media (max-width: 640px) and (min-height: 800px) {
     .description-container {
-      padding-bottom: 22vh;
+      padding-bottom: 18vh;
     }
     .action-buttons-container {
-      bottom: 20%;
+      bottom: 16%;
     }
   }
 

@@ -26,7 +26,7 @@ export const responsiveStyles = `
       width: 92%;
     }
     .company-title {
-      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
       letter-spacing: 18px;
       padding-left: 18px;
     }
@@ -41,7 +41,7 @@ export const responsiveStyles = `
       width: 94%;
     }
     .company-title {
-      font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+      font-size: clamp(1.7rem, 5vw, 2.8rem);
       letter-spacing: 14px;
       padding-left: 14px;
     }
@@ -206,9 +206,9 @@ export const responsiveStyles = `
   /* Tall phones (narrow + tall viewport, e.g. iPhone Pro Max) */
   @media (max-width: 480px) and (min-height: 800px) {
     .company-title {
-      font-size: clamp(1.8rem, 6.5vw, 2.6rem);
-      letter-spacing: 10px;
-      padding-left: 10px;
+      font-size: clamp(2.2rem, 8vw, 3rem);
+      letter-spacing: 12px;
+      padding-left: 12px;
     }
     .description-container {
       padding-bottom: 18vh;
@@ -220,9 +220,9 @@ export const responsiveStyles = `
 
   @media (max-width: 640px) and (min-height: 800px) {
     .company-title {
-      font-size: clamp(2rem, 6vw, 3rem);
-      letter-spacing: 12px;
-      padding-left: 12px;
+      font-size: clamp(2.4rem, 7.5vw, 3.4rem);
+      letter-spacing: 14px;
+      padding-left: 14px;
     }
     .description-container {
       padding-bottom: 18vh;

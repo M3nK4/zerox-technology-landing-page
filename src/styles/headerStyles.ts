@@ -32,7 +32,7 @@ export const headerStyles = `
     color: #00ff99;
     text-transform: uppercase;
     letter-spacing: 22px;
-    font-size: clamp(1.4rem, 4vw, 3.4rem);
+    font-size: clamp(1.6rem, 4.5vw, 3.6rem);
     margin-top: -10px;
     margin-bottom: 0;
     text-shadow: 0 0 10px rgba(0,255,153,0.5), 0 0 25px rgba(0,255,153,0.3), 0 0 50px rgba(0,255,153,0.15);

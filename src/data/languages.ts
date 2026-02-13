@@ -4,9 +4,18 @@ export const languages = {
     label: "EN",
     htmlLang: "en",
     descriptions: [
-      "zerox is a technology lab that builds on a neutral layer above borders, enabling people to coordinate and cooperate with equal rules for all",
-      "from idea to code through artificial intelligence, distributed systems, blockchain and cybersecurity",
-      "we build the systems that allow companies to move faster than they think possible, keeping the DNA of language to translate an idea into infrastructure"
+      "zerox builds on a neutral layer above borders",
+      "zerox enables people to coordinate and cooperate with equal rules for all",
+      "zerox builds the technology layer between idea and product",
+      "zerox eliminates technological complexity",
+      "zerox designs architectures that abstract complexity and make it invisible",
+      "zerox gives access to enterprise infrastructure without the cost of building it",
+      "zerox engineers systems to scale",
+      "zerox builds the stack that eliminates the gap between prototype and production",
+      "zerox compresses time-to-market to a matter of architecture",
+      "zerox integrates artificial intelligence, distributed systems, blockchain and cybersecurity",
+      "zerox designs infrastructure with autonomous dependencies",
+      "zerox brings automation, security and distributed coordination"
     ],
     email: "Email",
     whatsapp: "WhatsApp",
@@ -39,6 +48,19 @@ export const languages = {
       acceptAll: "Accept All",
       alwaysActive: "Always active"
     },
+    emailCapture: {
+      title: "stay connected",
+      description: "Leave your email to receive updates on our projects and technologies",
+      placeholder: "your@email.com",
+      submit: "subscribe",
+      sending: "sending...",
+      success: "Welcome aboard — you'll hear from us soon",
+      error: "Connection error — please try again",
+      duplicate: "This email is already registered",
+      invalid: "Please enter a valid email address",
+      empty: "Please enter your email address",
+      privacy: "Your email is safe with us — no spam, ever"
+    },
     footer: {
       company: "zerox.technology",
       allRightsReserved: "All rights reserved",
@@ -52,9 +74,18 @@ export const languages = {
     label: "IT",
     htmlLang: "it",
     descriptions: [
-      "zerox \u00e8 un laboratorio tecnologico che costruisce su uno strato neutrale e al di sopra dei confini che permette alle persone di coordinarsi e cooperare con regole uguali per tutti",
-      "dall'idea al codice attraverso intelligenza artificiale, sistemi distribuiti, blockchain e cybersecurity",
-      "costruiamo i sistemi che permettono alle aziende di muoversi pi\u00f9 velocemente di quanto credano possibile, mantenendo il DNA del linguaggio per tradurre una idea in infrastruttura"
+      "zerox costruisce su uno strato neutrale e al di sopra dei confini",
+      "zerox permette alle persone di coordinarsi e cooperare con regole uguali per tutti",
+      "zerox costruisce il layer tecnologico tra idea e prodotto",
+      "zerox elimina la complessità tecnologica",
+      "zerox progetta architetture che astraggono la complessità e la rendono invisibile",
+      "zerox da accesso a infrastruttura enterprise senza il costo di costruzione",
+      "zerox ingegnerizza sistemi per scalare",
+      "zerox costruisce lo stack che elimina il gap tra prototipo e produzione",
+      "zerox comprime il time-to-market a una questione di architettura",
+      "zerox integra intelligenza artificiale, sistemi distribuiti, blockchain e cybersecurity",
+      "zerox disegna infrastruttura con dipendenze autonome",
+      "zerox porta automazione, sicurezza e coordinazione distribuita"
     ],
     email: "Email",
     whatsapp: "WhatsApp",
@@ -87,6 +118,19 @@ export const languages = {
       acceptAll: "Accetta Tutti",
       alwaysActive: "Sempre attivo"
     },
+    emailCapture: {
+      title: "resta connesso",
+      description: "Lascia la tua email per ricevere aggiornamenti sui nostri progetti e tecnologie",
+      placeholder: "tua@email.com",
+      submit: "iscriviti",
+      sending: "invio...",
+      success: "Benvenuto a bordo — ti scriveremo presto",
+      error: "Errore di connessione — riprova più tardi",
+      duplicate: "Questa email è già registrata",
+      invalid: "Inserisci un indirizzo email valido",
+      empty: "Inserisci il tuo indirizzo email",
+      privacy: "La tua email è al sicuro con noi — niente spam, mai"
+    },
     footer: {
       company: "zerox.technology",
       allRightsReserved: "Tutti i diritti riservati",
@@ -100,9 +144,18 @@ export const languages = {
     label: "ES",
     htmlLang: "es",
     descriptions: [
-      "zerox es un laboratorio tecnol\u00f3gico que construye sobre una capa neutral por encima de las fronteras, permitiendo a las personas coordinarse y cooperar con reglas iguales para todos",
-      "de la idea al c\u00f3digo a trav\u00e9s de inteligencia artificial, sistemas distribuidos, blockchain y ciberseguridad",
-      "construimos los sistemas que permiten a las empresas moverse m\u00e1s r\u00e1pido de lo que creen posible, manteniendo el ADN del lenguaje para traducir una idea en infraestructura"
+      "zerox construye sobre una capa neutral por encima de las fronteras",
+      "zerox permite a las personas coordinarse y cooperar con reglas iguales para todos",
+      "zerox construye la capa tecnológica entre idea y producto",
+      "zerox elimina la complejidad tecnológica",
+      "zerox diseña arquitecturas que abstraen la complejidad y la hacen invisible",
+      "zerox da acceso a infraestructura enterprise sin el costo de construcción",
+      "zerox diseña sistemas para escalar",
+      "zerox construye el stack que elimina la brecha entre prototipo y producción",
+      "zerox comprime el time-to-market a una cuestión de arquitectura",
+      "zerox integra inteligencia artificial, sistemas distribuidos, blockchain y ciberseguridad",
+      "zerox diseña infraestructura con dependencias autónomas",
+      "zerox aporta automatización, seguridad y coordinación distribuida"
     ],
     email: "Email",
     whatsapp: "WhatsApp",
@@ -135,6 +188,19 @@ export const languages = {
       acceptAll: "Aceptar Todas",
       alwaysActive: "Siempre activo"
     },
+    emailCapture: {
+      title: "mantente conectado",
+      description: "Deja tu email para recibir actualizaciones sobre nuestros proyectos y tecnologías",
+      placeholder: "tu@email.com",
+      submit: "suscribirse",
+      sending: "enviando...",
+      success: "Bienvenido a bordo — pronto tendrás noticias nuestras",
+      error: "Error de conexión — inténtalo de nuevo",
+      duplicate: "Este email ya está registrado",
+      invalid: "Introduce una dirección de email válida",
+      empty: "Introduce tu dirección de email",
+      privacy: "Tu email está seguro con nosotros — sin spam, nunca"
+    },
     footer: {
       company: "zerox.technology",
       allRightsReserved: "Todos los derechos reservados",
@@ -148,9 +214,18 @@ export const languages = {
     label: "\u4e2d",
     htmlLang: "zh-Hans",
     descriptions: [
-      "zerox \u662f\u4e00\u4e2a\u6280\u672f\u5b9e\u9a8c\u5ba4\uff0c\u6784\u5efa\u5728\u4e00\u4e2a\u8d85\u8d8a\u56fd\u754c\u7684\u4e2d\u7acb\u5c42\u4e4b\u4e0a\uff0c\u8ba9\u4eba\u4eec\u80fd\u591f\u6309\u7167\u4eba\u4eba\u5e73\u7b49\u7684\u89c4\u5219\u8fdb\u884c\u534f\u8c03\u4e0e\u5408\u4f5c",
-      "\u4ece\u521b\u610f\u5230\u4ee3\u7801\uff0c\u901a\u8fc7\u4eba\u5de5\u667a\u80fd\u3001\u5206\u5e03\u5f0f\u7cfb\u7edf\u3001\u533a\u5757\u94fe\u548c\u7f51\u7edc\u5b89\u5168",
-      "\u6211\u4eec\u6784\u5efa\u8ba9\u4f01\u4e1a\u4ee5\u8d85\u4e4e\u60f3\u8c61\u7684\u901f\u5ea6\u524d\u8fdb\u7684\u7cfb\u7edf\uff0c\u4fdd\u6301\u8bed\u8a00\u7684DNA\uff0c\u5c06\u521b\u610f\u8f6c\u5316\u4e3a\u57fa\u7840\u8bbe\u65bd"
+      "zerox 构建在超越国界的中立层之上",
+      "zerox 让人们能够按照人人平等的规则进行协调与合作",
+      "zerox 构建从创意到产品的技术层",
+      "zerox 消除技术复杂性",
+      "zerox 设计将复杂性抽象化并使其不可见的架构",
+      "zerox 提供企业级基础设施访问，无需承担建设成本",
+      "zerox 工程化系统以实现规模化",
+      "zerox 构建消除原型与生产之间差距的技术栈",
+      "zerox 将上市时间压缩为架构问题",
+      "zerox 整合人工智能、分布式系统、区块链和网络安全",
+      "zerox 设计具有自主依赖的基础设施",
+      "zerox 带来自动化、安全性和分布式协调"
     ],
     email: "Email",
     whatsapp: "WhatsApp",
@@ -181,11 +256,24 @@ export const languages = {
       },
       saveSettings: "\u4fdd\u5b58\u8bbe\u7f6e",
       acceptAll: "\u63a5\u53d7\u5168\u90e8",
-      alwaysActive: "\u59cb\u7ec8\u6d3b\u8dc3"
+      alwaysActive: "始终活跃"
+    },
+    emailCapture: {
+      title: "保持联系",
+      description: "留下你的邮箱，接收我们项目和技术的最新动态",
+      placeholder: "your@email.com",
+      submit: "订阅",
+      sending: "发送中...",
+      success: "欢迎加入 — 我们很快会与你联系",
+      error: "连接错误 — 请稍后重试",
+      duplicate: "该邮箱已注册",
+      invalid: "请输入有效的邮箱地址",
+      empty: "请输入你的邮箱地址",
+      privacy: "你的邮箱在我们这里是安全的 — 绝不发送垃圾邮件"
     },
     footer: {
       company: "zerox.technology",
-      allRightsReserved: "\u7248\u6743\u6240\u6709",
+      allRightsReserved: "版权所有",
       privacyPolicy: "\u9690\u79c1\u653f\u7b56",
       cookiePolicy: "Cookie\u653f\u7b56",
       terms: "\u670d\u52a1\u6761\u6b3e",

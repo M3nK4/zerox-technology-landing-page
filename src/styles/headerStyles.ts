@@ -22,7 +22,6 @@ export const headerStyles = `
   }
 
   .logo {
-    max-width: min(520px, 65vw);
     margin-bottom: 0;
     display: block;
     margin-left: auto;
@@ -62,6 +61,7 @@ export const headerStyles = `
   /* Description centered in remaining space */
   .description-container {
     padding: 0 8%;
+    padding-bottom: 8vh;
     flex-shrink: 0;
     margin-top: auto;
     margin-bottom: auto;
@@ -81,7 +81,7 @@ export const headerStyles = `
   /* Buttons fixed position — never shifts with text changes */
   .action-buttons-container {
     display: flex;
-    gap: 30px;
+    gap: 42px;
     z-index: 3;
     flex-wrap: nowrap;
     align-items: center;

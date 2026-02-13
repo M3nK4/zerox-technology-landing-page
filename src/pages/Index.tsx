@@ -5,12 +5,14 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useParticleSystem } from "@/hooks/useParticleSystem";
 import CookieBanner from "@/components/CookieBanner";
 import CookieSettings from "@/components/CookieSettings";
+import EmailCapture from "@/components/EmailCapture";
 import Header from "@/components/Header";
 import GlobalStyles from "@/components/GlobalStyles";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const [showCookieSettings, setShowCookieSettings] = useState(false);
+  const [showEmailCapture, setShowEmailCapture] = useState(false);
   const { hasConsent, acceptAll, acceptNecessary, saveConsent } = useCookieConsent();
   const { currentLang, currentLangKey, setLanguage, languageOrder } = useLanguage();
 
@@ -21,6 +23,7 @@ const Index = () => {
 
   // Random interference animation
   const interferenceRef = useRef<HTMLDivElement>(null);
+  const interferenceKickRef = useRef<() => void>();
   useEffect(() => {
     const el = interferenceRef.current;
     if (!el) return;
@@ -30,7 +33,15 @@ const Index = () => {
     let currentOpacity = 7.0;
     let nextChangeTime = 0;
     let nextJitterTime = 0;
+    let kickDecay = 0;
     let animId: number;
+
+    // Expose kick function for text flash correlation
+    interferenceKickRef.current = () => {
+      velocity = (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 0.15 + 0.12);
+      currentOpacity = Math.random() * 3.0 + 12.0;
+      kickDecay = 20;
+    };
 
     const animate = (time: number) => {
       // Random speed/direction changes every 4-10 seconds
@@ -49,6 +60,12 @@ const Index = () => {
       // Random bright flash — rare but intense
       if (Math.random() < 0.001) {
         currentOpacity = Math.random() * 4.0 + 10.0;
+      }
+
+      // Kick decay — fast velocity dampening after text flash
+      if (kickDecay > 0) {
+        velocity *= 0.92;
+        kickDecay--;
       }
 
       currentOpacity += (targetOpacity - currentOpacity) * 0.01;
@@ -76,7 +93,31 @@ const Index = () => {
 
   const scheduleNext = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => triggerRef.current?.(), 7000 + Math.random() * 2000 - 1000);
+    timerRef.current = setTimeout(() => triggerRef.current?.(), 5000);
+  };
+
+  // Horizontal interference line on text change
+  const spawnInterferenceLine = () => {
+    const line = document.createElement('div');
+    const y = 15 + Math.random() * 70; // 15%-85% of viewport
+    const h = 1 + Math.random() * 2;
+    Object.assign(line.style, {
+      position: 'fixed',
+      top: `${y}%`,
+      left: '0',
+      width: '100%',
+      height: `${h}px`,
+      background: `linear-gradient(90deg, transparent 0%, rgba(0,255,153,0.4) ${10 + Math.random() * 20}%, rgba(255,255,255,0.25) 50%, rgba(0,255,153,0.35) ${70 + Math.random() * 20}%, transparent 100%)`,
+      pointerEvents: 'none',
+      zIndex: '1',
+      opacity: '1',
+      transition: 'opacity 0.2s ease-out',
+    });
+    document.body.appendChild(line);
+    requestAnimationFrame(() => {
+      line.style.opacity = '0';
+    });
+    setTimeout(() => line.remove(), 250);
   };
 
   triggerRef.current = () => {
@@ -84,6 +125,8 @@ const Index = () => {
     transitioningRef.current = true;
     const flash = flashRef.current;
     setIsTransitioning(true);
+    interferenceKickRef.current?.();
+    spawnInterferenceLine();
     if (flash) {
       const textEl = flash.parentElement?.querySelector('.company-description') as HTMLElement;
       if (textEl) {
@@ -102,7 +145,7 @@ const Index = () => {
       flash.style.opacity = '1';
     }
     setTimeout(() => {
-      setDescriptionIndex(prev => (prev + 1) % 3);
+      setDescriptionIndex(prev => (prev + 1) % currentLang.descriptions.length);
     }, 90);
     setTimeout(() => {
       if (flash) {
@@ -118,7 +161,7 @@ const Index = () => {
   const triggerTransition = () => triggerRef.current?.();
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => triggerRef.current?.(), 7000);
+    timerRef.current = setTimeout(() => triggerRef.current?.(), 5000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
 
@@ -128,7 +171,7 @@ const Index = () => {
     const el = noiseRef.current;
     if (!el) return;
     const size = 64;
-    const grain = 3;
+    const grain = 2;
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;
@@ -165,6 +208,7 @@ const Index = () => {
         isTransitioning={isTransitioning}
         flashRef={flashRef}
         onClickDescription={triggerTransition}
+        onClickEmail={() => setShowEmailCapture(true)}
       />
 
       {hasConsent === false && (
@@ -175,6 +219,12 @@ const Index = () => {
           onShowSettings={() => setShowCookieSettings(true)}
         />
       )}
+
+      <EmailCapture
+        isOpen={showEmailCapture}
+        onClose={() => setShowEmailCapture(false)}
+        currentLang={currentLang}
+      />
 
       <CookieSettings
         isOpen={showCookieSettings}

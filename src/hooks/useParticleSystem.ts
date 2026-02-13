@@ -25,7 +25,7 @@ export const useParticleSystem = () => {
   const animationIdRef = useRef<number>();
 
   useEffect(() => {
-    const maxParticles = 95;
+    const maxParticles = 60;
     let bitcoinAlive = false;
     const gravity = 0.35;
     const floorRestitution = 0.15;
@@ -237,10 +237,25 @@ export const useParticleSystem = () => {
       element.style.transition = 'box-shadow 0.05s ease-in, background 0.05s ease-in';
       element.style.boxShadow = `0 0 ${glowSize}px ${Math.round(glowSize / 3)}px rgba(0,255,153,${glowOpacity})`;
       element.style.background = `rgba(0,255,153,${0.1 + intensity * 0.15})`;
+
+      // Flash the icon text white
+      const icon = element.querySelector('.action-icon') as HTMLElement;
+      if (icon) {
+        const iconGlow = 4 + intensity * 8;
+        icon.style.transition = 'color 0.05s ease-in, text-shadow 0.05s ease-in';
+        icon.style.color = '#ffffff';
+        icon.style.textShadow = `0 0 ${iconGlow}px rgba(255,255,255,0.9), 0 0 ${iconGlow * 2}px rgba(255,255,255,0.4)`;
+      }
+
       setTimeout(() => {
         element.style.transition = 'box-shadow 0.5s ease-out, background 0.5s ease-out';
         element.style.boxShadow = '';
         element.style.background = '';
+        if (icon) {
+          icon.style.transition = 'color 0.5s ease-out, text-shadow 0.5s ease-out';
+          icon.style.color = '';
+          icon.style.textShadow = '';
+        }
       }, 80);
     };
 

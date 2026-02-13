@@ -4,9 +4,6 @@ export const responsiveStyles = `
     .header-container {
       max-width: 1000px;
     }
-    .logo {
-      max-width: 560px;
-    }
     .company-title {
       letter-spacing: 26px;
       padding-left: 26px;
@@ -43,9 +40,6 @@ export const responsiveStyles = `
     .header-container {
       width: 94%;
     }
-    .logo {
-      max-width: min(480px, 65vw);
-    }
     .company-title {
       font-size: clamp(1.5rem, 4.5vw, 2.6rem);
       letter-spacing: 14px;
@@ -73,9 +67,6 @@ export const responsiveStyles = `
       width: 95%;
       padding-bottom: 80px;
       padding-top: 4vh;
-    }
-    .logo {
-      max-width: min(460px, 65vw);
     }
     .company-title {
       letter-spacing: 10px;
@@ -114,9 +105,6 @@ export const responsiveStyles = `
       width: 96%;
       padding-top: 4vh;
       padding-bottom: 70px;
-    }
-    .logo {
-      max-width: min(420px, 68vw);
     }
     .company-title {
       letter-spacing: 8px;
@@ -160,9 +148,6 @@ export const responsiveStyles = `
       padding-top: 3.5vh;
       padding-bottom: 60px;
     }
-    .logo {
-      max-width: min(380px, 80vw);
-    }
     .company-title {
       letter-spacing: 6px;
       padding-left: 6px;
@@ -202,9 +187,6 @@ export const responsiveStyles = `
     .header-container {
       padding-bottom: 50px;
     }
-    .logo {
-      max-width: min(300px, 85vw);
-    }
     .company-description {
       font-size: 1.05rem;
     }
@@ -223,6 +205,11 @@ export const responsiveStyles = `
 
   /* Tall phones (narrow + tall viewport, e.g. iPhone Pro Max) */
   @media (max-width: 480px) and (min-height: 800px) {
+    .company-title {
+      font-size: clamp(1.8rem, 6.5vw, 2.6rem);
+      letter-spacing: 10px;
+      padding-left: 10px;
+    }
     .description-container {
       padding-bottom: 18vh;
     }
@@ -232,6 +219,11 @@ export const responsiveStyles = `
   }
 
   @media (max-width: 640px) and (min-height: 800px) {
+    .company-title {
+      font-size: clamp(2rem, 6vw, 3rem);
+      letter-spacing: 12px;
+      padding-left: 12px;
+    }
     .description-container {
       padding-bottom: 18vh;
     }
@@ -246,9 +238,6 @@ export const responsiveStyles = `
   @media (max-height: 700px) {
     .header-container {
       padding-top: 1.5vh;
-    }
-    .logo {
-      max-width: min(450px, 65vw);
     }
     .company-title {
       margin-top: -8px;
@@ -272,9 +261,6 @@ export const responsiveStyles = `
   @media (max-height: 600px) {
     .header-container {
       padding-top: 1vh;
-    }
-    .logo {
-      max-width: min(380px, 55vw);
     }
     .company-title {
       margin-top: -6px;
@@ -300,9 +286,6 @@ export const responsiveStyles = `
     .header-container {
       padding-top: 0.5vh;
       padding-bottom: 50px;
-    }
-    .logo {
-      max-width: min(300px, 45vw);
     }
     .company-title {
       margin-top: -5px;

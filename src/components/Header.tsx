@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { LanguageKey } from '@/data/languages';
 
 interface Language {
@@ -19,21 +19,47 @@ interface HeaderProps {
   isTransitioning: boolean;
   flashRef: React.RefObject<HTMLDivElement>;
   onClickDescription: () => void;
+  onClickEmail: () => void;
 }
 
 const langLabels: Record<LanguageKey, string> = {
   en: 'EN',
   it: 'IT',
   es: 'ES',
-  zh: '\u4e2d',
+  zh: '中',
 };
 
-const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguage, languageOrder, descriptionIndex, isTransitioning, flashRef, onClickDescription }) => {
+const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguage, languageOrder, descriptionIndex, isTransitioning, flashRef, onClickDescription, onClickEmail }) => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+
+  const syncLogoWidth = useCallback(() => {
+    const title = titleRef.current;
+    const logo = logoRef.current;
+    if (!title || !logo) return;
+    // Collapse logo so it doesn't inflate the container before measuring
+    logo.style.width = '0px';
+    // Force layout recalc, then measure the title's natural width
+    const titleWidth = title.scrollWidth;
+    logo.style.width = titleWidth + 'px';
+  }, []);
+
+  useEffect(() => {
+    syncLogoWidth();
+    const ro = new ResizeObserver(syncLogoWidth);
+    if (titleRef.current) ro.observe(titleRef.current);
+    window.addEventListener('resize', syncLogoWidth);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', syncLogoWidth);
+    };
+  }, [syncLogoWidth]);
+
   return (
     <div className="header-container">
       <div className="logo-title-container">
-        <img src="/assets/zerox-logo.png" alt="zerox.technology" className="logo" />
-        <h1 className="company-title">TECHNOLOGY</h1>
+        <img ref={logoRef} src="/assets/zerox-logo.png" alt="zerox.technology" className="logo" />
+        <h1 ref={titleRef} className="company-title">TECHNOLOGY</h1>
       </div>
 
       <div className="language-selector">
@@ -62,8 +88,10 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           id="email-button"
           className="action-button"
           title={currentLang.email}
+          onClick={onClickEmail}
+          style={{ cursor: 'pointer' }}
         >
-          <span className="action-icon">@</span>
+          <span className="action-icon" style={{ fontWeight: 200 }}>@</span>
         </div>
 
         <a
@@ -74,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           rel="noopener noreferrer"
           title={currentLang.whatsapp}
         >
-          <span className="action-icon">&gt;</span>
+          <span className="action-icon" style={{ fontWeight: 200 }}>t</span>
         </a>
 
         <div
@@ -82,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, currentLangKey, setLanguag
           className="action-button"
           title={currentLang.voiceAgent}
         >
-          <span className="action-icon">~</span>
+          <span className="action-icon" style={{ fontSize: '2em', lineHeight: 1 }}>○</span>
         </div>
       </div>
     </div>
